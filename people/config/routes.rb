@@ -3,9 +3,11 @@ People::Application.routes.draw do
   resources :professors
 
   root :to => "Professors#description"
+  match "index" => "Professors#description"
   match "metainfo" => "Professors#meta_info"
   match "people" => "Professors#list"
   match "people/:id" => "Professors#specific"
+  match "search" => "Professors#search"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

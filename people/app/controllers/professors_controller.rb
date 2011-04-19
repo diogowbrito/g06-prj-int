@@ -15,7 +15,6 @@ class ProfessorsController < ApplicationController
   end
 
   def list
-
     @start = params[:start] || '1'
     @end = params[:end] || '20'
 
@@ -34,6 +33,10 @@ class ProfessorsController < ApplicationController
     respond_to do |format|
       format.xml
     end
+  end
+
+  def search
+    @keyword = params[:keyword]
   end
 
   def index
