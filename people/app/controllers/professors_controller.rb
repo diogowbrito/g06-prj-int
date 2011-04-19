@@ -36,7 +36,13 @@ class ProfessorsController < ApplicationController
   end
 
   def search
-    @keyword = params[:keyword]
+
+    @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_")
+    @professors = Professor.find(:all, :conditions=> ["professor_name like ?", "%" + @keyword + "%"])
+
+    respond_to do |format|
+      format.xml
+    end
   end
 
   def index
