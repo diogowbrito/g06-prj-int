@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  professor_id: 1
+  professor_name: MyString
+  sector: MyString
+  category: MyString
+  room: MyString
+  building: MyString
+
+two:
+  professor_id: 1
+  professor_name: MyString
+  sector: MyString
+  category: MyString
+  room: MyString
+  building: MyString

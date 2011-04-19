@@ -1,0 +1,42 @@
+<service name="people" url="http://DominioGeral/services/people">
+    <provider>G6</provider>
+    <serviceID>plp</serviceID>
+    <type>academics</type>
+    <tags>
+    </tags>
+    <search>yes</search>
+    <referedEntities>
+        <entity>person</entity>
+        <entity>organizational unit</entity>
+        <entity>schedule</entity>
+        <entity>degree</entity>
+		<entity>course</entity>
+		<entity>room</entity>
+		<entity>building</entity>
+		<entity>book</entity>
+		<entity>event</entity>
+    </referedEntities>
+    <informedEntities>
+		<entity>person</entity>
+    </informedEntities>
+    <competences>
+	<competence path="/teachers" httpOp="">
+            <description>Devolve a lista de docentes</description>
+            <arglist>
+                <arg optional="true">name</arg>
+                <arg optional="true">start</arg>
+                <arg optional="true">end</arg>
+            </arglist>
+            <interactionType>Indirect</interactionType>
+            <tags>
+            </tags>
+        </competence>
+	<competence path="/teachers" httpOp="/[id]">
+            <description>Devolve um docente específico</description>
+            <arglist/>
+            <interactionType>Indirect</interactionType>
+            <tags>
+            </tags>
+        </competence>
+  </competences>
+</service>

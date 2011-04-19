@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  professor_id: 1
+  course_name: MyString
+  department: MyString
+
+two:
+  professor_id: 1
+  course_name: MyString
+  department: MyString
