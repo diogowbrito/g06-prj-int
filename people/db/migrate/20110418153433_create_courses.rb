@@ -4,6 +4,7 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :professor_id
       t.string :course_name
       t.string :department
+      t.string :degree_name
 
       t.timestamps
     end

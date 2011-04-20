@@ -2,7 +2,7 @@ xml.record(:title => "Professor") do
   xml.text(@professor.professor_name, :title => "name")
   xml.text(:title => "Emails") do
     @emails.each do |email|
-      xml.entity(email, :type => "email")
+      xml.entity(email.email, :type => "email")
     end
   end
   xml.text(:title => "Office Location") do
@@ -13,7 +13,7 @@ xml.record(:title => "Professor") do
   xml.entity(@professor.sector, :title => "Sector", :type => "organizational unit")
   xml.text(:title => "Courses") do
     @courses.each do |course|
-      xml.entity(course, :type => "course")
+      xml.entity(course.course_name, :type => "course")
     end
   end
 end
