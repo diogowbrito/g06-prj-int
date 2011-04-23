@@ -1,0 +1,47 @@
+<h1>
+  <%=@title%>
+</h1>
+
+<%@data.each do |element|
+
+   if element.class == Element
+%>
+<%if element.getType ==  "text"%>
+<p>
+  <%=element.getValue%>
+</p>
+<%elsif element.getType == "link"%>
+<p>
+  <a href= <%=element.getHref%> >
+    <%=element.getValue%>
+  </a>
+</p>
+<%else%>
+<p>
+  <%="Erro!"%>
+</p>
+<%end
+
+  else%>
+<p>
+  <%=element.getValue%>
+</p>
+<ul>
+    <%element.getList.each do |item|
+    if item.getType ==  "text"%>
+<li>
+  <%=item.getValue%>
+</li>
+    <%elsif item.getType == "link"%>
+<li>
+  <a href= <%=element.getHref%> >
+    <%=element.getValue%>
+  </a>
+</li>
+    <%else%>
+<li>
+  <%="Erro!"%>
+</li>
+   <%end%>
+</ul>
+  <%end end end%>
