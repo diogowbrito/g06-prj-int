@@ -22,19 +22,19 @@ class RecordController < ApplicationController
     @attributes = []
     list = []
 
-    REXML::XPath.each(doc, "//text") {
-      |ele|
-      if ele.text.length == 1
-        REXML::XPath.each(doc, "//text/entity") {
-          |ent|
-           text_tags << Element.new("link", ent.text)
-        }
-      else
-        text_tags << Element.new("text", ele.text)
-        @attributes << ele.attributes.get_attribute("title").value
-      end
-
-    }
+#    REXML::XPath.each(doc, "//text") {
+#      |ele|
+#      if ele.text.length == 1
+#        REXML::XPath.each(doc, "//text/entity") {
+#          |ent|
+#           text_tags << Element.new("link", ent.text)
+#        }
+#      else
+#        text_tags << Element.new("text", ele.text)
+#        @attributes << ele.attributes.get_attribute("title").value
+#      end
+#
+#    }
 
     REXML::XPath.each(doc, "//item"){
       |ele|
@@ -46,7 +46,7 @@ class RecordController < ApplicationController
 #      entities << Element.new("link", ele.text)
 #    }
 
-    @data = [text_tags, e_list]
+    @data = [e_list]
 
     respond_to do |format|
       format.html
