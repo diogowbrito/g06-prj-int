@@ -1,0 +1,11 @@
+<record title="Professor">
+  <text title="name">Joao Horta</text>
+  <text title="Emails">emails</text>
+  <text title="Office Location">
+    <entity type="building">dd</entity>
+    <entity type="room">cc</entity>
+  </text>
+  <text title="Category">bb</text>
+  <entity title="Sector" type="organizational unit">aa</entity>
+  <text title="Courses">cursos</text>
+</record>
