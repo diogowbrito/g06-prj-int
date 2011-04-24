@@ -1,7 +1,7 @@
 <h1><%=@title%></h1>
 <% count = 0 %>
-<% @data.each do |element|
-#   ele.each do |element|
+<% @data.each do |ele|
+   ele.each do |element|
    if element.class == Element  %>
 
 <%if element.type ==  "text"%>
@@ -38,5 +38,5 @@
    <%end end%>
 </ul>
   <% end
-#     count += 1 end
+     count += 1 end
      end%>

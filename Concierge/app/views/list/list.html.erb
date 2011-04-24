@@ -1,0 +1,23 @@
+<h1><%=@title%></h1>
+
+<% @data.each do |element| %>
+<p><%=element.value%></p>
+<ul>
+
+    <% element.list.each do |item|
+
+    if item.type ==  "text" %>
+
+<li><%= item.value %></li>
+
+    <%elsif item.type == "link"%>
+
+<li><a href= <%= item.href %> ><%= item.value %></a></li>
+
+    <%else%>
+<li>
+  <%="Erro!"%>
+</li>
+   <%end end%>
+</ul>
+  <% end %>

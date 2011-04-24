@@ -1,6 +1,7 @@
 Concierge::Application.routes.draw do
 
-  root:to => "Record#record"
+  match "record" => "Record#record"
+  match "list" => "List#list"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

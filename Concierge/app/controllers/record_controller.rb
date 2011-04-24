@@ -13,40 +13,33 @@ class RecordController < ApplicationController
 #  listtest = EList.new("OMG Works!", arraytest)
 #  @data = [ttest, ltest, listtest]
 
-#    file = File.new('/home/pedro/RubymineProjects/Concierge/app/views/tests/index.xml')
-    file = File.new('/home/pedro/list.xml')
+    file = File.new('/home/pedro/RubymineProjects/Concierge/app/views/tests/index.xml')
     doc = REXML::Document.new file
 
     @title = doc.root.attributes.get_attribute("title")
     text_tags = []
     @attributes = []
-    list = []
 
-#    REXML::XPath.each(doc, "//text") {
-#      |ele|
-#      if ele.text.length == 1
-#        REXML::XPath.each(doc, "//text/entity") {
-#          |ent|
-#           text_tags << Element.new("link", ent.text)
-#        }
-#      else
-#        text_tags << Element.new("text", ele.text)
-#        @attributes << ele.attributes.get_attribute("title").value
-#      end
-#
-#    }
-
-    REXML::XPath.each(doc, "//item"){
+    REXML::XPath.each(doc, "//text") {
       |ele|
-      list << Element.new("link", ele.text, ele.attributes.get_attribute("href").value)
+      if ele.text.length == 0
+        REXML::XPath.each(doc, "//text/entity") {
+          |ent|
+           text_tags << Element.new("link", ent.text)
+        }
+      else
+        text_tags << Element.new("text", ele.text)
+        @attributes << ele.attributes.get_attribute("title").value
+      end
+
     }
-    e_list = EList.new("List Test", list)
+
 #     REXML::XPath.each(doc, "//entity") {
 #      |ele|
 #      entities << Element.new("link", ele.text)
 #    }
 
-    @data = [e_list]
+    @data = [text_tags]
 
     respond_to do |format|
       format.html
