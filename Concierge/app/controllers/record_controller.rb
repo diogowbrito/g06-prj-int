@@ -13,12 +13,14 @@ class RecordController < ApplicationController
 #  listtest = EList.new("OMG Works!", arraytest)
 #  @data = [ttest, ltest, listtest]
 
-    file = File.new('/home/pedro/RubymineProjects/Concierge/app/views/tests/index.xml')
+#    file = File.new('/home/pedro/RubymineProjects/Concierge/app/views/tests/index.xml')
+    file = File.new('/home/pedro/list.xml')
     doc = REXML::Document.new file
 
     @title = doc.root.attributes.get_attribute("title")
     text_tags = []
     @attributes = []
+    list = []
 
     REXML::XPath.each(doc, "//text") {
       |ele|
@@ -34,12 +36,17 @@ class RecordController < ApplicationController
 
     }
 
+    REXML::XPath.each(doc, "//item"){
+      |ele|
+      list << Element.new("link", ele.text, ele.attributes.get_attribute("href").value)
+    }
+    e_list = EList.new("List Test", list)
 #     REXML::XPath.each(doc, "//entity") {
 #      |ele|
 #      entities << Element.new("link", ele.text)
 #    }
 
-    @data = [text_tags]
+    @data = [text_tags, e_list]
 
     respond_to do |format|
       format.html
