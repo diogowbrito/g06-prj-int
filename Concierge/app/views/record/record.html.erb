@@ -1,47 +1,41 @@
-<h1>
-  <%=@title%>
-</h1>
+<h1><%=@title%></h1>
+<% count = 0 %>
+<% @data.each do |ele|
+   ele.each do |element|
+   if element.class == Element  %>
 
-<%@data.each do |element|
-
-   if element.class == Element
-%>
 <%if element.type ==  "text"%>
-<p>
-  <%=element.value%>
-</p>
-<%elsif element.type == "link"%>
-<p>
-  <a href= <%=element.href%> >
-    <%=element.value%>
-  </a>
-</p>
-<%else%>
-<p>
-  <%="Erro!"%>
-</p>
-<%end
 
-  else%>
-<p>
-  <%=element.value%>
-</p>
+<p><%=@attributes[count] %>: <%= element.value %></p>
+
+<%elsif element.type == "link"%>
+
+<p><a href=<%= element.href %>><%=element.value%></a></p>
+
+<%else%>
+
+<p><%="Erro!"%></p>
+<% end
+
+  else %>
+<p><%=element.value%></p>
 <ul>
-    <%element.list.each do |item|
-    if item.type ==  "text"%>
-<li>
-  <%=item.value%>
-</li>
+
+    <% element.list.each do |item|
+
+    if item.type ==  "text" %>
+
+<li><%= item.value %></li>
+
     <%elsif item.type == "link"%>
-<li>
-  <a href= <%=item.href%> >
-    <%=item.value%>
-  </a>
-</li>
+
+<li><a href= <%= item.href %> ><%= item.value %></a></li>
+
     <%else%>
 <li>
   <%="Erro!"%>
 </li>
-   <%end%>
+   <%end end%>
 </ul>
-  <%end end end%>
+  <% end
+     count += 1 end end%>
