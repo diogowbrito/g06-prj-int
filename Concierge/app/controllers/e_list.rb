@@ -1,19 +1,9 @@
 class EList
 
-  @value= "default"
-  @list = []
+  attr_reader :value, :list
 
-  def new(value, list)
-    @value = value
-    @list = list
-  end
-
-  def getValue
-    return @value
-  end
-
-  def getList
-    return @list
+  def initialize(value = "default", list = [])
+    @value, @list = value, list
   end
 
 end

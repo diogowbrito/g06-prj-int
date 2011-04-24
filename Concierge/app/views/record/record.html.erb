@@ -6,14 +6,14 @@
 
    if element.class == Element
 %>
-<%if element.getType ==  "text"%>
+<%if element.type ==  "text"%>
 <p>
-  <%=element.getValue%>
+  <%=element.value%>
 </p>
-<%elsif element.getType == "link"%>
+<%elsif element.type == "link"%>
 <p>
-  <a href= <%=element.getHref%> >
-    <%=element.getValue%>
+  <a href= <%=element.href%> >
+    <%=element.value%>
   </a>
 </p>
 <%else%>
@@ -24,18 +24,18 @@
 
   else%>
 <p>
-  <%=element.getValue%>
+  <%=element.value%>
 </p>
 <ul>
-    <%element.getList.each do |item|
-    if item.getType ==  "text"%>
+    <%element.list.each do |item|
+    if item.type ==  "text"%>
 <li>
-  <%=item.getValue%>
+  <%=item.value%>
 </li>
-    <%elsif item.getType == "link"%>
+    <%elsif item.type == "link"%>
 <li>
-  <a href= <%=element.getHref%> >
-    <%=element.getValue%>
+  <a href= <%=item.href%> >
+    <%=item.value%>
   </a>
 </li>
     <%else%>

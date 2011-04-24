@@ -1,30 +1,9 @@
 class Element
 
-  @type = "default"
-  @value = "default"
-  @href = "default"
+  attr_reader :type, :value, :href
 
-  def new(type, value)
-    @type = type
-    @value = value
-  end
-
-  def new(type, value, href)
-    @type = type
-    @value = value
-    @href = href
-  end
-
-  def getType
-    return @type
-  end
-
-  def getValue
-    return @value
-  end
-
-  def getHref
-    return @href
+  def initialize(type = "default", value = "default", href = "default")
+    @type, @value, @href = type, value, href
   end
 
 end
