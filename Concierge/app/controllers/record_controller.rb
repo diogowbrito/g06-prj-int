@@ -13,31 +13,27 @@ class RecordController < ApplicationController
 #  listtest = EList.new("OMG Works!", arraytest)
 #  @data = [ttest, ltest, listtest]
 
-    file = File.new('/home/jphorta/RubymineProjects/g06-prj-int/Concierge/app/views/tests/index.xml')
+    file = File.new('/home/pedro/RubymineProjects/Concierge/app/views/tests/index.xml')
     doc = REXML::Document.new file
 
     @title = doc.root.attributes.get_attribute("title")
     text_tags = []
     @attributes = []
+    @test = []
 
     REXML::XPath.each(doc, "//text") {
       |ele|
-      if ele.text.to_s.strip.length == 0
+      title = ele.attributes.get_attribute("title").value
+      if ele.text.strip.length == 0
+        text_tags << Element.new("text", ele.text, "", title)
         REXML::XPath.each(doc, "//text/entity") {
           |ent|
            text_tags << Element.new("link", ent.text)
         }
       else
-        text_tags << Element.new("text", ele.text)
-        @attributes << ele.attributes.get_attribute("title").value
+        text_tags << Element.new("text", ele.text, "", title)
       end
-
     }
-
-#     REXML::XPath.each(doc, "//entity") {
-#      |ele|
-#      entities << Element.new("link", ele.text)
-#    }
 
     @data = [text_tags]
 
