@@ -1,4 +1,46 @@
 
+<div id="theform">
+    <div class="toolbar">
+      <h1>FeedAPP</h1>
+    </div>
+    <ul id="prof_list" class="rounded list">
+    </ul>
+  </div>
 
-<div class="xml_response"><%=@contents %>
-</div>
+
+
+
+
+
+
+
+
+
+  <script type=text/javascript>
+
+    $(document).ready(function()
+{
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3001/people.xml",
+    dataType: "xml",
+    success: parseXml
+  });
+});
+
+    function parseXml(xml)
+{
+  //find every Tutorial and print the author
+  $(xml).find("Professor").each(function()
+  {
+    $("#prof_list").append("<li>" + $(this).text() +"</li>");
+  });
+
+
+
+      function parseXml(xml)
+{           console.log(xml)
+
+}
+
+</script>
