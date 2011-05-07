@@ -8,7 +8,9 @@
   </div>
 
 
-
+                     <div id="xml_content" style="display:none">
+                       <%=    @contents %>
+                     </div>
 
 
 
@@ -20,19 +22,19 @@
 
     $(document).ready(function()
 {
-  $.ajax({
-    type: "GET",
-    url: "http://localhost:3001/people.xml",
-    dataType: "xml",
-    success: parseXml
-  });
+          parseXml($("#xml_content").text());
+
 });
 
     function parseXml(xml)
 {
+    console.log(xml);
+    console.log("bora");
+    console.log($(xml).find("Professor"));
   //find every Tutorial and print the author
   $(xml).find("Professor").each(function()
   {
+    console.log("encontrou");
     $("#prof_list").append("<li>" + $(this).text() +"</li>");
   });
 }
