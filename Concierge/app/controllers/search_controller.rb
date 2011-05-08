@@ -8,7 +8,8 @@ class SearchController < ApplicationController
 
     @services.each do |service|
     @competence = service.competences.where(:competenceType = "search")
-    @url = @competence.competenceUrl
+    @url = @competence.url
+    @contents = URI.parse(@url+'?keyword='+@keyword).read
     end
 
     respond_to do |format|

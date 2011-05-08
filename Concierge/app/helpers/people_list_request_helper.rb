@@ -1,0 +1,2 @@
+module PeopleListRequestHelper
+end

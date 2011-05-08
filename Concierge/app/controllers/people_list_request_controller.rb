@@ -3,7 +3,7 @@ require 'open-uri'
 class PeopleListRequestController < ApplicationController
 
 
-  def peopleListRequest
+  def peoplelistrequest
 
       @contents = URI.parse('http://localhost:3001/people.xml').read
 
