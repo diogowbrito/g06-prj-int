@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+xml.list(:title => "Professors List", :start => @start, :end => @end ) do
+=======
+<<<<<<< HEAD
+xml.instruct!(:xml, :version=>"1.0")
+
+xml.list() do
+=======
+xml.list(:title => "Professors List", :start => @start, :end => @end ) do
+>>>>>>> a7c389ec3833396673a8f5578f54c0e0832d89bc
+>>>>>>> 4ba58bbcfb49480329227dae1446b08b3acca724
+  @professors.each do |professor|
+    xml.item(professor.professor_name, :title => "Professor", :href => professor.id)
+  end
+end

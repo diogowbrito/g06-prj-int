@@ -10,6 +10,11 @@
 
 
 
+                     <div id="xml_content" style="display:none">
+                       <%=    @contents %>
+                     </div>
+
+
 
 
 
@@ -18,21 +23,28 @@
 
   <script type=text/javascript>
 
-    $(document).ready(function()
-{
-  $.ajax({
+    $.ajax({
     type: "GET",
     url: "http://localhost:3001/people.xml",
     dataType: "xml",
     success: parseXml
   });
+
+
+
+    $(document).ready(function()
+{
+         <!-- parseXml($("#xml_content").text()); -->
+
 });
 
     function parseXml(xml)
 {
+    console.log($(xml).find("Professor"));
   //find every Tutorial and print the author
   $(xml).find("Professor").each(function()
   {
+    console.log("encontrou");
     $("#prof_list").append("<li>" + $(this).text() +"</li>");
   });
 }
