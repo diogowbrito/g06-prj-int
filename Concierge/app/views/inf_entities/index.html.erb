@@ -1,0 +1,25 @@
+<h1>Listing inf_entities</h1>
+
+<table>
+  <tr>
+    <th>Servicename</th>
+    <th>Entity</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @inf_entities.each do |inf_entity| %>
+  <tr>
+    <td><%= inf_entity.serviceName %></td>
+    <td><%= inf_entity.entity %></td>
+    <td><%= link_to 'Show', inf_entity %></td>
+    <td><%= link_to 'Edit', edit_inf_entity_path(inf_entity) %></td>
+    <td><%= link_to 'Destroy', inf_entity, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Inf entity', new_inf_entity_path %>

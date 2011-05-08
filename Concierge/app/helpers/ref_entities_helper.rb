@@ -1,0 +1,2 @@
+module RefEntitiesHelper
+end

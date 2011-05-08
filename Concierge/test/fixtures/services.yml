@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  serviceName: MyString
+  provider: 
+  type: 
+  url: 
+  imgPath: MyString
+
+two:
+  serviceName: MyString
+  provider: 
+  type: 
+  url: 
+  imgPath: MyString

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Servicename:</b>
+  <%= @ref_entity.serviceName %>
+</p>
+
+<p>
+  <b>Entity:</b>
+  <%= @ref_entity.entity %>
+</p>
+
+
+<%= link_to 'Edit', edit_ref_entity_path(@ref_entity) %> |
+<%= link_to 'Back', ref_entities_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@inf_entity) do |f| %>
+  <% if @inf_entity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inf_entity.errors.count, "error") %> prohibited this inf_entity from being saved:</h2>
+
+      <ul>
+      <% @inf_entity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :serviceName %><br />
+    <%= f.text_field :serviceName %>
+  </div>
+  <div class="field">
+    <%= f.label :entity %><br />
+    <%= f.text_field :entity %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

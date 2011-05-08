@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Servicename:</b>
+  <%= @inf_entity.serviceName %>
+</p>
+
+<p>
+  <b>Entity:</b>
+  <%= @inf_entity.entity %>
+</p>
+
+
+<%= link_to 'Edit', edit_inf_entity_path(@inf_entity) %> |
+<%= link_to 'Back', inf_entities_path %>
