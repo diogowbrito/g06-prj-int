@@ -1,42 +1,31 @@
-<h1><%=@title%></h1>
-<% count = 0 %>
-<% @data.each do |ele|
-   ele.each do |element|
-   if element.class == Element  %>
+<div id="resource">
+</div>
 
-<%if element.type ==  "text"%>
 
-<p><%=element.title %>: <%= element.value %></p>
+<script type=text/javascript>
 
-<%elsif element.type == "link"%>
+    $(document).ready(function() {
 
-<p><a href=<%= element.href %>><%=element.value%></a></p>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3001/people/1.xml",
+            dataType: "xml",
+            success: parseXml
+        });
 
-<%else%>
+    });
 
-<p><%="Erro!"%></p>
-<% end
+    function parseXml(xml) {
+        alert("ola");
+        //find every Tutorial and print the author
+        $(xml).find("text").each(function() {
+            var title = $(this).attr('title');
+            var text = $(this).find('text').text();
+            var entity = $(this).find('entity').text();
+            $("#resource").append("<p>" + text + "</p>");
+            $("#resource").append("<p>" + entity + "</p>");
+        });
+    }
 
-  else %>
-<p><%=element.value%></p>
-<ul>
 
-    <% element.list.each do |item|
-
-    if item.type ==  "text" %>
-
-<li><%= item.value %></li>
-
-    <%elsif item.type == "link"%>
-
-<li><a href= <%= item.href %> ><%= item.value %></a></li>
-
-    <%else%>
-<li>
-  <%="Erro!"%>
-</li>
-   <%end end%>
-</ul>
-  <% end
-     count += 1 end
-     end%>
+</script>
