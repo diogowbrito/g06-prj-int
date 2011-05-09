@@ -1,13 +1,16 @@
-
-<div id="theform">
+        <div id="jqt">
+    <div id="theforffm">
     <div class="toolbar">
       <h1>FeedAPP</h1>
     </div>
-    <ul id="prof_list" class="rounded list">
+    <ul id="prof_list" class="rounded">
     </ul>
   </div>
+          </div>
 
-
+        <div id="method">
+          nonmemetoodoasfjkbasf
+        </div>
   <script type=text/javascript>
 
 
@@ -20,10 +23,9 @@
 
     function parseXml(xml)
 {
-  //find every Tutorial and print the author
-  $(xml).find("item").each(function()
+  $(xml).find("item[title='Professor']").each(function()
   {
-    $("#prof_list").append("<li class='arrow' >" + $(this).text() + "</li>");
+    $("#prof_list").append("<li class='arrow'><a href='" + $(this).attr('href') + ">" + $(this).text() + "</a></li>");
   });
 }
 
