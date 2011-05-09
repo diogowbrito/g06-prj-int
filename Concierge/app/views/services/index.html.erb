@@ -3,9 +3,10 @@
 <table>
   <tr>
     <th>Servicename</th>
+    <th>Service</th>
     <th>Provider</th>
     <th>Type</th>
-    <th>Url</th>
+    <th>Ranking</th>
     <th>Imgpath</th>
     <th></th>
     <th></th>
@@ -15,9 +16,10 @@
 <% @services.each do |service| %>
   <tr>
     <td><%= service.serviceName %></td>
+    <td><%= service.service_id %></td>
     <td><%= service.provider %></td>
     <td><%= service.type %></td>
-    <td><%= service.url %></td>
+    <td><%= service.ranking %></td>
     <td><%= service.imgPath %></td>
     <td><%= link_to 'Show', service %></td>
     <td><%= link_to 'Edit', edit_service_path(service) %></td>

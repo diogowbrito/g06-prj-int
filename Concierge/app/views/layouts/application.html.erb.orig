@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Concierge</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+
+<<<<<<< HEAD
+=======
+  <!-- jQuery via cdn do Google -->
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+      <script type="application/x-javascript" src="jqtouch/jqtouch.min.js"></script>
+
+           <!-- Estilos necessarios para o jQTouch -->
+      <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/jqtouch.css">
+          <link type="text/css" rel="stylesheet" media="screen" href="themes/apple/theme.css">
+
+
+>>>>>>> c337f01b40b4f2ccc01be1688c448693015898ba
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
