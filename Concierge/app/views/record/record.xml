@@ -1,0 +1,14 @@
+<record>
+    <text title="name">Adelino Rocha Ferreira da Silva</text>
+    <email title="Emails">afs@fct.unl.pt</email>
+    <text title="Office Location">
+      <entity type="building">Ed.X</entity>
+      <entity type="room">3.17</entity>
+    </text>
+    <text title="Category">Professor Auxiliar</text>
+    <entity title="Sector" type="organizational unit" href="http://localhost:3000/uo/dep/4.xml">Departamento de Engenharia Electrotécnica</entity>
+    <text title="Courses">
+      <entity type="course" href="http://localhost:3000/courses/4.xml">Teoria de Sinais</entity>
+      <entity type="course">Teoria de Sistemas</entity>
+    </text>
+  </record>

@@ -1,0 +1,53 @@
+        <div id="jqt">
+    <div id="theforffm">
+    <div class="toolbar">
+      <h1>FeedAPP</h1>
+    </div>
+    <ul id="prof_list" class="rounded">
+    </ul>
+  </div>
+<<<<<<< HEAD
+          </div>
+=======
+  <ul id="prof_list" class="rounded list">
+  </ul>
+</div>
+
+<div id="xml_content" style="display:none">
+  <%= @contents %>
+</div>
+
+<<<<<<< HEAD
+<script type=text/javascript>
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3001/people.xml",
+        dataType: "xml",
+        success: parseXml
+    });
+>>>>>>> 8a046c0c3e677da60ba324136a2e85d71a4d3a50
+
+        <div id="method">
+          nonmemetoodoasfjkbasf
+        </div>
+  <script type=text/javascript>
+
+
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/peoplelistrequest",
+    dataType: "xml",
+    success: parseXml
+  });
+
+    function parseXml(xml)
+{
+  $(xml).find("item[title='Professor']").each(function()
+  {
+    $("#prof_list").append("<li class='arrow'><a href='" + $(this).attr('href') + ">" + $(this).text() + "</a></li>");
+  });
+}
+
+
+</script>

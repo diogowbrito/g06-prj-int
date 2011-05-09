@@ -1,31 +1,86 @@
 <div id="resource">
+  <h1>Record</h1>
 </div>
-
+<div class="hidden"><%= @service %> <%= @id %></div>
 
 <script type=text/javascript>
 
     $(document).ready(function() {
-
+        var temp_array = $(".hidden").text().split(" ");
+        var service = temp_array[0];
+        var id = temp_array[1];
         $.ajax({
             type: "GET",
-            url: "http://localhost:3001/people/1.xml",
+            url: "http://localhost:3000/recordAux.xml?service="+service+"&id="+id,
             dataType: "xml",
             success: parseXml
         });
-
+       $('.hidden').remove();
     });
 
     function parseXml(xml) {
-        alert("ola");
-        //find every Tutorial and print the author
-        $(xml).find("text").each(function() {
-            var title = $(this).attr('title');
-            var text = $(this).find('text').text();
-            var entity = $(this).find('entity').text();
-            $("#resource").append("<p>" + text + "</p>");
-            $("#resource").append("<p>" + entity + "</p>");
+        $(xml).find("record").children().each(function(index, element) {
+            parse_record($(this), element);
         });
     }
 
+    function parse_record(node, element) {
+        var text;
+        var title;
+        switch (element.nodeName) {
+            case 'text':
+                if (node.children().size() == 0) {
+                    text = node.text();
+                    title = node.attr('title');
+                    if (title == undefined)
+                        $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                    else
+                        $("#resource").append("<p>" + title + ": " + text + "</p>");
+
+                }
+                else {
+                    title = node.attr('title');
+                    node.children().each(function(index, element) {
+                        if (element.nodeName == 'entity') {
+                            text = $(this).text();
+                            var attr = $(this).attr('href');
+//                            title = $(this).attr('title');
+                            if (title == undefined)
+                                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                            else
+                                $("#resource").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
+                        }
+                        else if (element.nodeName == 'text') {
+                            text = $(this).text();
+//                            title = $(this).attr('title');
+                            if (title == undefined)
+                                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                            else
+                                $("#resource").append("<p>" + title + ": " + text + "</p>");
+                        }
+                    });
+                }
+                break;
+
+            case 'entity':
+                text = node.text();
+                title = node.attr('title');
+                var attr = node.attr('href');
+                if (title == undefined)
+                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                else
+                    $("#resource").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
+                break;
+
+            case 'email':
+                text = node.text();
+                title = node.attr('title');
+                if (title == undefined)
+                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                else
+                    $("#resource").append("<p>" + title + ": " + text + "</p>");
+                break;
+        }
+    }
 
 </script>
