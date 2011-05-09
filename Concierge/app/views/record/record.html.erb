@@ -4,7 +4,7 @@
 
 
 <script type=text/javascript>
-    var bla;
+
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -23,35 +23,58 @@
 
     function parse_record(node, element) {
         var text;
-        var attr;
+        var title;
         switch (element.nodeName) {
             case 'text':
                 if (node.children().size() == 0) {
                     text = node.text();
-                    $("#resource").append("<p>" + text + "</p>");
+                    title = node.attr('title');
+                    if (title == undefined)
+                        $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                    else
+                        $("#resource").append("<p>" + title + ": " + text + "</p>");
+
                 }
                 else {
                     node.children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
-                            attr = $(this).attr('href');
-                            $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                            var attr = $(this).attr('href');
+                            title = $(this).attr('title');
+                            if (title == undefined)
+                                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                            else
+                                $("#resource").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
-                            $("#resource").append("<p>" + text + "</p>");
+                            title = $(this).attr('title');
+                            if (title == undefined)
+                                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                            else
+                                $("#resource").append("<p>" + title + ": " + text + "</p>");
                         }
                     });
                 }
                 break;
+
             case 'entity':
                 text = node.text();
-                attr = node.attr('href');
-                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                title = node.attr('title');
+                var attr = node.attr('href');
+                if (title == undefined)
+                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                else
+                    $("#resource").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
                 break;
+
             case 'email':
                 text = node.text();
-                $("#resource").append("<p>" + text + "</p>");
+                title = node.attr('title');
+                if (title == undefined)
+                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                else
+                    $("#resource").append("<p>" + title + ": " + text + "</p>");
                 break;
         }
     }
