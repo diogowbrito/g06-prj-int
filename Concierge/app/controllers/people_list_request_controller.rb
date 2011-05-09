@@ -1,5 +1,3 @@
-
-
 class PeopleListRequestController < ApplicationController
 
 
