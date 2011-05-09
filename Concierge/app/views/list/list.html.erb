@@ -23,7 +23,7 @@
   //find every Tutorial and print the author
   $(xml).find("item").each(function()
   {
-    $("#prof_list").append("<li> <a href='" + $(this).text() + "'> </li>");
+    $("#prof_list").append("<li class='arrow' >" + $(this).text() + "</li>");
   });
 }
 
