@@ -13,6 +13,7 @@ Concierge::Application.routes.draw do
   match "record" => "Record#record"
   match "list" => "List#list"
   match "peopleListRequest" => "PeopleListRequest#peoplelistrequest"
+  match "search" => "Search#search"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
