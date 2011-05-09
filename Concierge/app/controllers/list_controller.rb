@@ -1,5 +1,6 @@
 require 'rexml/document'
-    require 'open-uri'
+require 'open-uri'
+
 class ListController < ApplicationController
 
   def list
@@ -17,9 +18,6 @@ class ListController < ApplicationController
  #     e_list = EList.new("List Test", list)
 
  #     @data = [e_list]
-
-
-      @contents = URI.parse('http://localhost:3001/people.xml').read
 
       respond_to do |format|
         format.html

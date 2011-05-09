@@ -6,6 +6,8 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 
+<<<<<<< HEAD
+=======
   <!-- jQuery via cdn do Google -->
      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 
@@ -16,6 +18,7 @@
           <link type="text/css" rel="stylesheet" media="screen" href="themes/apple/theme.css">
 
 
+>>>>>>> c337f01b40b4f2ccc01be1688c448693015898ba
 </head>
 <body>
 
