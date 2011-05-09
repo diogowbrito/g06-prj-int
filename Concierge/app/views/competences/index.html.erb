@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Servicename</th>
+    <th>Service</th>
     <th>Competencetype</th>
     <th>Competenceurl</th>
     <th>Description</th>
@@ -13,7 +13,7 @@
 
 <% @competences.each do |competence| %>
   <tr>
-    <td><%= competence.serviceName %></td>
+    <td><%= competence.service_id %></td>
     <td><%= competence.competenceType %></td>
     <td><%= competence.competenceUrl %></td>
     <td><%= competence.description %></td>
