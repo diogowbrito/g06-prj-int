@@ -10,19 +10,8 @@
 
   <script type=text/javascript>
 
-     $.jQTouch({
-        icon: 'jqtouch.png',
-        statusBar: 'black-translucent',
-        preloadImages: [
-            'themes/jqt/img/chevron_white.png',
-            'themes/jqt/img/bg_row_select.gif',
-            'themes/jqt/img/back_button_clicked.png',
-            'themes/jqt/img/button_clicked.png'
-            ]
-    });
 
-
-    $.ajax({
+  $.ajax({
     type: "GET",
     url: "http://localhost:3000/peoplelistrequest",
     dataType: "xml",
@@ -34,7 +23,7 @@
   //find every Tutorial and print the author
   $(xml).find("item").each(function()
   {
-    $("#prof_list").append("<li>" + $(this).text() +"</li>");
+    $("#prof_list").append("<li> <a href='" + $(this).text() + "'> </li>");
   });
 }
 
