@@ -1,14 +1,14 @@
 <div id="resource">
+  <h1>Record</h1>
 </div>
 
 
 <script type=text/javascript>
-
+    var bla;
     $(document).ready(function() {
-
         $.ajax({
             type: "GET",
-            url: "http://localhost:3001/people/1.xml",
+            url: "http://localhost:3000/record.xml",
             dataType: "xml",
             success: parseXml
         });
@@ -16,16 +16,44 @@
     });
 
     function parseXml(xml) {
-        alert("ola");
-        //find every Tutorial and print the author
-        $(xml).find("text").each(function() {
-            var title = $(this).attr('title');
-            var text = $(this).find('text').text();
-            var entity = $(this).find('entity').text();
-            $("#resource").append("<p>" + text + "</p>");
-            $("#resource").append("<p>" + entity + "</p>");
+        $(xml).find("record").children().each(function(index, element) {
+            parse_record($(this), element);
         });
     }
 
+    function parse_record(node, element) {
+        var text;
+        var attr;
+        switch (element.nodeName) {
+            case 'text':
+                if (node.children().size() == 0) {
+                    text = node.text();
+                    $("#resource").append("<p>" + text + "</p>");
+                }
+                else {
+                    node.children().each(function(index, element) {
+                        if (element.nodeName == 'entity') {
+                            text = $(this).text();
+                            attr = $(this).attr('href');
+                            $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                        }
+                        else if (element.nodeName == 'text') {
+                            text = $(this).text();
+                            $("#resource").append("<p>" + text + "</p>");
+                        }
+                    });
+                }
+                break;
+            case 'entity':
+                text = node.text();
+                attr = node.attr('href');
+                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                break;
+            case 'email':
+                text = node.text();
+                $("#resource").append("<p>" + text + "</p>");
+                break;
+        }
+    }
 
 </script>
