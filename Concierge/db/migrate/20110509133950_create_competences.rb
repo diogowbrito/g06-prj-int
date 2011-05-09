@@ -1,7 +1,7 @@
 class CreateCompetences < ActiveRecord::Migration
   def self.up
     create_table :competences do |t|
-      t.string :serviceName
+      t.integer :service_id
       t.string :competenceType
       t.string :competenceUrl
       t.string :description

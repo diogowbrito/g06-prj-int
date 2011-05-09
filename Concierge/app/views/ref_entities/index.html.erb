@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Servicename</th>
+    <th>Service</th>
     <th>Entity</th>
     <th></th>
     <th></th>
@@ -11,7 +11,7 @@
 
 <% @ref_entities.each do |ref_entity| %>
   <tr>
-    <td><%= ref_entity.serviceName %></td>
+    <td><%= ref_entity.service_id %></td>
     <td><%= ref_entity.entity %></td>
     <td><%= link_to 'Show', ref_entity %></td>
     <td><%= link_to 'Edit', edit_ref_entity_path(ref_entity) %></td>

@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Servicename</th>
+    <th>Service</th>
     <th>Tag</th>
     <th></th>
     <th></th>
@@ -11,7 +11,7 @@
 
 <% @tags.each do |tag| %>
   <tr>
-    <td><%= tag.serviceName %></td>
+    <td><%= tag.service_id %></td>
     <td><%= tag.tag %></td>
     <td><%= link_to 'Show', tag %></td>
     <td><%= link_to 'Edit', edit_tag_path(tag) %></td>

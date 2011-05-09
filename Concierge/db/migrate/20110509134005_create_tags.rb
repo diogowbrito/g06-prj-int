@@ -1,7 +1,7 @@
 class CreateTags < ActiveRecord::Migration
   def self.up
     create_table :tags do |t|
-      t.string :serviceName
+      t.integer :service_id
       t.string :tag
 
       t.timestamps

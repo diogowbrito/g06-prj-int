@@ -2,14 +2,16 @@
 
 one:
   serviceName: MyString
-  provider: 
-  type: 
-  url: 
+  service_id: 1
+  provider: MyString
+  type: MyString
+  ranking: 1
   imgPath: MyString
 
 two:
   serviceName: MyString
-  provider: 
-  type: 
-  url: 
+  service_id: 1
+  provider: MyString
+  type: MyString
+  ranking: 1
   imgPath: MyString

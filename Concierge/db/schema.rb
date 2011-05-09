@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110508132653) do
+ActiveRecord::Schema.define(:version => 20110509134005) do
 
   create_table "competences", :force => true do |t|
-    t.string   "serviceName"
+    t.integer  "service_id"
     t.string   "competenceType"
     t.string   "competenceUrl"
     t.string   "description"
@@ -22,14 +22,14 @@ ActiveRecord::Schema.define(:version => 20110508132653) do
   end
 
   create_table "inf_entities", :force => true do |t|
-    t.string   "serviceName"
+    t.integer  "service_id"
     t.string   "entity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "ref_entities", :force => true do |t|
-    t.string   "serviceName"
+    t.integer  "service_id"
     t.string   "entity"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -37,16 +37,17 @@ ActiveRecord::Schema.define(:version => 20110508132653) do
 
   create_table "services", :force => true do |t|
     t.string   "serviceName"
+    t.integer  "service_id"
     t.string   "provider"
     t.string   "type"
-    t.string   "url"
+    t.integer  "ranking"
     t.string   "imgPath"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
-    t.string   "serviceName"
+    t.integer  "service_id"
     t.string   "tag"
     t.datetime "created_at"
     t.datetime "updated_at"

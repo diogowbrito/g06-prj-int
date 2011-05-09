@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  serviceName: 
-  competenceType: 
-  competenceUrl: 
+  service_id: 1
+  competenceType: MyString
+  competenceUrl: MyString
   description: MyString
 
 two:
-  serviceName: 
-  competenceType: 
-  competenceUrl: 
+  service_id: 1
+  competenceType: MyString
+  competenceUrl: MyString
   description: MyString

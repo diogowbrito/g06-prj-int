@@ -1,7 +1,7 @@
 class CreateInfEntities < ActiveRecord::Migration
   def self.up
     create_table :inf_entities do |t|
-      t.string :serviceName
+      t.integer :service_id
       t.string :entity
 
       t.timestamps

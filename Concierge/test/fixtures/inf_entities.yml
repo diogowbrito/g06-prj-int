@@ -1,9 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  serviceName: 
+  service_id: 1
   entity: MyString
 
 two:
-  serviceName: 
+  service_id: 1
   entity: MyString

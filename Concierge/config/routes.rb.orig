@@ -1,22 +1,25 @@
 Concierge::Application.routes.draw do
 
+  resources :tags
+
   resources :competences
 
   resources :inf_entities
 
   resources :ref_entities
 
-  resources :tags
-
   resources :services
 
   match "record" => "Record#record"
   match "list" => "List#list"
 <<<<<<< HEAD
+  match "peopleListRequest" => "PeopleListRequest#peoplelistrequest"
   match "search" => "Search#search"
+  match "services/:service/search" => "Search#servicesearch"
 =======
-  match "peopleListRequest" => "PeopleListRequest#peopleListRequest"
->>>>>>> b0559c45806bf752f2fa4664f2c2c99e1e523cb6
+  match "peoplelistrequest" => "PeopleListRequest#peoplelistrequest", :defaults => {:format  => :xml }
+
+>>>>>>> c337f01b40b4f2ccc01be1688c448693015898ba
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
