@@ -1,18 +1,21 @@
 <div id="resource">
   <h1>Record</h1>
 </div>
-
+<div class="hidden"><%= @service %> <%= @id %></div>
 
 <script type=text/javascript>
 
     $(document).ready(function() {
+        var temp_array = $(".hidden").text().split(" ");
+        var service = temp_array[0];
+        var id = temp_array[1];
         $.ajax({
             type: "GET",
-            url: "http://localhost:3000/record.xml",
+            url: "http://localhost:3000/recordAux.xml?service="+service+"&id="+id,
             dataType: "xml",
             success: parseXml
         });
-
+       $('.hidden').remove();
     });
 
     function parseXml(xml) {
@@ -36,11 +39,12 @@
 
                 }
                 else {
+                    title = node.attr('title');
                     node.children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
                             var attr = $(this).attr('href');
-                            title = $(this).attr('title');
+//                            title = $(this).attr('title');
                             if (title == undefined)
                                 $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
                             else
@@ -48,7 +52,7 @@
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
-                            title = $(this).attr('title');
+//                            title = $(this).attr('title');
                             if (title == undefined)
                                 $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
                             else
