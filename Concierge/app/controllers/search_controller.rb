@@ -15,7 +15,7 @@ class SearchController < ApplicationController
 
       competence = service.competences.where(:competenceType => "Search")
       url = competence[0].competenceUrl
-      list << Nokogiri::XML(open(url+'?keyword='+@keyword),nil, 'UTF-8')
+      list << Nokogiri::XML(open(url+'?keyword='+@keyword+"&start=1&end=5000"),nil, 'UTF-8')
 
     end
     @doc = Nokogiri::XML("<list></list>")
