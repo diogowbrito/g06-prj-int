@@ -1,28 +1,8 @@
-Concierge::Application.routes.draw do
+DegreesAndCourses::Application.routes.draw do
+  resources :courses
 
-  resources :tags
+  resources :degrees
 
-  resources :competences
-
-  resources :inf_entities
-
-  resources :ref_entities
-
-  resources :services
-
-#  match "services/:service/:list" => "List#list"
-  match "services/:service/:id" => "Record#record"
-
-  match "servicelistrequest" => "ServiceForward#listrequest", :defaults => { :format => :xml }
-  match "servicerecordrequest" => "ServiceForward#recordrequest", :defaults => { :format => :xml }
-
-
-
-  match "recordAux" => "Record#recordAux", :defaults => { :format => :xml}
-  match "list" => "List#list"
-  match "peoplelistrequest" => "PeopleListRequest#peoplelistrequest", :defaults => { :format => :xml}
-  match "search" => "Search#search", :defaults => { :format => :xml}
-  match "services/:service/search" => "Search#servicesearch", :defaults => { :format => :xml}
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  degree_id: 1
+  name: MyString
+  sigla: MyString
+  type: MyString
+  department: MyString
+
+two:
+  degree_id: 1
+  name: MyString
+  sigla: MyString
+  type: MyString
+  department: MyString

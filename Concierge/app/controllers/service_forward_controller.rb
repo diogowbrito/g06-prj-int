@@ -1,16 +1,14 @@
-class RecordController < ApplicationController
+class ServiceForwardController
 
-
-
-  def record
-
+  def listrequest
     @service = params[:service]
-    @id = params[:id]
-    respond_to :html
-
+    @link = "http://localhost:3001/"+@service + ".xml"
+    @doc = Nokogiri::XML(open(@link), nil, 'UTF-8')
+    respond_to :xml
   end
 
-  def recordAux
+
+  def recordrequest
     @service = params[:service]
     @id = params[:id]
     @link = "http://localhost:3001/"+@service+"/"+@id
@@ -19,5 +17,6 @@ class RecordController < ApplicationController
     respond_to :xml
 
   end
+
 
 end

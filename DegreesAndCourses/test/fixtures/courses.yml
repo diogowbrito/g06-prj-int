@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  course_id: 1
+  name: MyString
+  sigla: MyString
+  period: MyString
+  degree: MyString
+  regent: MyString
+
+two:
+  course_id: 1
+  name: MyString
+  sigla: MyString
+  period: MyString
+  degree: MyString
+  regent: MyString
