@@ -38,10 +38,12 @@ class ProfessorsController < ApplicationController
   def search
 
     @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_")
-    @professors = Professor.find(:all, :conditions=> ["professor_name like ?", "%" + @keyword + "%"])
+    @start = params[:start] || '1'
+    @end = params[:end] || '20'
+    @professors = Professor.find(:all, :conditions=> ["professor_name like ?", "%" + @keyword + "%"], :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
 
     respond_to do |format|
-      format.xml
+       format.xml
     end
   end
 
