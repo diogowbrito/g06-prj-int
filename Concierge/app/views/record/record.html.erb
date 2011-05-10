@@ -36,27 +36,23 @@
                         $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
                     else
                         $("#resource").append("<p>" + title + ": " + text + "</p>");
-
                 }
                 else {
                     title = node.attr('title');
+                    if (title != undefined)
+                        $("#resource").append("<p>" + title + "</p>");
+
                     node.children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
                             var attr = $(this).attr('href');
-//                            title = $(this).attr('title');
-                            if (title == undefined)
-                                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
-                            else
-                                $("#resource").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
+                            $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
 //                            title = $(this).attr('title');
                             if (title == undefined)
-                                $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
-                            else
-                                $("#resource").append("<p>" + title + ": " + text + "</p>");
+                                $("#resource").append("<p>" + text + "</p>");
                         }
                     });
                 }
