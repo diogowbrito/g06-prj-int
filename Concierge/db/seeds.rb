@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+Service.create :serviceName => 'Pessoas', :provider => 'FCT', :type => 'bazinga', :ranking => 0, :imgPath => 'TODO'
+Service.create :serviceName => 'Curso Cadeiras', :provider => 'FCT', :type => 'badjoras', :ranking => 0, :imgPath => 'TODO'
+Service.create :serviceName => 'Servico 3', :provider => 'FCT', :type => 'badjoras', :ranking => 0, :imgPath => 'TODO'
+Service.create :serviceName => 'Servico 4', :provider => 'FCT', :type => 'badjoras', :ranking => 0, :imgPath => 'TODO'
+Service.create :serviceName => 'Servico 5', :provider => 'FCT', :type => 'badjoras', :ranking => 0, :imgPath => 'TODO'
