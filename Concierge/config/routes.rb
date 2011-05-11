@@ -1,5 +1,7 @@
 Concierge::Application.routes.draw do
 
+  resources :services
+
   resources :tags
 
   resources :competences
@@ -7,8 +9,6 @@ Concierge::Application.routes.draw do
   resources :inf_entities
 
   resources :ref_entities
-
-  resources :services
 
 #  match "services/:service/:list" => "List#list"
   match "services/:service/:id" => "Record#record"

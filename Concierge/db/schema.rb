@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110509134005) do
+ActiveRecord::Schema.define(:version => 20110511141419) do
 
   create_table "competences", :force => true do |t|
     t.integer  "service_id"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(:version => 20110509134005) do
 
   create_table "services", :force => true do |t|
     t.string   "serviceName"
-    t.integer  "service_id"
     t.string   "provider"
     t.string   "type"
     t.integer  "ranking"
