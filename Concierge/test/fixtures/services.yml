@@ -2,7 +2,6 @@
 
 one:
   serviceName: MyString
-  service_id: 1
   provider: MyString
   type: MyString
   ranking: 1
@@ -10,7 +9,6 @@ one:
 
 two:
   serviceName: MyString
-  service_id: 1
   provider: MyString
   type: MyString
   ranking: 1

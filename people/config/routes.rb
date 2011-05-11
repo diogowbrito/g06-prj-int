@@ -4,6 +4,7 @@ People::Application.routes.draw do
 
   root :to => "Professors#description"
   match "index" => "Professors#description"
+  match "status" => "Professors#status"
   match "metainfo" => "Professors#meta_info"
   match "people" => "Professors#list"
   match "people/:id" => "Professors#specific"
