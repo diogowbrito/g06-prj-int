@@ -3,26 +3,29 @@ class ProfessorsController < ApplicationController
   # GET /professors.xml
 
   def description
-    respond_to do |format|
-      format.xml
-    end
+    respond_to :xml
   end
 
   def meta_info
-    respond_to do |format|
-      format.xml
-    end
+    respond_to :xml
+  end
+
+  def status
+    respond_to :xml
   end
 
   def list
     @start = params[:start] || '1'
     @end = params[:end] || '20'
+    @next = @end.to_i+1
 
     @professors = Professor.find(:all, :order => "professor_name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
 
-    respond_to do |format|
-    format.xml
+    if @professors.count != 20 then
+      @next = ""
     end
+
+    respond_to :xml
   end
 
   def specific
@@ -30,9 +33,7 @@ class ProfessorsController < ApplicationController
     @emails = @professor.emails
     @courses = @professor.courses
 
-    respond_to do |format|
-      format.xml
-    end
+    respond_to :xml
   end
 
   def search
@@ -40,11 +41,60 @@ class ProfessorsController < ApplicationController
     @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_")
     @start = params[:start] || '1'
     @end = params[:end] || '20'
-    @professors = Professor.find(:all, :conditions=> ["professor_name like ?", "%" + @keyword + "%"], :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+    @next = @end.to_i+1
+    keyarray = @keyword.to_s.split(' ')
+    professors = Professor.find(:all, :conditions=> ["professor_name like ?","%"+@keyword+"%"])
 
-    respond_to do |format|
-       format.xml
+    keyarray.each do |key|
+      professortemp = Professor.find(:all, :conditions=> ["professor_name like ?","%"+key+"%"])
+      professortemp.each do |ptemp|
+      if !professors.include?(ptemp) then
+        professors << ptemp
+      end
+      end
     end
+
+    @list = []
+    counter = 1
+    professors.each do |p|
+
+      if counter >= @start.to_i then
+           @list << p
+      end
+
+      counter = counter.to_i+1
+
+      if counter > @end.to_i then
+        break
+      end
+
+    end
+
+    if @list.count != 20 then
+      @next = ""
+    end
+
+    respond_to :xml
+  end
+
+  def recommendation
+
+    @keyword = params[:keyword].gsub("%", "\%").gsub("_", "\_")
+    @start = params[:start] || '1'
+    @end = params[:end] || '10'
+    @next = @end.to_i+1
+    professors = Professor.find(:all, :conditions=> ["professor_name like ?", @keyword + "%"], :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+
+    if professors.count != 10 then
+      @next = ""
+    end
+
+    @list = []
+    professors.each do |professor|
+      @list << professor.professor_name
+    end
+
+    respond_to :xml
   end
 
   def index

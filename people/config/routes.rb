@@ -1,14 +1,20 @@
 People::Application.routes.draw do
 
   resources :professors
+  resources :courses
+  resources :emails
 
-  root :to => "Professors#description"
-  match "index" => "Professors#description"
-  match "status" => "Professors#status"
-  match "metainfo" => "Professors#meta_info"
-  match "people" => "Professors#list"
-  match "people/:id" => "Professors#specific"
-  match "search" => "Professors#search"
+  root :to => "Professors#description", :defaults => { :format => :xml}
+  match "adminprof" => "Professors#index"
+  match "admincourses" => "Courses#index"
+  match "adminemails" => "Emails#index"
+  match "index" => "Professors#description", :defaults => { :format => :xml}
+  match "status" => "Professors#status", :defaults => { :format => :xml}
+  match "metainfo" => "Professors#meta_info", :defaults => { :format => :xml}
+  match "people" => "Professors#list", :defaults => { :format => :xml}
+  match "people/:id" => "Professors#specific", :defaults => { :format => :xml}
+  match "search" => "Professors#search", :defaults => { :format => :xml}
+  match "recommendation" => "Professors#recommendation", :defaults => { :format => :xml}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
