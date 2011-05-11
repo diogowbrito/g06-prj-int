@@ -12,7 +12,7 @@ Concierge::Application.routes.draw do
 
 #  match "services/:service/:list" => "List#list"
   match "services/:service/:id" => "Record#record"
-
+  match "index" => "HomePage#index"
   match "recordAux" => "Record#recordAux", :defaults => { :format => :xml}
   match "list" => "List#list"
   match "peoplelistrequest" => "PeopleListRequest#peoplelistrequest", :defaults => { :format => :xml}
