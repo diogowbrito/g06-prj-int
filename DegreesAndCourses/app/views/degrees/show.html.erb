@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Degree:</b>
+  <%= @degree.degree_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @degree.name %>
+</p>
+
+<p>
+  <b>Sigla:</b>
+  <%= @degree.sigla %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @degree.type %>
+</p>
+
+<p>
+  <b>Department:</b>
+  <%= @degree.department %>
+</p>
+
+
+<%= link_to 'Edit', edit_degree_path(@degree) %> |
+<%= link_to 'Back', degrees_path %>
