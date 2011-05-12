@@ -6,20 +6,40 @@
   <%= csrf_meta_tag %>
 
   <style type="text/css" media="screen">@import "/stylesheets/theme.css";</style>
-   <style type="text/css" media="screen">@import "/stylesheets/jqtouch.css";</style>
+  <style type="text/css" media="screen">@import "/stylesheets/jqtouch.css";</style>
 
 
   <script type="text/javascript">
-        // Fire up JQTouch
-        var jQT = $.jQTouch({
+      // Fire up JQTouch
+      var jQT = $.jQTouch({
           statusBar: 'black'
-        });
-      </script>
+      });
+  </script>
 
 
 </head>
 <body>
 
+<div id="conciergeHeader" style="width:320px; height:50px">
+  <div id="buttonHome" style="vertical-align:middle;">
+     <a href=""><img alt="" src="/images/hoje.png" width="40px" height="40px"> </a>
+  </div>
+  <div id="searchBar">
+
+  </div>
+
+  <div id="login">
+
+  </div>
+
+  <div id="history">
+
+  </div>
+  <div id="settings">
+
+  </div>
+
+</div>
 
 <%= yield %>
 

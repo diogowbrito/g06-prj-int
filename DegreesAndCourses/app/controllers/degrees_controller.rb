@@ -21,6 +21,52 @@ class DegreesController < ApplicationController
     end
   end
 
+    def description
+    respond_to do |format|
+      format.xml
+    end
+    end
+
+    def meta_info
+    respond_to do |format|
+      format.xml
+    end
+    end
+
+   def list
+    @start = params[:start] || '1'
+    @end = params[:end] || '20'
+
+    @degrees = Degree.find(:all, :order => "name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+
+    respond_to do |format|
+    format.xml
+    end
+  end
+
+  def specific
+    @degree = Degree.find(params[:id])
+   # @emails = @professor.emails
+   # @courses = @professor.courses
+
+    respond_to do |format|
+      format.xml
+    end
+  end
+
+  def search
+
+    @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_")
+    @start = params[:start] || '1'
+    @end = params[:end] || '20'
+    @professors = Professor.find(:all, :conditions=> ["professor_name like ?", "%" + @keyword + "%"], :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+
+    respond_to do |format|
+       format.xml
+    end
+  end
+
+
   # GET /degrees/new
   # GET /degrees/new.xml
   def new

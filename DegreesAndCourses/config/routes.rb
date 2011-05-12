@@ -1,4 +1,6 @@
 DegreesAndCourses::Application.routes.draw do
+  resources :course_degrees
+
   resources :courses
 
   resources :degrees
