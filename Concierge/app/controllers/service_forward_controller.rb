@@ -16,6 +16,9 @@ class ServiceForwardController < ApplicationController
       node['href'] = link
     end
 
+    root = @doc.at_css "record"
+    root.add_child("<search>http://localhost:3000/services/"+@servicename+"/search?keyword=<search/>")
+
     respond_to :xml
   end
 
