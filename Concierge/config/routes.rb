@@ -1,18 +1,10 @@
 Concierge::Application.routes.draw do
 
-  resources :services
-
-  resources :tags
-
-  resources :competences
-
-  resources :inf_entities
-
-  resources :ref_entities
-
+  root :to => "HomePage#index"
+  match "index" => "HomePage#index"
+  match "services/:service/index" => "ServiceForward#homepagerequest", :defaults => { :format => :xml}
 #  match "services/:service/:list" => "List#list"
   match "services/:service/:id" => "Record#record"
-  match "index" => "HomePage#index"
   match "recordAux" => "Record#recordAux", :defaults => { :format => :xml}
   match "list" => "List#list"
   match "peoplelistrequest" => "PeopleListRequest#peoplelistrequest", :defaults => { :format => :xml}
