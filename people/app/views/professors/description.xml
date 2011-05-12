@@ -1,3 +1,4 @@
 <record title="Serviço sobre Pessoas">
-<text>Este serviço fornece informação detalhada sobre todos os docentes da FCT</text>
+  <text>Este serviço fornece informação detalhada sobre todos os docentes da FCT</text>
+  <link href="http://localhost:3001/people">Lista de Professores</link>
 </record>

@@ -1,9 +1,30 @@
 <div id="homepage">
+  <table>
+    <thead>
+    <tr>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+    </thead>
+    <tbody>
 
-    <table>
-      <tr>Servico 1</tr>
-      <tr>Servico 2</tr>
-      <tr>Servico 3</tr>
-      <tr>Servico 4</tr>
-    </table>
+    <% counter = 0 %>
+    <% @services.each do |service| %>
+        <% if counter % 4 == 0 then
+        counter = counter + 1 %>
+            <tr>
+        <% end %>
+        <% if counter % 4 != 0 then %>
+            <td><%= service.serviceName %></td>
+        <% end %>
+        <% if counter % 4 == 0 then %>
+            </tr>
+        <% end %>
+    <% end %>
+
+    </tbody>
+  </table>
+
 </div>

@@ -5,6 +5,7 @@ class CreateServices < ActiveRecord::Migration
       t.string :provider
       t.string :type
       t.integer :ranking
+      t.string  :url
       t.string :imgPath
 
       t.timestamps

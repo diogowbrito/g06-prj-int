@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20110511141419) do
     t.string   "provider"
     t.string   "type"
     t.integer  "ranking"
+    t.string   "url"
     t.string   "imgPath"
     t.datetime "created_at"
     t.datetime "updated_at"

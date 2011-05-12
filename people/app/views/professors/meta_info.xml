@@ -3,40 +3,75 @@
     <serviceID>plp</serviceID>
     <type>academics</type>
     <tags>
+      <tag>pessoas</tag>
+      <tag>professores</tag>
+      <tag>docentes</tag>
     </tags>
     <search>yes</search>
     <referedEntities>
         <entity>person</entity>
         <entity>organizational unit</entity>
-        <entity>schedule</entity>
         <entity>degree</entity>
 		<entity>course</entity>
 		<entity>room</entity>
 		<entity>building</entity>
-		<entity>book</entity>
-		<entity>event</entity>
     </referedEntities>
     <informedEntities>
 		<entity>person</entity>
     </informedEntities>
     <competences>
-	<competence path="/teachers" httpOp="">
+    <competence path="/index" httpOp="">
+            <description>Devolve a descrição do serviço</description>
+            <arglist/>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
+	<competence path="/status" httpOp="">
+            <description>Devolve o estado o serviço</description>
+            <arglist/>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
+	<competence path="/metainfo" httpOp="">
+            <description>Devolve a meta info do serviço</description>
+            <arglist/>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
+    <competence path="/people" httpOp="">
             <description>Devolve a lista de docentes</description>
             <arglist>
-                <arg optional="true">name</arg>
                 <arg optional="true">start</arg>
                 <arg optional="true">end</arg>
             </arglist>
             <interactionType>Indirect</interactionType>
-            <tags>
-            </tags>
-        </competence>
-	<competence path="/teachers" httpOp="/[id]">
-            <description>Devolve um docente específico</description>
+            <tags/>
+    </competence>
+    <competence path="/people" httpOp="/id">
+            <description>Devolve a informação sobre um docente específico</description>
             <arglist/>
             <interactionType>Indirect</interactionType>
-            <tags>
-            </tags>
-        </competence>
+            <tags/>
+    </competence>
+    <competence path="/search" httpOp="">
+            <description>Devolve os resultados de uma procura</description>
+            <arglist>
+                <arg optional="false">keyword</arg>
+                <arg optional="true">start</arg>
+                <arg optional="true">end</arg>
+            </arglist>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
+    <competence path="/recomendation" httpOp="">
+            <description>Devolve as recomendações para uma palavra</description>
+            <arglist>
+                <arg optional="false">keyword</arg>
+                <arg optional="true">start</arg>
+                <arg optional="true">end</arg>
+            </arglist>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
   </competences>
 </service>
