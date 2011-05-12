@@ -5,6 +5,23 @@ DegreesAndCourses::Application.routes.draw do
 
   resources :degrees
 
+  root :to => "DegreesAndCourses#description"
+
+
+  match "index" => "DegreesAndCourses#description"
+  match "status" => "DegreesAndCourses#status"
+  match "metainfo" => "DegreesAndCourses#meta_info"
+
+  match "degrees" => "Degrees#list"
+  match "degrees/:id" => "Degrees#specific"
+
+   match "courses" => "Courses#list"
+  match "courses/:id" => "Courses#specific"
+
+  match "search" => "Professors#search"
+
+  match "degrees/:id/courses" => "Degrees#courses"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

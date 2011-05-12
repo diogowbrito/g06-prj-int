@@ -80,4 +80,24 @@ class CoursesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+   def list
+    @start = params[:start] || '1'
+    @end = params[:end] || '20'
+
+    @courses = Course.find(:all, :order => "name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+
+    respond_to do |format|
+      format.xml
+    end
+  end
+
+  def specific
+    @course = Course.find(params[:id])
+    respond_to do |format|
+      format.xml
+    end
+  end
+
 end

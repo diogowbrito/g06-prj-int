@@ -6,7 +6,7 @@ class DegreesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @degrees }
+      format.xml { render :xml => @degrees }
     end
   end
 
@@ -17,52 +17,29 @@ class DegreesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @degree }
+      format.xml { render :xml => @degree }
     end
   end
 
-    def description
-    respond_to do |format|
-      format.xml
-    end
-    end
 
-    def meta_info
-    respond_to do |format|
-      format.xml
-    end
-    end
-
-   def list
+  def list
     @start = params[:start] || '1'
     @end = params[:end] || '20'
 
     @degrees = Degree.find(:all, :order => "name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
 
     respond_to do |format|
-    format.xml
+      format.xml
     end
   end
 
   def specific
     @degree = Degree.find(params[:id])
-   # @emails = @professor.emails
-   # @courses = @professor.courses
+    # @emails = @professor.emails
+    # @courses = @professor.courses
 
     respond_to do |format|
       format.xml
-    end
-  end
-
-  def search
-
-    @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_")
-    @start = params[:start] || '1'
-    @end = params[:end] || '20'
-    @professors = Professor.find(:all, :conditions=> ["professor_name like ?", "%" + @keyword + "%"], :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
-
-    respond_to do |format|
-       format.xml
     end
   end
 
@@ -74,7 +51,7 @@ class DegreesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @degree }
+      format.xml { render :xml => @degree }
     end
   end
 
@@ -91,10 +68,10 @@ class DegreesController < ApplicationController
     respond_to do |format|
       if @degree.save
         format.html { redirect_to(@degree, :notice => 'Degree was successfully created.') }
-        format.xml  { render :xml => @degree, :status => :created, :location => @degree }
+        format.xml { render :xml => @degree, :status => :created, :location => @degree }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @degree.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @degree.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -107,10 +84,10 @@ class DegreesController < ApplicationController
     respond_to do |format|
       if @degree.update_attributes(params[:degree])
         format.html { redirect_to(@degree, :notice => 'Degree was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @degree.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @degree.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -123,7 +100,28 @@ class DegreesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(degrees_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
+    end
+  end
+
+
+  def courses
+
+    degreeId = params[:id]
+    @degree = Degree.find(degreeId)
+    course_degrees = CourseDegree.find_all_by_degree_id(@degree.degree_id)
+
+    @courses = []
+    course_degrees.each do |c_d|
+
+      course = Course.find_by_course_id(c_d.course_id)
+      if !@courses.include?(course)
+        @courses.push(course)
+        end
+    end
+
+    respond_to do |format|
+      format.xml
     end
   end
 end
