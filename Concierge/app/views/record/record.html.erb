@@ -1,17 +1,13 @@
 <div id="resource">
   <h1>Record</h1>
 </div>
-<div class="hidden" style="display:none"><%= @service %> <%= @id %></div>
 
 <script type=text/javascript>
 
     $(document).ready(function() {
-        var temp_array = $(".hidden").text().split(" ");
-        var service = temp_array[0];
-        var id = temp_array[1];
         $.ajax({
             type: "GET",
-            url: "http://localhost:3000/recordAux.xml?service="+service+"&id="+id,
+            url: "http://localhost:3000/record,
             dataType: "xml",
             success: parseXml
         });
