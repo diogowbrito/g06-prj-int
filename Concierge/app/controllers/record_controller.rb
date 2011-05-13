@@ -7,10 +7,7 @@ class RecordController < ApplicationController
     @service = params[:service]
     @id = params[:id]
 
-    @link = "http://localhost:3001/"+@service+"/"+@id
-    @doc = Nokogiri::XML(open(@link), nil, 'UTF-8')
-
-    respond_to :xml
+    respond_to :html
 
   end
 
