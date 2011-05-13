@@ -1,0 +1,31 @@
+<div id="search" class="current">
+  <h1>Search</h1>
+</div>
+
+<script type=text/javascript>
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/services/people/search?keyword=joao",
+            dataType: "xml",
+            success: parseList
+        });
+       $('.hidden').remove();
+    });
+
+    function parseList(xml) {
+
+        $(xml).find("list").each(function() {
+
+            $("#search").append("<p>Keyword: "+$(this).attr("title")+"</p><ul>");
+
+            $(this).find("item").each(function() {
+                $("#search").append("<li>"+$(this).text()+"</li>");
+            });
+        });
+
+        $("#search").append("</ul>");
+    }
+
+</script>
