@@ -1,25 +1,16 @@
 <div id="homepage">
   <table>
-    <thead>
-    <tr>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-    </tr>
-    </thead>
     <tbody>
-
     <% counter = 0 %>
     <% @services.each do |service| %>
-        <% if counter % 4 == 0 then
-        counter = counter + 1 %>
+        <% if counter % 4 == 0 then %>
             <tr>
         <% end %>
-        <% if counter % 4 != 0 then %>
-            <td><%= service.serviceName %></td>
-        <% end %>
-        <% if counter % 4 == 0 then %>
+        <td>
+          <img src="/public/images/bus.png" alt="teste" />
+          <%= link_to service.serviceName, "http://localhost:3000/services/"+service.serviceName %></td>
+        <% counter = counter + 1 %>
+        <% if (counter % 4 == 0) || (counter == @services.size) then %>
             </tr>
         <% end %>
     <% end %>
