@@ -1,26 +1,25 @@
 DegreesAndCourses::Application.routes.draw do
   resources :course_degrees
-
   resources :courses
-
   resources :degrees
 
-  root :to => "DegreesAndCourses#description"
+  root :to => "DegreesAndCourses#description", :defaults => {:format => :xml}
+
+  #courses
+  match "courses" => "Courses#list", :defaults => {:format => :xml}
+  match "courses/:id" => "Courses#specific", :defaults => {:format => :xml}
+
+  #degrees
+  match "degrees" => "Degrees#list", :defaults => {:format => :xml}
+  match "degrees/:id" => "Degrees#specific", :defaults => {:format => :xml}
+  match "degrees/:id/courses" => "Degrees#courses", :defaults => {:format => :xml}
 
 
-  match "index" => "DegreesAndCourses#description"
-  match "status" => "DegreesAndCourses#status"
-  match "metainfo" => "DegreesAndCourses#meta_info"
+  #service general
+  match "index" => "DegreesAndCourses#description", :defaults => {:format => :xml}
+  match "status" => "DegreesAndCourses#status", :defaults => {:format => :xml}
+  match "metainfo" => "DegreesAndCourses#meta_info", :defaults => {:format => :xml}
 
-  match "degrees" => "Degrees#list"
-  match "degrees/:id" => "Degrees#specific"
-
-   match "courses" => "Courses#list"
-  match "courses/:id" => "Courses#specific"
-
-  match "search" => "Professors#search"
-
-  match "degrees/:id/courses" => "Degrees#courses"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

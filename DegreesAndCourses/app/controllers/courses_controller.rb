@@ -88,9 +88,7 @@ class CoursesController < ApplicationController
 
     @courses = Course.find(:all, :order => "name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
 
-    respond_to do |format|
-      format.xml
-    end
+    respond_to :xml
   end
 
   def specific

@@ -25,6 +25,9 @@ class DegreesAndCoursesController < ApplicationController
       end
     end
 
+   def status
+    respond_to :xml
+  end
 
 
 end
