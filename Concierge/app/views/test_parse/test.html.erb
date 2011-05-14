@@ -21,7 +21,7 @@
             $("#search").append("<p>Keyword: "+$(this).attr("title")+"</p><ul>");
 
             $(this).find("item").each(function() {
-                $("#search").append("<li>"+$(this).text()+"</li>");
+                $("#search").append("<li><a href="+$(this).attr("href")+">"+$(this).text()+"</a><p>"+$(this).attr("title")+"</p></li>");
             });
         });
 
