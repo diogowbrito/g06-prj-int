@@ -1,7 +1,6 @@
 DegreesAndCourses::Application.routes.draw do
   resources :course_degrees
-  resources :courses
-  resources :degrees
+
 
   root :to => "DegreesAndCourses#description", :defaults => {:format => :xml}
 
