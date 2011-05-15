@@ -34,7 +34,7 @@ module Concierge
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
 
-    config.action_view.javascript_expansions[:defaults] = %w(jquery-1.6 jqtouch)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery-1.6 jquery.mobile-1.0a4.1)
 
 
     # Configure the default encoding used in templates for Ruby 1.9.

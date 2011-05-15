@@ -4,40 +4,47 @@
   <title>Concierge</title>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
-
-  <style type="text/css" media="screen">@import "/stylesheets/theme.css";</style>
-  <style type="text/css" media="screen">@import "/stylesheets/jqtouch.css";</style>
+  <%= stylesheet_link_tag :all %>
 
 
-  <script type="text/javascript">
-      // Fire up JQTouch
-      var jQT = $.jQTouch({
-          statusBar: 'black'
-      });
-  </script>
+
+
+
+
+
 
 
 </head>
 <body>
 
-<div id="conciergeHeader" style="width:320px; height:50px">
-  <div id="buttonHome" style="vertical-align:middle;">
-     <a href=""><img alt="" src="/images/hoje.png" width="40px" height="40px"> </a>
-  </div>
-  <div id="searchBar">
 
-  </div>
 
-  <div id="login">
 
+
+<div id="jqm-home" style="width:100%; width:320px; height:50px; display:inline;">
+  <div id="buttonHome" style="float:left;width:10%; padding-top:3%; padding-left:3%">
+     <a href=""><img alt="home" src="/images/home.png" width="25px" height="25px"> </a>
   </div>
 
-  <div id="history">
+  <div id="searchBar" style="float:left;width:20%;padding-top:3%;padding-left:3%;"  data-role="fieldcontain">
+      <input type="search" name="password" id="search" value="" size="width:5px"/>
+  </div>
+
+
+  <div id="login" style="float:left;width:20%;padding-top:3%; padding-left:4%">
+    <a href="/login"><img alt="login" src="/images/login.png" height="25px" > </a>
+  </div>
+
+  <div id="history" style="float:left;width:5%;padding-top:3%; padding-left:4%">
+    <a href="/history"><img alt="history" src="/images/history.png" width="25px" height="25px"> </a>
 
   </div>
-  <div id="settings">
+  <div id="settings" style="float:left;width:10%;padding-top:3%; padding-left:4%">
+    <a href="/settings"><img alt="settings" src="/images/settings.png" width="25px" height="25px"> </a>
 
   </div>
+
+  <div style="clear:both;"></div>
 
 </div>
 
