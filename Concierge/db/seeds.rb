@@ -17,5 +17,5 @@ Competence.create :competenceType => 'Search', :competenceUrl => 'http://localho
 
 
 Service.create :serviceName => 'CoursesAndDegrees', :provider => 'FCT', :type => 'bazinga', :ranking => 0, :url => 'http://localhost:3002', :imgPath => 'TODO'
-Competence.create :competenceType => 'Home', :competenceUrl => 'http://localhost:3001/index', :description => "boraa", :service_id => '3'
-Competence.create :competenceType => 'Search', :competenceUrl => 'http://localhost:3001/search', :description => "boraa", :service_id => '3'
+Competence.create :competenceType => 'Home', :competenceUrl => 'http://localhost:3002/index', :description => "Cursos e Cadeiras", :service_id => '3'
+Competence.create :competenceType => 'Search', :competenceUrl => 'http://localhost:3002/search', :description => "Cursos e Cadeiras", :service_id => '3'

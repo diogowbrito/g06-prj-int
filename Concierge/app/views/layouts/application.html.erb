@@ -27,7 +27,9 @@
           <a href="/index"><img alt="home" src="/images/home.png" width="25px" height="25px"> </a>
         </td>
         <td id="searchBar" data-role="fieldcontain" width="140px" style="padding-left:10px;" >
-          <input type="search" name="password" id="search" value=""/>
+          <form id="searchform">
+                <input type="search" name="password" id="search" value=""/>
+          </form>
         </td>
         <td id="login" style="padding-left:10px;" >
           <a href="/login"><img alt="login" src="/images/login.png" height="25px"> </a>
@@ -51,4 +53,14 @@
 
 
 </body>
+
+
+<script type="text/javascript">
+
+  $('#searchform').submit(function() {
+  alert('Handler for .submit() called.');
+  return false;
+});
+
+</script>
 </html>
