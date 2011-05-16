@@ -1,8 +1,12 @@
 DegreesAndCourses::Application.routes.draw do
   resources :course_degrees
 
-
+  #service general
   root :to => "DegreesAndCourses#description", :defaults => {:format => :xml}
+  match "index" => "DegreesAndCourses#description", :defaults => {:format => :xml}
+  match "status" => "DegreesAndCourses#status", :defaults => {:format => :xml}
+  match "metainfo" => "DegreesAndCourses#meta_info", :defaults => {:format => :xml}
+
 
   #courses
   match "courses" => "Courses#list", :defaults => {:format => :xml}
@@ -14,10 +18,7 @@ DegreesAndCourses::Application.routes.draw do
   match "degrees/:id/courses" => "Degrees#courses", :defaults => {:format => :xml}
 
 
-  #service general
-  match "index" => "DegreesAndCourses#description", :defaults => {:format => :xml}
-  match "status" => "DegreesAndCourses#status", :defaults => {:format => :xml}
-  match "metainfo" => "DegreesAndCourses#meta_info", :defaults => {:format => :xml}
+
 
 
   # The priority is based upon order of creation:

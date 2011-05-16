@@ -23,8 +23,12 @@ class ServiceForwardController < ApplicationController
   end
 
   def listrequest
-    @service = params[:service]
-    @link = "http://localhost:3001/"+@service + ".xml"
+    @servicename = params[:service]
+    @method = params[:method]
+
+    service = Service.where(:serviceName => @servicename)
+
+    @url = "http://localhost:3001/"+@service + ".xml"
     @doc = Nokogiri::XML(open(@link), nil, 'UTF-8')
     respond_to :xml
   end

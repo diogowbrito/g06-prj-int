@@ -1,0 +1,6 @@
+<record title="Serviço sobre Cursos e Cadeiras">
+  <text>Este serviço fornece informação detalhada sobre cursos e cadeiras da FCT</text>
+  <link href="http://localhost:3002/degrees">Lista de Cursos</link>
+  <link href="http://localhost:3002/courses">Lista de Cadeiras</link>
+
+</record>
