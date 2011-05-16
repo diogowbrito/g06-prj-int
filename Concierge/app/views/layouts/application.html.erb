@@ -3,45 +3,47 @@
 <head>
   <title>Concierge</title>
 
-     <%= csrf_meta_tag %>
+  <%= csrf_meta_tag %>
 
-   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
-<script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css"/>
+  <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
 </head>
 <body>
 
 
+<div data-role="page">
+  <div id="header" data-role="header">
+
+    <div id="buttonHome" style="float:left;width:10%; padding-top:3%; padding-left:3%">
+      <a href=""><img alt="home" src="/images/home.png" width="25px" height="25px"> </a>
+    </div>
+
+    <div id="searchBar" style="float:left;width:20%;padding-top:3%;padding-left:3%;" data-role="fieldcontain">
+      <input type="search" name="password" id="search" value=""/>
+    </div>
 
 
-<div id="jqm-home" >
-  <div id="buttonHome" style="float:left;width:10%; padding-top:3%; padding-left:3%">
-     <a href=""><img alt="home" src="/images/home.png" width="25px" height="25px"> </a>
+    <div id="login" style="float:left;width:20%;padding-top:3%; padding-left:4%">
+      <a href="/login"><img alt="login" src="/images/login.png" height="25px"> </a>
+    </div>
+
+    <div id="history" style="float:left;width:5%;padding-top:3%; padding-left:4%">
+      <a href="/history"><img alt="history" src="/images/history.png" width="25px" height="25px"> </a>
+    </div>
+
+    <div id="settings" style="float:left;width:10%;padding-top:3%; padding-left:4%">
+      <a href="/settings"><img alt="settings" src="/images/settings.png" width="25px" height="25px"> </a>
+    </div>
+
+
+    </div>
+  <div id="content" data-role="content">
+   <%= yield %>
   </div>
-
-  <div id="searchBar" style="float:left;width:20%;padding-top:3%;padding-left:3%;"  data-role="fieldcontain">
-      <input type="search" name="password" id="search" value="" />
-  </div>
-
-
-  <div id="login" style="float:left;width:20%;padding-top:3%; padding-left:4%">
-    <a href="/login"><img alt="login" src="/images/login.png" height="25px" > </a>
-  </div>
-
-  <div id="history" style="float:left;width:5%;padding-top:3%; padding-left:4%">
-    <a href="/history"><img alt="history" src="/images/history.png" width="25px" height="25px"> </a>
-
-  </div>
-  <div id="settings" style="float:left;width:10%;padding-top:3%; padding-left:4%">
-    <a href="/settings"><img alt="settings" src="/images/settings.png" width="25px" height="25px"> </a>
-
-  </div>
-
-  <div style="clear:both;"></div>
-
 </div>
+<!--<div style="clear:both;"></div>-->
 
-<%= yield %>
 
 </body>
 </html>
