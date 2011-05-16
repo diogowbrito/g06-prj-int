@@ -23,6 +23,22 @@ $("#content").append("<h1>Search</h1>");
             type: "GET",
             url: "http://localhost:3000/services/people/search?keyword=joao",
             dataType: "xml",
+            success: parseSearchList
+        });
+       $('.hidden').remove();
+    });
+
+}
+
+
+
+function getList(url) {
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "xml",
             success: parseList
         });
        $('.hidden').remove();
@@ -30,11 +46,30 @@ $("#content").append("<h1>Search</h1>");
 
 }
 
+
 function parseList(xml) {
 
         $(xml).find("list").each(function() {
 
-            $("#content").append("<p>Keyword: "+$(this).attr("title")+"</p><ul>");
+            $("#content").text("");
+
+
+            var list = $("#content").html("<ul data-role='listview' data-theme='g'></ul>").find('ul');
+
+            $(this).find("item").each(function() {
+                list.append("<li class='item' href="+$(this).attr('href')+">"+$(this).text()+"<p>"+$(this).attr("title")+"</p></li>");
+            });
+
+
+        });
+
+}
+
+function parseSearch(xml) {
+
+        $(xml).find("list").each(function() {
+
+            $("#content").append("<p id='wee'>Keyword: "+$(this).attr("title")+"</p><ul>");
 
             $(this).find("item").each(function() {
                 $("#content").append("<li class='item' href="+$(this).attr('href')+">"+$(this).text()+"<p>"+$(this).attr("title")+"</p></li>");
@@ -62,6 +97,8 @@ function parseHomepage(xml) {
 
     });
 }
+
+
 
 $('#serviceLink').live('click', function(){
       getHomepage($(this).attr('href'));
