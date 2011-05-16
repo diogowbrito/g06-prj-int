@@ -14,26 +14,22 @@
 </div>
 
 <div id="method">
-  nonmemetoodoasfjkbasf
+
 </div>
 
 
 
 <script type=text/javascript>
 
+   function bla(url) {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:3000/peoplelistrequest",
+        url: url,
         dataType: "xml",
-        success: parseXml
+        success: parseList
     });
 
-    function parseXml(xml) {
-        $(xml).find("item[title='Professor']").each(function() {
-            $("#prof_list").append("<li class='arrow'><a href='" + $(this).attr('href') + ">" + $(this).text() + "</a></li>");
-        });
-    }
-
+   }
 
 </script>
