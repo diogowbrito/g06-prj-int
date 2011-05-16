@@ -12,7 +12,6 @@ class SearchController < ApplicationController
     flag = 0
     services.each do |service|
 
-      puts "entrou"
       competence = service.competences.where(:competenceType => "Search")
       url = competence[0].competenceUrl
       homeurl = service.url
@@ -22,6 +21,7 @@ class SearchController < ApplicationController
       list << tempdoc
 
     end
+
     @doc = Nokogiri::XML("<list></list>")
 
     list.each do |result|
