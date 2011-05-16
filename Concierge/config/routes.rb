@@ -7,8 +7,7 @@ Concierge::Application.routes.draw do
   match "services/:service/search" => "Search#servicesearch", :defaults => { :format => :xml}
 #  match "services/:service/:list" => "List#list"
   match "services/:service/:id" => "Record#record"
-  match "recordAux" => "Record#recordAux", :defaults => { :format => :xml}
-  match "record" => "Record#record"
+  match "record" => "Record#record", :defaults => { :format => :xml}
   match "list" => "List#list"
   match "peoplelistrequest" => "PeopleListRequest#peoplelistrequest", :defaults => { :format => :xml}
   match "test" => "TestParse#test"

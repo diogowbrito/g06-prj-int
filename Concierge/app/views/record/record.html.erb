@@ -1,17 +1,14 @@
-<div id="resource" class="current">
-  <h1>Record</h1>
-</div>
-
+<h1>Record</h1>
+<div id="resource"></div>
 <script type=text/javascript>
 
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "http://localhost:3000/record,
+            url: "http://localhost:3000/record?service=people&id=1",
             dataType: "xml",
             success: parseXml
         });
-       $('.hidden').remove();
     });
 
     function parseXml(xml) {
