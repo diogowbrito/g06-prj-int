@@ -37,7 +37,7 @@ function parseList(xml) {
             $("#content").append("<p>Keyword: "+$(this).attr("title")+"</p><ul>");
 
             $(this).find("item").each(function() {
-                $("#content").append("<li class='item' path="+$(this).attr('href')+">"+$(this).text()+"<p>"+$(this).attr("title")+"</p></li>");
+                $("#content").append("<li class='item' href="+$(this).attr('href')+">"+$(this).text()+"<p>"+$(this).attr("title")+"</p></li>");
             });
 
             $("#content").append("</ul>");
@@ -55,7 +55,7 @@ function parseHomepage(xml) {
         $("#content").append("<ul>");
 
         $(this).find("link").each(function() {
-            $("#content").append("<li class='list' path="+$(this).attr('href')+">"+$(this).text()+"</li>")
+            $("#content").append("<li class='list' href="+$(this).attr('href')+">"+$(this).text()+"</li>")
         });
 
         $("#content").append("</ul>");
@@ -63,15 +63,18 @@ function parseHomepage(xml) {
     });
 }
 
+$('#serviceLink').live('click', function(){
+      getHomepage($(this).attr('href'));
+    });
+
+$('.list').live('click', function(){
+      getList($(this).attr('href'));
+    });
+
 $('.item').live('click', function() {
-        alert("carrega benfica");
-        getRecord($(this).attr('path'));
+        getRecord($(this).attr('href'));
     });
 
 $('#search').live('click', function() {
         alert("carrega benfica");
-    });
-
-$('#serviceLink').live('click', function(){
-      getHomepage($(this).attr('href'));
     });
