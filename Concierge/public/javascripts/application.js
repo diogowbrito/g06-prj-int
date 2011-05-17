@@ -116,7 +116,7 @@ function parseRecord(xml) {
                         if (element.nodeName == 'link') {
                             text = $(this).text();
                             var attr = $(this).attr('href');
-                            $("#content").append("<li><a href=" + attr + ">" + text + "</a></li>");
+                            $("#content").append("<li id='item'><a href=" + attr + ">" + text + "</a></li>");
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
@@ -143,7 +143,7 @@ function parseRecord(xml) {
                 text = $(this).text();
                 title = $(this).attr('title');
                 if (title == undefined)
-                    $("#content").append("<li><a href=" + attr + ">" + text + "</a></li>");
+                    $("#content").append("<li id='item'><a href=" + attr + ">" + text + "</a></li>");
                 else
                     $("#content").append("<li>" + title + ": " + text + "</li>");
                 break;
@@ -164,6 +164,6 @@ $('.item').live('click', function() {
     getRecord($(this).attr('href'));
 });
 
-$('#search').live('click', function() {
+$('.search').live('click', function() {
     alert("carrega benfica");
 });

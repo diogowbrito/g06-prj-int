@@ -59,7 +59,7 @@ class ServiceForwardController < ApplicationController
       node.remove
       plus_value = value.gsub(" ", "+")
       link = 'http://localhost:3000/search?keyword='+plus_value+'&amp;entity='+type
-      parent.add_child('<link href="'+link+'">'+value+'</link>')
+      parent.add_child('<entity href="'+link+'">'+value+'</entity>')
 
     end
 
