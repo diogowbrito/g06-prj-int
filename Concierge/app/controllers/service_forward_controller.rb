@@ -49,8 +49,20 @@ class ServiceForwardController < ApplicationController
     @service = params[:service]
     @id = params[:id]
     @method = params[:method]
-    @link = "http://localhost:3001/"+@method+"/"+@id
-    @doc = Nokogiri::XML(open(@link), nil, 'UTF-8')
+    link = "http://localhost:3001/"+@method+"/"+@id
+    @doc = Nokogiri::XML(open(link), nil, 'UTF-8')
+
+    entity = @doc.xpath("//entity");
+    entity.each do |node|
+      parent = node.parent()
+      type = node.attr('type')
+      value = node.text()
+      node.remove
+      plus_value = value.gsub(" ", "+")
+      link = 'http://localhost:3000/search?keyword='+plus_value+'&amp;entity='+type
+      parent.add_child('<link href="'+link+'">'+value+'</link>')
+
+    end
 
     respond_to :xml
 
