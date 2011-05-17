@@ -1,8 +1,11 @@
 Concierge::Application.routes.draw do
 
+<<<<<<< HEAD
   resources :services
 
+=======
   #Concierge Defaults
+>>>>>>> 0dcf36d2a8fe0930224cae25e9b33b79fd898934
   root :to => "HomePage#index"
   match "index" => "HomePage#index"
 
