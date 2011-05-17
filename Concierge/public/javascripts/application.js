@@ -16,7 +16,7 @@ function getHomepage(url) {
 }
 
 function getSearch(url) {
-     alert(url);
+    alert(url);
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -75,65 +75,68 @@ function parseSearchList(xml) {
 function createPage(id) {
 
 
-    var content = $('<div>').attr("data-role","content");
-    var header =  $('<div>').attr("data-role","header");
-    var page = $('<div>').attr("data-role","page").attr("id", id).attr("data-url", id).append(header).append(content);
+
+    var headerbody= "<table><tr><td id='buttonHome' style='padding-left:10px;'><a href='/index'><img alt='home' src='/images/home.png' width='25px' height='25px'> </a> </td><td id='searchBar' data-role='fieldcontain' width='140px' style='padding-left:10px;' ><form id='searchform'><input type='search' name='password' id='search' value=''/></form> </td><td id='login' style='padding-left:10px;'><a href='/login'><img alt='login' src='/images/login.png' height='25px'> </a></td><td id='history' style='padding-left:10px;'><a href='/history'><img alt='history' src='/images/history.png' width='25px' height='25px'> </a></td><td id='settings' style='padding-left:10px;'><a href='/settings'><img alt='settings' src='/images/settings.png' width='25px' height='25px'></a></td></tr></table>"
+
+    var content = $('<div>').attr("data-role", "content");
+    var header = $('<div>').attr("data-role", "header").append(headerbody);
+    var page = $('<div>').attr("data-role", "page").attr("id", id).attr("data-url", id).append(header).append(content);
 
 
     return $(page)
 }
 
 
-
 function parseList(xml) {
 
+
+    var page = createPage("listz");
+    var pageWritable = $("[data-role=content]", page.get(0));
+
     $(xml).find("list").each(function() {
-
-        var page = createPage("listz");
-        var pageWritable = $("[data-role=content]", page.get(0));
-
-
         var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
 
         $(this).find("item").each(function() {
             list.append("<li class='item' href=" + $(this).attr('href') + ">" + "<a href='' >" + $(this).text() + "<p>" + $(this).attr("title") + "</p> </a></li>");
         });
 
-
-
-        page.page();
-        $.mobile.pageContainer.append(page);
-        $.mobile.changePage("#" + page.attr("id"));
-
     });
+
+    page.page();
+    $.mobile.pageContainer.append(page);
+    $.mobile.changePage("#" + page.attr("id"));
 }
 
 function parseHomepage(xml) {
 
+
+    var page = createPage("homepagz");
+    var pageWritable = $("[data-role=content]", page.get(0));
+
     $(xml).find("record").each(function() {
-
-
-        var page = createPage("homepagz");
-        var pageWritable = $("[data-role=content]", page.get(0));
-
         pageWritable.append("<p>" + $(this).attr('title') + "</p>");
-
         var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
-
         $(this).find("link").each(function() {
             list.append("<li class='list' href=" + $(this).attr('href') + "> <a href=''>" + $(this).text() + "</a></li>")
         });
-
-
-
-        page.page();
-        $.mobile.pageContainer.append(page);
-        $.mobile.changePage("#" + page.attr("id"));
     });
+
+    page.page();
+    $.mobile.pageContainer.append(page);
+    $.mobile.changePage("#" + page.attr("id"));
 }
+
+
 function parseRecord(xml) {
-    $("#content").text("");
+
+    var page = createPage("recordz");
+    var pageWritable = $("[data-role=content]", page.get(0));
+
+    pageWritable.append('<ul data-role="listview" id="resourceList"></ul>');
+
+
     $("#content").append('<ul data-role="listview" id="resourceList"></ul>');
+
     $(xml).find("record").children().each(function(index, element) {
         var text;
         var title;
@@ -192,6 +195,10 @@ function parseRecord(xml) {
                 break;
         }
     });
+
+   page.page();
+   $.mobile.pageContainer.append(page);
+   $.mobile.changePage("#" + page.attr("id"));
 }
 
 $('#serviceLink').live('click', function() {
