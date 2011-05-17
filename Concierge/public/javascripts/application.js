@@ -132,10 +132,10 @@ function parseRecord(xml) {
     var page = createPage("recordz");
     var pageWritable = $("[data-role=content]", page.get(0));
 
-    pageWritable.append('<ul data-role="listview" id="resourceList"></ul>');
+//    pageWritable.append('<ul data-role="listview" id="resourceList"></ul>');
+    var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
 
-
-    $("#content").append('<ul data-role="listview" id="resourceList"></ul>');
+//    $("#content").append('<ul data-role="listview" id="resourceList"></ul>');
 
     $(xml).find("record").children().each(function(index, element) {
         var text;
@@ -146,9 +146,9 @@ function parseRecord(xml) {
                     text = $(this).text();
                     title = $(this).attr('title');
                     if (title == undefined)
-                        $("#resourceList").append("<li><a href=" + attr + ">" + text + "</a></li>");
+                        list.append("<li><a href=" + attr + ">" + text + "</a></li>");
                     else
-                        $("#resourceList").append("<li>" + title + ": " + text + "</li>");
+                        list.append("<li>" + title + ": " + text + "</li>");
                 }
                 else {
                     title = $(this).attr('title');
@@ -156,7 +156,7 @@ function parseRecord(xml) {
                     if (title != undefined)
                         html += title;
 
-                    html += '<ul data-role="listview">';
+                    html += "<ul data-role='listview' data-inset='true' data-theme='d'>";
 
                     $(this).children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
@@ -167,11 +167,11 @@ function parseRecord(xml) {
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
                             if (title == undefined)
-                                $("#resourceSubList").append("<li>" + text + "</li>");
+                              html += "<li>" + text + "</li>";
                         }
                     });
                     html += '</ul></li>';
-                    $("#resourceList").append(html);
+                    list.append(html);
                 }
                 break;
 
@@ -180,18 +180,18 @@ function parseRecord(xml) {
                 title = $(this).attr('title');
                 var attr = $(this).attr('href');
                 if (title == undefined)
-                    $("#resourceList").append("<li class='search'><a href=" + attr + ">" + text + "</a></li>");
+                    list.append("<li class='search'><a href=" + attr + ">" + text + "</a></li>");
                 else
-                    $("#resourceList").append("<li class='search'>" + title + ": " + "<a href=" + attr + ">" + text + "</a></li>");
+                    list.append("<li class='search'>" + title + ": " + "<a href=" + attr + ">" + text + "</a></li>");
                 break;
 
             case 'email':
                 text = $(this).text();
                 title = $(this).attr('title');
                 if (title == undefined)
-                    $("#resourceList").append("<li class='email'><a href=" + attr + ">" + text + "</a></li>");
+                    list.append("<li class='email'><a href=" + attr + ">" + text + "</a></li>");
                 else
-                    $("#resourceList").append("<li class='email'>" + title + ": " + text + "</li>");
+                    list.append("<li class='email'>" + title + ": " + text + "</li>");
                 break;
         }
     });

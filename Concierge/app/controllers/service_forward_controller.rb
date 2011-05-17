@@ -53,6 +53,7 @@ class ServiceForwardController < ApplicationController
     serviceurl = service[0].url
 
     link = serviceurl + "/" +@method+"/"+@id
+
     @doc = Nokogiri::XML(open(link), nil, 'UTF-8')
 
     entity = @doc.xpath("//entity");
