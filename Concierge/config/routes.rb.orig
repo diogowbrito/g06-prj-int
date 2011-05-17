@@ -1,23 +1,25 @@
-DegreesAndCourses::Application.routes.draw do
-  resources :course_degrees
+Concierge::Application.routes.draw do
 
-  #service general
-  root :to => "DegreesAndCourses#description", :defaults => {:format => :xml}
-  match "index" => "DegreesAndCourses#description", :defaults => {:format => :xml}
-  match "status" => "DegreesAndCourses#status", :defaults => {:format => :xml}
-  match "metainfo" => "DegreesAndCourses#meta_info", :defaults => {:format => :xml}
+<<<<<<< HEAD
+  resources :services
 
+=======
+  #Concierge Defaults
+>>>>>>> 0dcf36d2a8fe0930224cae25e9b33b79fd898934
+  root :to => "HomePage#index"
+  match "index" => "HomePage#index"
 
-  #courses
-  match "courses" => "Courses#list", :defaults => {:format => :xml}
-  match "courses/:id" => "Courses#specific", :defaults => {:format => :xml}
-
-  #degrees
-  match "degrees" => "Degrees#list", :defaults => {:format => :xml}
-  match "degrees/:id" => "Degrees#specific", :defaults => {:format => :xml}
-  match "degrees/:id/courses" => "Degrees#courses", :defaults => {:format => :xml}
+  #Service forward
+  match "services/:service/index" => "ServiceForward#homepagerequest", :defaults => { :format => :xml}
+  match "services/:service/:method" => "ServiceForward#listrequest", :defaults => { :format => :xml}
+  match "services/:service/:method/:id" => "ServiceForward#recordrequest", :defaults => { :format => :xml}
 
 
+  match "search" => "Search#search", :defaults => { :format => :xml}
+  match "services/:service/search" => "Search#servicesearch", :defaults => { :format => :xml}
+
+#  match "services/:service/:id" => "Record#record"
+#  match "record" => "Record#record", :defaults => { :format => :xml}
 
 
 

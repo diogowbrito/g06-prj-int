@@ -7,7 +7,9 @@
             <tr>
         <% end %>
         <td>
-          <img src="/images/letra-c.png" id="serviceLink" href=<%="http://localhost:3000/services/"+service.serviceName+"/index"%>>
+         <!-- <img src="/images/letra-c.png" id="serviceLink" href=<%="http://localhost:3000/services/"+service.serviceName+"/index"%>> -->
+
+           <%= link_to image_tag("/images/letra-c.png"), "http://localhost:3000/services/"+service.serviceName+"/index", :id => "serviceLink" %>
         </td>
         <% counter = counter + 1 %>
         <% if (counter % 4 == 0) || (counter == @services.size) then %>
