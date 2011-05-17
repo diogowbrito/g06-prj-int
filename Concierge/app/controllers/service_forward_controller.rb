@@ -45,10 +45,14 @@ class ServiceForwardController < ApplicationController
 
 
   def recordrequest
-    @service = params[:service]
+    @servicename = params[:service]
     @id = params[:id]
     @method = params[:method]
-    link = "http://localhost:3001/"+@method+"/"+@id
+
+    service = Service.where(:serviceName => @servicename)
+    serviceurl = service[0].url
+
+    link = serviceurl + "/" +@method+"/"+@id
     @doc = Nokogiri::XML(open(link), nil, 'UTF-8')
 
     entity = @doc.xpath("//entity");
