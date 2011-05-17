@@ -116,7 +116,7 @@ function parseRecord(xml) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
                             var attr = $(this).attr('href');
-                            $("#resourceSubList").append("<li><a href=" + attr + ">" + text + "</a></li>");
+                            $("#resourceSubList").append("<li id='item'><a href=" + attr + ">" + text + "</a></li>");
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
