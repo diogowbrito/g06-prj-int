@@ -7,12 +7,19 @@ class SearchController < ApplicationController
     @start = (params[:start] || '1').to_i
     @end = (params[:end] || '20').to_i
     @type = params[:type]
+    @entity = params[:entity]
     counter = 1
 
-    if @type == nil then
-    services = Service.order(:ranking)
+    if @type != nil then
+      services = Service.where(:servicetype => @type).order(:ranking)
+    elsif @entity != nil then
+      entities = InfEntity.where(:entity => @entity)
+      services = []
+      entities.each do |entity|
+        services << entity.service
+      end
     else
-    services = Service.where(:type => @type).order(:ranking)
+    services = Service.order(:ranking)
     end
     list = []
     flag = 0
