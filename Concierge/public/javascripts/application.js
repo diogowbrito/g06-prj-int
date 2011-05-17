@@ -10,27 +10,14 @@ function getHomepage(url) {
             dataType: "xml",
             success: parseHomepage
         });
-       $('.hidden').remove();
+        $('.hidden').remove();
     });
 
 }
 
-$('#resource').load(function() {
-    alert("oi");
-    $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:3000/record?service=people&id=1",
-            dataType: "xml",
-            success: parseXml
-        });
-        $('.hidden').remove();
-    });
-});
-
 function getSearch() {
 
-$("#content").append("<h1>Search</h1>");
+    $("#content").append("<h1>Search</h1>");
 
     $(document).ready(function() {
         $.ajax({
@@ -39,7 +26,7 @@ $("#content").append("<h1>Search</h1>");
             dataType: "xml",
             success: parseSearchList
         });
-       $('.hidden').remove();
+        $('.hidden').remove();
     });
 
 }
@@ -53,13 +40,12 @@ function getList(url) {
             dataType: "xml",
             success: parseList
         });
-       $('.hidden').remove();
+        $('.hidden').remove();
     });
 }
 
 
 function getRecord(url) {
-
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -67,23 +53,23 @@ function getRecord(url) {
             dataType: "xml",
             success: parseRecord
         });
-       $('.hidden').remove();
+        $('.hidden').remove();
     });
 }
 
 function parseList(xml) {
 
-        $(xml).find("list").each(function() {
+    $(xml).find("list").each(function() {
 
-            $("#content").append("<p>Keyword: "+$(this).attr("title")+"</p><ul>");
+        $("#content").append("<p>Keyword: " + $(this).attr("title") + "</p><ul>");
 
-            $(this).find("item").each(function() {
-                $("#content").append("<li class='item' href="+$(this).attr('href')+">"+$(this).text()+"<p>"+$(this).attr("title")+"</p></li>");
-            });
-
-            $("#content").append("</ul>");
-
+        $(this).find("item").each(function() {
+            $("#content").append("<li class='item' href=" + $(this).attr('href') + ">" + $(this).text() + "<p>" + $(this).attr("title") + "</p></li>");
         });
+
+        $("#content").append("</ul>");
+
+    });
 
 }
 
@@ -92,99 +78,86 @@ function parseHomepage(xml) {
     $(xml).find("record").each(function() {
 
         $("#content").text("");
-        $("#content").append("<p>"+$(this).attr('title')+"</p>");
+        $("#content").append("<p>" + $(this).attr('title') + "</p>");
         $("#content").append("<ul>");
 
         $(this).find("link").each(function() {
-            $("#content").append("<li class='list' href="+$(this).attr('href')+">"+$(this).text()+"</li>")
+            $("#content").append("<li class='list' href=" + $(this).attr('href') + ">" + $(this).text() + "</li>")
         });
 
         $("#content").append("</ul>");
 
     });
 }
-
- function parseXml(xml) {
-        $(xml).find("record").children().each(function(index, element) {
-            parseRecord($(this), element);
-        });
-    }
-
-    function parseRecord(node, element) {
-
- function parseRecord(xml) {
-        $(xml).find("record").children().each(function(index, element) {
-            parse_record($(this), element);
-        });
-    }
-
-    function parse_record(node, element) {
+function parseRecord(xml) {
+    $("#content").text("");
+    $(xml).find("record").children().each(function(index, element) {
         var text;
         var title;
         switch (element.nodeName) {
             case 'text':
-                if (node.children().size() == 0) {
-                    text = node.text();
-                    title = node.attr('title');
+                if ($(this).children().size() == 0) {
+                    text = $(this).text();
+                    title = $(this).attr('title');
                     if (title == undefined)
-                        $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                        $("#content").append("<p><a href=" + attr + ">" + text + "</a></p>");
                     else
-                        $("#resource").append("<p>" + title + ": " + text + "</p>");
+                        $("#content").append("<p>" + title + ": " + text + "</p>");
                 }
                 else {
-                    title = node.attr('title');
+                    title = $(this).attr('title');
                     if (title != undefined)
-                        $("#resource").append("<p>" + title + "</p>");
+                        $("#content").append("<p>" + title + "</p>");
 
-                    node.children().each(function(index, element) {
+                    $(this).children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
                             var attr = $(this).attr('href');
-                            $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                            $("#content").append("<p><a href=" + attr + ">" + text + "</a></p>");
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
                             if (title == undefined)
-                                $("#resource").append("<p>" + text + "</p>");
+                                $("#content").append("<p>" + text + "</p>");
                         }
                     });
                 }
                 break;
 
             case 'entity':
-                text = node.text();
-                title = node.attr('title');
-                var attr = node.attr('href');
+                text = $(this).text();
+                title = $(this).attr('title');
+                var attr = $(this).attr('href');
                 if (title == undefined)
-                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                    $("#content").append("<p><a href=" + attr + ">" + text + "</a></p>");
                 else
-                    $("#resource").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
+                    $("#content").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
                 break;
 
             case 'email':
-                text = node.text();
-                title = node.attr('title');
+                text = $(this).text();
+                title = $(this).attr('title');
                 if (title == undefined)
-                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                    $("#content").append("<p><a href=" + attr + ">" + text + "</a></p>");
                 else
-                    $("#resource").append("<p>" + title + ": " + text + "</p>");
+                    $("#content").append("<p>" + title + ": " + text + "</p>");
                 break;
         }
-    }
-
-
-$('#serviceLink').live('click', function(){
-      getHomepage($(this).attr('href'));
     });
+}
 
-$('.list').live('click', function(){
-      getList($(this).attr('href'));
-    });
+$('#serviceLink').live('click', function() {
+    getHomepage($(this).attr('href'));
+});
+
+$('.list').live('click', function() {
+    getList($(this).attr('href'));
+});
 
 $('.item').live('click', function() {
-        getRecord($(this).attr('href'));
-    });
+    getRecord($(this).attr('href'));
+});
 
 $('#search').live('click', function() {
-        alert("carrega benfica");
-    });
+    alert("carrega benfica");
+});

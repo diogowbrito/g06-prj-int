@@ -37,7 +37,7 @@ class ServiceForwardController < ApplicationController
 
     nodes.each do |node|
       href = node['href']
-      link = href.gsub(serviceurl, "http://localhost:3000/services")
+      link = href.gsub(serviceurl, "http://localhost:3000/services/"+@servicename)
       node['href'] = link
     end
 
@@ -48,7 +48,8 @@ class ServiceForwardController < ApplicationController
   def recordrequest
     @service = params[:service]
     @id = params[:id]
-    @link = "http://localhost:3001/"+@service+"/"+@id
+    @method = params[:method]
+    @link = "http://localhost:3001/"+@method+"/"+@id
     @doc = Nokogiri::XML(open(@link), nil, 'UTF-8')
 
     respond_to :xml
