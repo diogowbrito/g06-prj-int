@@ -19,6 +19,7 @@ class SearchController < ApplicationController
         services << entity.service
       end
     else
+
     services = Service.order(:ranking)
     end
     list = []

@@ -16,9 +16,7 @@ function getHomepage(url) {
 }
 
 function getSearch(url) {
-
-    $("#content").append("<h1>Search</h1>");
-
+     alert(url);
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -26,7 +24,6 @@ function getSearch(url) {
             dataType: "xml",
             success: parseSearchList
         });
-        $('.hidden').remove();
     });
 
 }
@@ -58,8 +55,11 @@ function getRecord(url) {
 }
 
 function parseSearchList(xml) {
-
+    alert("wee");
+    $("#content").text("");
+    $("#content").append("<h1>Search</h1>");
     $(xml).find("list").each(function() {
+        alert("we");
         $("#content").append("<p>Keyword: " + $(this).attr("title") + "</p><ul>");
 
         $(this).find("item").each(function() {
@@ -105,7 +105,7 @@ function parseHomepage(xml) {
 }
 function parseRecord(xml) {
     $("#content").text("");
-    $("#content").append('<ul id="resourceList"></ul>');
+    $("#content").append('<ul data-role="listview" id="resourceList"></ul>');
     $(xml).find("record").children().each(function(index, element) {
         var text;
         var title;
@@ -121,17 +121,17 @@ function parseRecord(xml) {
                 }
                 else {
                     title = $(this).attr('title');
+                    var html = "<li>";
                     if (title != undefined)
-                        $("#resourceList").append("<li>" + title + "</li>");
+                        html += title;
 
-                    var html = '<ul>';
+                    html += '<ul data-role="listview">';
 
                     $(this).children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
                             var attr = $(this).attr('href');
                             html += '<li class="search"><a href=' + attr + '>' + text + '</a></li>';
-//                            $("#resourceSubList").append("<li class='search'><a href=" + attr + ">" + text + "</a></li>");
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
@@ -139,7 +139,7 @@ function parseRecord(xml) {
                                 $("#resourceSubList").append("<li>" + text + "</li>");
                         }
                     });
-                    html += '</ul>';
+                    html += '</ul></li>';
                     $("#resourceList").append(html);
                 }
                 break;
@@ -179,5 +179,5 @@ $('.item').live('click', function() {
 });
 
 $('.search').live('click', function() {
-    getSearch($(this).attr('href'));
+    getSearch($(this).children('a').attr('href'));
 });
