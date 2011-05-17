@@ -72,12 +72,12 @@ function parseSearchList(xml) {
 
 }
 
-function createPage() {
+function createPage(id) {
 
 
     var content = $('<div>').attr("data-role","content");
     var header =  $('<div>').attr("data-role","header");
-    var page = $('<div>').attr("data-role","page").attr("id", "idunico").attr("data-url", "valor").append(header).append(content);
+    var page = $('<div>').attr("data-role","page").attr("id", id).attr("data-url", id).append(header).append(content);
 
 
     return $(page)
@@ -89,38 +89,46 @@ function parseList(xml) {
 
     $(xml).find("list").each(function() {
 
-        var page = createPage();
+        var page = createPage("listz");
         var pageWritable = $("[data-role=content]", page.get(0));
 
-        pageWritable.text("");
-        var list = pageWritable.append("<ul data-role='listview' data-theme='g'></ul>").find('ul');
+
+        var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
 
         $(this).find("item").each(function() {
-            list.append("<li class='item' href=" + $(this).attr('href') + ">" + $(this).text() + "<p>" + $(this).attr("title") + "</p></li>");
+            list.append("<li class='item' href=" + $(this).attr('href') + ">" + "<a href='' >" + $(this).text() + "<p>" + $(this).attr("title") + "</p> </a></li>");
         });
 
 
+
+        page.page();
         $.mobile.pageContainer.append(page);
-         page.page();
         $.mobile.changePage("#" + page.attr("id"));
 
     });
-
+}
 
 function parseHomepage(xml) {
 
     $(xml).find("record").each(function() {
 
-        $("#content").text("");
-        $("#content").append("<p>" + $(this).attr('title') + "</p>");
-        $("#content").append("<ul>");
+
+        var page = createPage("homepagz");
+        var pageWritable = $("[data-role=content]", page.get(0));
+
+        pageWritable.append("<p>" + $(this).attr('title') + "</p>");
+
+        var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
 
         $(this).find("link").each(function() {
-            $("#content").append("<li class='list' href=" + $(this).attr('href') + ">" + $(this).text() + "</li>")
+            list.append("<li class='list' href=" + $(this).attr('href') + "> <a href=''>" + $(this).text() + "</a></li>")
         });
 
-        $("#content").append("</ul>");
 
+
+        page.page();
+        $.mobile.pageContainer.append(page);
+        $.mobile.changePage("#" + page.attr("id"));
     });
 }
 function parseRecord(xml) {
