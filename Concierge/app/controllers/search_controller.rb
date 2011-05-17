@@ -6,8 +6,14 @@ class SearchController < ApplicationController
     @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_").gsub(" ", "+")
     @start = (params[:start] || '1').to_i
     @end = (params[:end] || '20').to_i
+    @type = params[:type]
     counter = 1
+
+    if @type == nil then
     services = Service.order(:ranking)
+    else
+    services = Service.where(:type => @type).order(:ranking)
+    end
     list = []
     flag = 0
     services.each do |service|
@@ -77,6 +83,12 @@ class SearchController < ApplicationController
     end
 
     respond_to :xml
+  end
+
+  def typesearch
+
+
+
   end
 
 end

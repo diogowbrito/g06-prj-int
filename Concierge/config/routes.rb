@@ -1,5 +1,7 @@
 Concierge::Application.routes.draw do
 
+  resources :services
+
   root :to => "HomePage#index"
   match "index" => "HomePage#index"
   match "services/:service/index" => "ServiceForward#homepagerequest", :defaults => { :format => :xml}
