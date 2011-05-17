@@ -48,7 +48,8 @@ class ServiceForwardController < ApplicationController
   def recordrequest
     @service = params[:service]
     @id = params[:id]
-    @link = "http://localhost:3001/"+@service+"/"+@id
+    @method = params[:method]
+    @link = "http://localhost:3001/"+@method+"/"+@id
     @doc = Nokogiri::XML(open(@link), nil, 'UTF-8')
 
     respond_to :xml
