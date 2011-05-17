@@ -29,8 +29,12 @@ class ServiceForwardController < ApplicationController
     service = Service.where(:serviceName => @servicename)
     serviceurl = service[0].url
 
+  #  @url = serviceurl +  "/" + @servicename + "/" + @method
     @url = serviceurl +  "/" + @method
     @doc = Nokogiri::XML(open(@url), nil, 'UTF-8')
+
+
+
     respond_to :xml
   end
 

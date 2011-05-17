@@ -30,8 +30,6 @@ $("#content").append("<h1>Search</h1>");
 
 }
 
-
-
 function getList(url) {
 
     $(document).ready(function() {
@@ -43,9 +41,21 @@ function getList(url) {
         });
        $('.hidden').remove();
     });
-
 }
 
+
+function getRecord(url) {
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "xml",
+            success: parseRecord
+        });
+       $('.hidden').remove();
+    });
+}
 
 function parseList(xml) {
 
@@ -98,6 +108,66 @@ function parseHomepage(xml) {
     });
 }
 
+
+ function parseRecord(xml) {
+        $(xml).find("record").children().each(function(index, element) {
+            parse_record($(this), element);
+        });
+    }
+
+    function parse_record(node, element) {
+        var text;
+        var title;
+        switch (element.nodeName) {
+            case 'text':
+                if (node.children().size() == 0) {
+                    text = node.text();
+                    title = node.attr('title');
+                    if (title == undefined)
+                        $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                    else
+                        $("#resource").append("<p>" + title + ": " + text + "</p>");
+                }
+                else {
+                    title = node.attr('title');
+                    if (title != undefined)
+                        $("#resource").append("<p>" + title + "</p>");
+
+                    node.children().each(function(index, element) {
+                        if (element.nodeName == 'entity') {
+                            text = $(this).text();
+                            var attr = $(this).attr('href');
+                            $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                        }
+                        else if (element.nodeName == 'text') {
+                            text = $(this).text();
+                            if (title == undefined)
+                                $("#resource").append("<p>" + text + "</p>");
+                        }
+                    });
+                }
+                break;
+
+            case 'entity':
+                text = node.text();
+                title = node.attr('title');
+                var attr = node.attr('href');
+                if (title == undefined)
+                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                else
+                    $("#resource").append("<p>" + title + ": " + "<a href=" + attr + ">" + text + "</a></p>");
+                break;
+
+            case 'email':
+                text = node.text();
+                title = node.attr('title');
+                if (title == undefined)
+                    $("#resource").append("<p><a href=" + attr + ">" + text + "</a></p>");
+                else
+                    $("#resource").append("<p>" + title + ": " + text + "</p>");
+                break;
+        }
+    }
 
 
 $('#serviceLink').live('click', function(){
