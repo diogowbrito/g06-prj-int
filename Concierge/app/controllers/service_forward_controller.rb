@@ -33,7 +33,13 @@ class ServiceForwardController < ApplicationController
     @url = serviceurl +  "/" + @method
     @doc = Nokogiri::XML(open(@url), nil, 'UTF-8')
 
+    nodes = @doc.xpath("//item")
 
+    nodes.each do |node|
+      href = node['href']
+      link = href.gsub(serviceurl, "http://localhost:3000/services")
+      node['href'] = link
+    end
 
     respond_to :xml
   end
