@@ -15,14 +15,14 @@ function getHomepage(url) {
 
 }
 
-function getSearch() {
+function getSearch(url) {
 
     $("#content").append("<h1>Search</h1>");
 
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "http://localhost:3000/services/people/search?keyword=joao",
+            url: url,
             dataType: "xml",
             success: parseSearchList
         });
@@ -57,10 +57,9 @@ function getRecord(url) {
     });
 }
 
-function parseList(xml) {
+function parseSearchList(xml) {
 
     $(xml).find("list").each(function() {
-
         $("#content").append("<p>Keyword: " + $(this).attr("title") + "</p><ul>");
 
         $(this).find("item").each(function() {
@@ -68,6 +67,21 @@ function parseList(xml) {
         });
 
         $("#content").append("</ul>");
+
+    });
+
+}
+
+function parseList(xml) {
+
+    $(xml).find("list").each(function() {
+
+        $("#content").text("");
+
+        var list = $("#content").append('<ul></ul>').find('ul');
+        $(this).find("item").each(function() {
+           list.append("<li class='item' href=" + $(this).attr('href') + ">" + $(this).text() + "<p>" + $(this).attr("title") + "</p></li>");
+        });
 
     });
 
@@ -110,21 +124,23 @@ function parseRecord(xml) {
                     if (title != undefined)
                         $("#resourceList").append("<li>" + title + "</li>");
 
-                    $("#resourceList").append('<ul id="resourceSubList"></ul>');
+                    var html = '<ul>';
 
                     $(this).children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
                             var attr = $(this).attr('href');
-                            $("#resourceSubList").append("<li id='item'><a href=" + attr + ">" + text + "</a></li>");
+                            html += '<li class="search"><a href=' + attr + '>' + text + '</a></li>';
+//                            $("#resourceSubList").append("<li class='search'><a href=" + attr + ">" + text + "</a></li>");
                         }
                         else if (element.nodeName == 'text') {
                             text = $(this).text();
                             if (title == undefined)
                                 $("#resourceSubList").append("<li>" + text + "</li>");
                         }
-
                     });
+                    html += '</ul>';
+                    $("#resourceList").append(html);
                 }
                 break;
 
@@ -133,18 +149,18 @@ function parseRecord(xml) {
                 title = $(this).attr('title');
                 var attr = $(this).attr('href');
                 if (title == undefined)
-                    $("#resourceList").append("<li><a href=" + attr + ">" + text + "</a></li>");
+                    $("#resourceList").append("<li class='search'><a href=" + attr + ">" + text + "</a></li>");
                 else
-                    $("#resourceList").append("<li>" + title + ": " + "<a href=" + attr + ">" + text + "</a></li>");
+                    $("#resourceList").append("<li class='search'>" + title + ": " + "<a href=" + attr + ">" + text + "</a></li>");
                 break;
 
             case 'email':
                 text = $(this).text();
                 title = $(this).attr('title');
                 if (title == undefined)
-                    $("#resourceList").append("<li><a href=" + attr + ">" + text + "</a></li>");
+                    $("#resourceList").append("<li class='email'><a href=" + attr + ">" + text + "</a></li>");
                 else
-                    $("#resourceList").append("<li>" + title + ": " + text + "</li>");
+                    $("#resourceList").append("<li class='email'>" + title + ": " + text + "</li>");
                 break;
         }
     });
@@ -162,6 +178,6 @@ $('.item').live('click', function() {
     getRecord($(this).attr('href'));
 });
 
-$('#search').live('click', function() {
-    alert("carrega benfica");
+$('.search').live('click', function() {
+    getSearch($(this).attr('href'));
 });
