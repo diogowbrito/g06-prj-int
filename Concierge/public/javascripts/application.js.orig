@@ -2,7 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 function getHomepage(url) {
-
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -75,7 +74,25 @@ function parseList(xml) {
 
         $(xml).find("list").each(function() {
 
-            $("#content").append("<p>Keyword: "+$(this).attr("title")+"</p><ul>");
+            $("#content").text("");
+
+
+            var list = $("#content").html("<ul data-role='listview' data-theme='g'></ul>").find('ul');
+
+            $(this).find("item").each(function() {
+                list.append("<li class='item' href="+$(this).attr('href')+">"+$(this).text()+"<p>"+$(this).attr("title")+"</p></li>");
+            });
+
+
+        });
+
+}
+
+function parseSearch(xml) {
+
+        $(xml).find("list").each(function() {
+
+            $("#content").append("<p id='wee'>Keyword: "+$(this).attr("title")+"</p><ul>");
 
             $(this).find("item").each(function() {
                 $("#content").append("<li class='item' href="+$(this).attr('href')+">"+$(this).text()+"<p>"+$(this).attr("title")+"</p></li>");
@@ -104,6 +121,7 @@ function parseHomepage(xml) {
     });
 }
 
+<<<<<<< HEAD
  function parseXml(xml) {
         $(xml).find("record").children().each(function(index, element) {
             parseRecord($(this), element);
@@ -111,6 +129,7 @@ function parseHomepage(xml) {
     }
 
     function parseRecord(node, element) {
+=======
 
  function parseRecord(xml) {
         $(xml).find("record").children().each(function(index, element) {
@@ -119,6 +138,7 @@ function parseHomepage(xml) {
     }
 
     function parse_record(node, element) {
+>>>>>>> 0dcf36d2a8fe0930224cae25e9b33b79fd898934
         var text;
         var title;
         switch (element.nodeName) {
@@ -172,7 +192,10 @@ function parseHomepage(xml) {
         }
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0dcf36d2a8fe0930224cae25e9b33b79fd898934
 $('#serviceLink').live('click', function(){
       getHomepage($(this).attr('href'));
     });
