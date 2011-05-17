@@ -6,8 +6,22 @@ class SearchController < ApplicationController
     @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_").gsub(" ", "+")
     @start = (params[:start] || '1').to_i
     @end = (params[:end] || '20').to_i
+    @type = params[:type]
+    @entity = params[:entity]
     counter = 1
+
+    if @type != nil then
+      services = Service.where(:servicetype => @type).order(:ranking)
+    elsif @entity != nil then
+      entities = InfEntity.where(:entity => @entity)
+      services = []
+      entities.each do |entity|
+        services << entity.service
+      end
+    else
+
     services = Service.order(:ranking)
+    end
     list = []
     flag = 0
     services.each do |service|
@@ -77,6 +91,12 @@ class SearchController < ApplicationController
     end
 
     respond_to :xml
+  end
+
+  def typesearch
+
+
+
   end
 
 end

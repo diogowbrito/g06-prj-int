@@ -3,7 +3,7 @@ class CreateServices < ActiveRecord::Migration
     create_table :services do |t|
       t.string :serviceName
       t.string :provider
-      t.string :type
+      t.string :servicetype
       t.integer :ranking
       t.string  :url
       t.string :imgPath

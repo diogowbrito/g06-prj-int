@@ -29,11 +29,16 @@ class ServiceForwardController < ApplicationController
     service = Service.where(:serviceName => @servicename)
     serviceurl = service[0].url
 
-  #  @url = serviceurl +  "/" + @servicename + "/" + @method
     @url = serviceurl +  "/" + @method
     @doc = Nokogiri::XML(open(@url), nil, 'UTF-8')
 
+    nodes = @doc.xpath("//item")
 
+    nodes.each do |node|
+      href = node['href']
+      link = href.gsub(serviceurl, "http://localhost:3000/services/"+@servicename)
+      node['href'] = link
+    end
 
     respond_to :xml
   end
@@ -42,8 +47,21 @@ class ServiceForwardController < ApplicationController
   def recordrequest
     @service = params[:service]
     @id = params[:id]
-    @link = "http://localhost:3001/"+@service+"/"+@id
-    @doc = Nokogiri::XML(open(@link), nil, 'UTF-8')
+    @method = params[:method]
+    link = "http://localhost:3001/"+@method+"/"+@id
+    @doc = Nokogiri::XML(open(link), nil, 'UTF-8')
+
+    entity = @doc.xpath("//entity");
+    entity.each do |node|
+      parent = node.parent()
+      type = node.attr('type')
+      value = node.text()
+      node.remove
+      plus_value = value.gsub(" ", "+")
+      link = 'http://localhost:3000/search?keyword='+plus_value+'&amp;entity='+type
+      parent.add_child('<entity href="'+link+'">'+value+'</entity>')
+
+    end
 
     respond_to :xml
 
