@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20110511141419) do
   create_table "services", :force => true do |t|
     t.string   "serviceName"
     t.string   "provider"
-    t.string   "type"
+    t.string   "servicetype"
     t.integer  "ranking"
     t.string   "url"
     t.string   "imgPath"

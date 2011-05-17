@@ -12,7 +12,7 @@ class SearchController < ApplicationController
     if @type == nil then
     services = Service.order(:ranking)
     else
-    services = Service.where(:type => @type).order(:ranking)
+    services = Service.where(:servicetype => @type).order(:ranking)
     end
     list = []
     flag = 0
