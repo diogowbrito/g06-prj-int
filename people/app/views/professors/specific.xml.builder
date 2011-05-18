@@ -10,7 +10,7 @@ xml.record(:title => "Professor") do
   xml.entity(@professor.room, :kind => "room")
   end
   xml.text(@professor.category, :title => "Category")
-  xml.entity(@professor.sector, :title => "Sector", :type => "organizational unit")
+  xml.entity(@professor.sector, :title => "Sector", :kind => "organizational unit")
   xml.text(:title => "Courses") do
     @courses.each do |course|
       xml.entity(course.course_name, :kind => "course")

@@ -169,6 +169,10 @@ function parseRecord(xml) {
                             if (title == undefined)
                               html += "<li>" + text + "</li>";
                         }
+                        else if (element.nodeName == 'email') {
+                            text = $(this).text();
+                            html += "<li class='search'><a href=" + attr + ">" + text + "</a></li>";
+                        }
                     });
                     html += '</ul></li>';
                     list.append(html);
@@ -188,8 +192,10 @@ function parseRecord(xml) {
             case 'email':
                 text = $(this).text();
                 title = $(this).attr('title');
-                if (title == undefined)
+                if (title == undefined) {
+                    alert("entrou")
                     list.append("<li class='email'><a href=" + attr + ">" + text + "</a></li>");
+                }
                 else
                     list.append("<li class='email'>" + title + ": " + text + "</li>");
                 break;

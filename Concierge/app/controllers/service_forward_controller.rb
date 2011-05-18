@@ -71,11 +71,13 @@ class ServiceForwardController < ApplicationController
       plus_value = value.gsub(" ", "+")
       link = 'http://localhost:3000/'
 
-      if service.empty? then
+      if service != nil then
          link += 'services/'+service+'search?keyword='+plus_value
-      elsif kind.empty? then
+      elsif kind != nil then
          link += 'search?keyword='+plus_value+'&amp;entity='+kind
+        puts link
       else
+        puts "entrou type"
          link += 'search?keyword='+plus_value+'&amp;type='+serviceType
       end
 
