@@ -64,6 +64,7 @@ class ServiceForwardController < ApplicationController
       kind = node.attr('kind')
       service = node.attr('service')
       serviceType = node.attr('serviceType')
+      title = node.attr('title')
       value = node.text()
 
       node.remove
@@ -80,7 +81,11 @@ class ServiceForwardController < ApplicationController
         link += 'search?keyword='+plus_value+'&amp;type='+serviceType
       end
 
-      parent.add_child('<entity href="'+link+'">'+value+'</entity>')
+      if title == nil
+        parent.add_child('<entity href="'+link+'">'+value+'</entity>')
+      else
+        parent.add_child('<entity title="'+title+'" href="'+link+'">'+value+'</entity>')
+      end
 
     end
 

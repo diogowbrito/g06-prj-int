@@ -74,9 +74,7 @@ function parseSearchList(xml) {
 
 function createPage(id) {
 
-
-
-    var headerbody= "<table><tr><td id='buttonHome' style='padding-left:10px;'><a href='/index'><img alt='home' src='/images/home.png' width='25px' height='25px'> </a> </td><td id='searchBar' data-role='fieldcontain' width='140px' style='padding-left:10px;' ><form id='searchform'><input type='search' name='password' id='search' value=''/></form> </td><td id='login' style='padding-left:10px;'><a href='/login'><img alt='login' src='/images/login.png' height='25px'> </a></td><td id='history' style='padding-left:10px;'><a href='/history'><img alt='history' src='/images/history.png' width='25px' height='25px'> </a></td><td id='settings' style='padding-left:10px;'><a href='/settings'><img alt='settings' src='/images/settings.png' width='25px' height='25px'></a></td></tr></table>"
+    var headerbody = "<table><tr><td id='buttonHome' style='padding-left:10px;'><a href='/index'><img alt='home' src='/images/home.png' width='25px' height='25px'> </a> </td><td id='searchBar' data-role='fieldcontain' width='140px' style='padding-left:10px;' ><form id='searchform'><input type='search' name='password' id='search' value=''/></form> </td><td id='login' style='padding-left:10px;'><a href='/login'><img alt='login' src='/images/login.png' height='25px'> </a></td><td id='history' style='padding-left:10px;'><a href='/history'><img alt='history' src='/images/history.png' width='25px' height='25px'> </a></td><td id='settings' style='padding-left:10px;'><a href='/settings'><img alt='settings' src='/images/settings.png' width='25px' height='25px'></a></td></tr></table>"
 
     var content = $('<div>').attr("data-role", "content");
     var header = $('<div>').attr("data-role", "header").append(headerbody);
@@ -90,7 +88,7 @@ function createPage(id) {
 function parseList(xml) {
 
 
-    var page = createPage("listz");
+    var page = createPage("list");
     var pageWritable = $("[data-role=content]", page.get(0));
 
     $(xml).find("list").each(function() {
@@ -110,7 +108,7 @@ function parseList(xml) {
 function parseHomepage(xml) {
 
 
-    var page = createPage("homepagz");
+    var page = createPage("homepage");
     var pageWritable = $("[data-role=content]", page.get(0));
 
     $(xml).find("record").each(function() {
@@ -128,14 +126,11 @@ function parseHomepage(xml) {
 
 
 function parseRecord(xml) {
-
-    var page = createPage("recordz");
+    var bla = Math.floor(1000 * (Math.random() % 1));
+    var page = createPage("record"+bla);
     var pageWritable = $("[data-role=content]", page.get(0));
 
-//    pageWritable.append('<ul data-role="listview" id="resourceList"></ul>');
     var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
-
-//    $("#content").append('<ul data-role="listview" id="resourceList"></ul>');
 
     $(xml).find("record").children().each(function(index, element) {
         var text;
@@ -152,34 +147,29 @@ function parseRecord(xml) {
                 }
                 else {
                     title = $(this).attr('title');
-                    var html = "<li>";
+                    var html = "<li class='teste'>";
                     if (title != undefined)
                         html += title;
 
-                    html += "<ul data-role='listview' data-inset='true' data-theme='d'>";
-
                     $(this).children().each(function(index, element) {
+                         text = $(this).text();
                         if (element.nodeName == 'entity') {
-                            text = $(this).text();
                             attr = $(this).attr('href');
-                            html += '<li class="search"><a href=' + attr + '>' + text + '</a></li>';
+                            html += '<li><a  class="search" href=' + attr + '>' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'text') {
-                            text = $(this).text();
                             if (title == undefined)
-                              html += "<li>" + text + "</li>";
+                                html += "<li>" + text + "</li>";
                         }
                         else if (element.nodeName == 'email') {
-                            text = $(this).text();
                             html += "<li class='search'><a href=" + attr + ">" + text + "</a></li>";
                         }
                         else if (element.nodeName == 'link') {
-                            text = $(this).text();
                             attr = $(this).attr('href');
-                            html += '<li class="item"><a href=' + attr + '>' + text + '</a></li>';
+                            html += '<li><a class="link" href=' + attr + '>' + text + '</a></li>';
                         }
                     });
-                    html += '</ul></li>';
+                    html += '</li>';
                     list.append(html);
                 }
                 break;
@@ -202,12 +192,23 @@ function parseRecord(xml) {
                 else
                     list.append("<li class='email'>" + title + ": " + text + "</li>");
                 break;
+            case 'link':
+                text = $(this).text();
+                attr = $(this).attr('href');
+                html += '<li><a class="link" href=' + attr + '>' + text + '</a></li>';
+                break;
+
         }
     });
 
-   page.page();
-   $.mobile.pageContainer.append(page);
-   $.mobile.changePage("#" + page.attr("id"));
+    console.log("pim");
+    page.page();
+    console.log("pam");
+    $.mobile.pageContainer.append(page);
+    console.log("pum");
+    console.log("#" + page.attr("id"));
+
+    $.mobile.changePage("#" + page.attr("id"));
 }
 
 $('#serviceLink').live('click', function() {
@@ -224,4 +225,12 @@ $('.item').live('click', function() {
 
 $('.search').live('click', function() {
     getSearch($(this).children('a').attr('href'));
+});
+
+$('.link').live('click', function() {
+    getRecord($(this).attr('href'));
+});
+
+$('.teste').live('click', function() {
+    alert("oi");
 });
