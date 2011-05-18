@@ -49,6 +49,8 @@ class ServiceForwardController < ApplicationController
     @id = params[:id]
     @method = params[:method]
 
+
+
     service = Service.where(:serviceName => @servicename)
     serviceurl = service[0].url
 
@@ -58,12 +60,25 @@ class ServiceForwardController < ApplicationController
 
     entity = @doc.xpath("//entity");
     entity.each do |node|
+
       parent = node.parent()
-      type = node.attr('type')
+      kind = node.attr('kind')
+      service = node.attr('service')
+      serviceType = node.attr('serviceType')
       value = node.text()
+
       node.remove
       plus_value = value.gsub(" ", "+")
-      link = 'http://localhost:3000/search?keyword='+plus_value+'&amp;entity='+type
+      link = 'http://localhost:3000/'
+
+      if service.empty? then
+         link += 'services/'+service+'search?keyword='+plus_value
+      elsif kind.empty? then
+         link += 'search?keyword='+plus_value+'&amp;entity='+kind
+      else
+         link += 'search?keyword='+plus_value+'&amp;type='+serviceType
+      end
+
       parent.add_child('<entity href="'+link+'">'+value+'</entity>')
 
     end
