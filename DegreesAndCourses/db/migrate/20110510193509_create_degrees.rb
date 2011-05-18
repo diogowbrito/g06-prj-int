@@ -4,7 +4,7 @@ class CreateDegrees < ActiveRecord::Migration
       t.integer :degree_id
       t.string :name
       t.string :sigla
-      t.string :type
+      t.string :degreetype
       t.string :department
 
       t.timestamps

@@ -15,7 +15,6 @@ DegreesAndCourses::Application.routes.draw do
   #degrees
   match "degrees" => "Degrees#list", :defaults => {:format => :xml}
   match "degrees/:id" => "Degrees#specific", :defaults => {:format => :xml}
-  match "degrees/:id/courses" => "Degrees#courses", :defaults => {:format => :xml}
 
 
 

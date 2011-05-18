@@ -1,29 +1,31 @@
 xml.record(:title => "Professor") do
   xml.text(@professor.professor_name, :title => "Name")
-  xml.text(:title => "Emails") do
-    @emails.each do |email|
-      xml.email(email.email)
+  if @emails.count != 0 then
+    xml.text(:title => "Emails") do
+<<<<<<< HEAD
+      @emails.each do |email|
+        xml.email(email.email)
+      end
+=======
+        @emails.each do |email|
+        xml.email(email.email)
+        end
+>>>>>>> 1e97c070c6c80a6e98a833613a4cb432bddb0eb5
     end
   end
   if @professor.building != nil then
     xml.text(:title => "Office Location") do
-    xml.entity(@professor.building, :kind => "building")
-    xml.entity(@professor.room, :kind => "room")
+      xml.entity(@professor.building, :kind => "building")
+      xml.entity(@professor.room, :kind => "room")
     end
   end
   xml.text(@professor.category, :title => "Category")
   xml.entity(@professor.sector, :title => "Sector", :kind => "organizational unit")
-<<<<<<< HEAD
   if @courses.count != 0 then
     xml.text(:title => "Courses") do
-        @courses.each do |course|
+      @courses.each do |course|
         xml.entity(course.course_name, :kind => "course")
-        end
-=======
-  xml.text(:title => "Courses") do
-    @courses.each do |course|
-      xml.entity(course.course_name, :kind => "course")
->>>>>>> c55351457f8beaa0593c0eb658d938b2affc99e2
+      end
     end
   end
 end

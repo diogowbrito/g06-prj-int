@@ -34,9 +34,20 @@ class DegreesController < ApplicationController
   end
 
   def specific
-    @degree = Degree.find(params[:id])
-    # @emails = @professor.emails
-    # @courses = @professor.courses
+
+    @degreeId = params[:id]
+    @degree = Degree.find(@degreeId)
+
+    course_degrees = CourseDegree.find_all_by_degree_id(@degree.degree_id)
+
+    @courses = []
+    course_degrees.each do |c_d|
+
+      course = Course.find_by_course_id(c_d.course_id)
+      if !@courses.include?(course)
+        @courses.push(course)
+        end
+    end
 
     respond_to do |format|
       format.xml
@@ -104,24 +115,4 @@ class DegreesController < ApplicationController
     end
   end
 
-
-  def courses
-
-    degreeId = params[:id]
-    @degree = Degree.find(degreeId)
-    course_degrees = CourseDegree.find_all_by_degree_id(@degree.degree_id)
-
-    @courses = []
-    course_degrees.each do |c_d|
-
-      course = Course.find_by_course_id(c_d.course_id)
-      if !@courses.include?(course)
-        @courses.push(course)
-        end
-    end
-
-    respond_to do |format|
-      format.xml
-    end
-  end
 end
