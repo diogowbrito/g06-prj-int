@@ -161,7 +161,7 @@ function parseRecord(xml) {
                     $(this).children().each(function(index, element) {
                         if (element.nodeName == 'entity') {
                             text = $(this).text();
-                            var attr = $(this).attr('href');
+                            attr = $(this).attr('href');
                             html += '<li class="search"><a href=' + attr + '>' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'text') {
@@ -172,6 +172,11 @@ function parseRecord(xml) {
                         else if (element.nodeName == 'email') {
                             text = $(this).text();
                             html += "<li class='search'><a href=" + attr + ">" + text + "</a></li>";
+                        }
+                        else if (element.nodeName == 'link') {
+                            text = $(this).text();
+                            attr = $(this).attr('href');
+                            html += '<li class="item"><a href=' + attr + '>' + text + '</a></li>';
                         }
                     });
                     html += '</ul></li>';

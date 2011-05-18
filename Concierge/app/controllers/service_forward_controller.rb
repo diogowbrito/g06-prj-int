@@ -29,7 +29,7 @@ class ServiceForwardController < ApplicationController
     service = Service.where(:serviceName => @servicename)
     serviceurl = service[0].url
 
-    @url = serviceurl +  "/" + @method
+    @url = serviceurl + "/" + @method
     @doc = Nokogiri::XML(open(@url), nil, 'UTF-8')
 
     nodes = @doc.xpath("//item")
@@ -48,7 +48,6 @@ class ServiceForwardController < ApplicationController
     @servicename = params[:service]
     @id = params[:id]
     @method = params[:method]
-
 
 
     service = Service.where(:serviceName => @servicename)
@@ -74,20 +73,27 @@ class ServiceForwardController < ApplicationController
       link = 'http://localhost:3000/'
 
       if service != nil then
-         link += 'services/'+service+'search?keyword='+plus_value
+        link += 'services/'+service+'search?keyword='+plus_value
       elsif kind != nil then
-         link += 'search?keyword='+plus_value+'&amp;entity='+kind
-        puts link
+        link += 'search?keyword='+plus_value+'&amp;entity='+kind
       else
-         link += 'search?keyword='+plus_value+'&amp;type='+serviceType
+        link += 'search?keyword='+plus_value+'&amp;type='+serviceType
       end
 
       parent.add_child('<entity href="'+link+'">'+value+'</entity>')
 
     end
 
-    respond_to :xml
+    link_tag = @doc.xpath("//link")
+    link_tag.each do |node|
 
+      href = node['href']
+      link = href.gsub(serviceurl, "http://localhost:3000/services/"+@servicename)
+      node['href'] = link
+
+    end
   end
+
+  respond_to :xml
 
 end
