@@ -23,33 +23,35 @@ class SearchController < ApplicationController
     services = Service.order(:ranking)
     end
     list = []
-    flag = 0
+    flag = 1
     services.each do |service|
-
       competence = service.competences.where(:competenceType => "Search")
       url = competence[0].competenceUrl
       homeurl = service.url
+      name = service.serviceName
       tempdoc = Nokogiri::XML(open(url+'?keyword='+@keyword+"&start=1&end=5000"),nil, 'UTF-8')
       temproot = tempdoc.at_css "list"
       temproot.add_child("<home>"+homeurl+"</home>")
+      temproot.add_child("<name>"+name+"</name")
       list << tempdoc
 
     end
 
-    @doc = Nokogiri::XML("<list></list>")
+    @doc = Nokogiri::XML("<list title='"+@keyword+"'></list>")
 
     list.each do |result|
 
       homenodes = result.xpath("//home")
       homeurl = homenodes[0].content
+      namenodes = result.xpath("//name")
+      name = namenodes[0].content
       nodes = result.xpath("//item")
 
       nodes.each do |node|
-
         if counter >= @start then
         root = @doc.at_css "list"
         href = node['href']
-        link = href.gsub(homeurl, "http://localhost:3000/services")
+        link = href.gsub(homeurl, "http://localhost:3000/services/"+name)
         node['href'] = link
         root.add_child(node)
         end
