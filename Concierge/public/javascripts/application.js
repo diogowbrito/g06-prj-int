@@ -57,29 +57,52 @@ function parseSearchList(xml) {
 
     $(xml).find("list").each(function() {
         pageWritable.append("<p>Keyword: " + $(this).attr("title") + "</p>");
-         var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
+        var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
 
         $(this).find("item").each(function() {
-            list.append("<li class='item' href=" + $(this).attr('href') + "> <a href='' >"+ $(this).text() + "<p>" + $(this).attr("title") + "</p></a></li>");
+            list.append("<li class='item' href=" + $(this).attr('href') + "> <a href='' >" + $(this).text() + "<p>" + $(this).attr("title") + "</p></a></li>");
         });
 
     });
 
-     page.page();
+    page.page();
     $.mobile.pageContainer.append(page);
     $.mobile.changePage("#" + page.attr("id"));
 }
 
 function createPage(id) {
 
-    var headerbody = "<table><tr><td id='buttonHome' style='padding-left:10px;'><a href='/index'><img alt='home' src='/images/home.png' width='25px' height='25px'> </a> </td><td id='searchBar' data-role='fieldcontain' width='140px' style='padding-left:10px;' ><form id='searchform'><input type='search' name='password' id='search' value=''/></form> </td><td id='login' style='padding-left:10px;'><a href='/login'><img alt='login' src='/images/login.png' height='25px'> </a></td><td id='history' style='padding-left:10px;'><a href='/history'><img alt='history' src='/images/history.png' width='25px' height='25px'> </a></td><td id='settings' style='padding-left:10px;'><a href='/settings'><img alt='settings' src='/images/settings.png' width='25px' height='25px'></a></td></tr></table>"
+    var page = $('<div>').attr("data-role", "page").attr("id", id).attr("data-url", id).attr("data-position","inline");
 
+     <!-- Draw Header-->
+    var headerbody = "<a href='index.html' class='ui-btn-right' data-icon='gear' icon>Login</a>" +
+            "<h1 id='logo' class='ui-title'>Concierge</h1>"
+    var header = $('<div>').attr("data-role", "header").attr("data-position","fixed").append(headerbody);
+
+    <!-- Draw Search-->
+    var searchformbody  = $('<input>').attr("type","search").attr("id","search").attr("value", "").attr("width", "100%");
+    var searchform = $('<form>').attr("id", "home_searchform").append(searchformbody);
+    var search = $('<div>').attr("data-role", "footer").attr("data-role", "fieldcontain").attr("width","100%").attr("class", "hidden_home_search").attr("style","text-align:center; visibility:hidden").append(searchform);
+
+    <!-- Draw Content-->
     var content = $('<div>').attr("data-role", "content");
-    var header = $('<div>').attr("data-role", "header").append(headerbody);
-    var page = $('<div>').attr("data-role", "page").attr("id", id).attr("data-url", id).append(header).append(content);
+
+     <!-- Draw Footer nav bar-->
+
+    var historytab = $("<li>").attr("style", "width:25%").append("<a href='history' data-icon='grid'>History</a>");
+    var searchtab = $("<li>").attr("id","tab_bar_search").attr("style","width:50%").append("<a href='' data-icon='search'>Search</a>");
+    var optionstab =$("<li>").attr("style","width:25%").append("<a href='options' data-icon='gear'>Options</a>");
+    var navbarul =   $("<ul>").append(historytab).append(searchtab).append(optionstab);
+    var navbar =  $("<div>").attr("data-role", "navbar").append(navbarul);
+
+    <!-- Draw footer and append nav bar-->
+    var footer = $('<div>').attr("data-role", "footer").attr("data-id", "navbar").attr("data-position","fixed").append(navbar);
 
 
-    return $(page)
+    <!-- Draw the final page-->
+    var finalpage = page.append(header).append(content).append(search).append(footer);
+
+    return $(finalpage)
 }
 
 
@@ -126,7 +149,7 @@ function parseHomepage(xml) {
 function parseRecord(xml) {
 
     var bla = Math.floor(1000 * (Math.random() % 1));
-    var page = createPage("record"+bla);
+    var page = createPage("record" + bla);
     var pageWritable = $("[data-role=content]", page.get(0));
 
     var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
@@ -140,33 +163,33 @@ function parseRecord(xml) {
                     text = $(this).text();
                     title = $(this).attr('title');
                     if (title == undefined)
-                        list.append('<li href='+attr+'><a href="" >' + text + '</a></li>');
+                        list.append('<li href=' + attr + '><a href="" >' + text + '</a></li>');
                     else
-                        list.append('<li href='+attr+'>'+ text + '<p>' + title + '</p></li>');
+                        list.append('<li href=' + attr + '>' + text + '<p>' + title + '</p></li>');
                 }
                 else {
                     title = $(this).attr('title');
                     var html = "<li class='slide'>";
                     if (title != undefined)
-                        html += '<a href="">'+title+'</a>';
+                        html += '<a href="">' + title + '</a>';
 
                     $(this).children().each(function(index, element) {
 
-                         text = $(this).text();
+                        text = $(this).text();
                         if (element.nodeName == 'entity') {
                             attr = $(this).attr('href');
-                            html += '<li class="search slide_items" href='+attr+ '><a href="" >' + text + '</a></li>';
+                            html += '<li class="search slide_items" href=' + attr + '><a href="" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'text') {
                             if (title == undefined)
                                 html += "<li>" + text + "</li>";
                         }
                         else if (element.nodeName == 'email') {
-                            html += '<li class="search slide_items" href='+attr+'><a href="" >' + text + '</a></li>';
+                            html += '<li class="search slide_items" href=' + attr + '><a href="" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'link') {
                             attr = $(this).attr('href');
-                            html += '<li class="link slide_items" href='+attr+'><a href="" >' + text + '</a></li>';
+                            html += '<li class="link slide_items" href=' + attr + '><a href="" >' + text + '</a></li>';
                         }
 
                     });
@@ -180,23 +203,23 @@ function parseRecord(xml) {
                 title = $(this).attr('title');
                 var attr = $(this).attr('href');
                 if (title == undefined)
-                    list.append('<li class="search" href='+attr+'>' + '<a href="">' + text + '</a></li>');
+                    list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '</a></li>');
                 else
-                    list.append('<li class="search" href='+attr+'>'+ text + '<p>' + title + '</p></li>');
+                    list.append('<li class="search" href=' + attr + '>' + text + '<p>' + title + '</p></li>');
                 break;
 
             case 'email':
                 text = $(this).text();
                 title = $(this).attr('title');
                 if (title == undefined)
-                    list.append('<li class="email" href='+attr+'><a href= "">' + text + '</a></li>');
+                    list.append('<li class="email" href=' + attr + '><a href= "">' + text + '</a></li>');
                 else
-                    list.append('<li class="email" href='+attr+'>'+ text + '<p>' + title + '</p></li>');
+                    list.append('<li class="email" href=' + attr + '>' + text + '<p>' + title + '</p></li>');
                 break;
             case 'link':
                 text = $(this).text();
                 attr = $(this).attr('href');
-                html += '<li class="link" href='+attr+'><a href="">' + text + '</a></li>';
+                html += '<li class="link" href=' + attr + '><a href="">' + text + '</a></li>';
                 break;
 
         }
@@ -229,5 +252,34 @@ $('.link').live('click', function() {
 });
 
 $('.slide').live('click', function() {
-  $("this").$('.slide_items').slideToggle('slow');
+    $("this").$('.slide_items').slideToggle('slow');
+});
+
+
+<!-- Pages scripts-->
+
+$("#tab_bar_search").live('click', function() {
+
+
+    if ($(".hidden_home_search").css("visibility") == "hidden") {
+        $(".hidden_home_search").hide().css({visibility: "visible"}).fadeIn("slow");
+    } else {
+        $(".hidden_home_search").fadeOut("slow", function() {
+            $(this).show().css({visibility: "hidden"});
+            $("#tab_bar_search").find("a").removeClass("ui-btn-active");
+        });
+
+    }
+
+
+});
+
+$('#home_searchform').submit(function() {
+    $(".hidden_home_search").fadeOut("slow", function() {
+        $(this).show().css({visibility: "hidden"});
+        $("#tab_bar_search").find("a").removeClass("ui-btn-active");
+    });
+
+
+    return false;
 });

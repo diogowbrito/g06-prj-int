@@ -16,6 +16,7 @@
 
 </head>
 <body>
+
 <div data-role="page" data-position="inline">
   <div data-role="header" data-position="fixed">
     <a href="index.html" class="ui-btn-right" data-icon="gear" icon>Login</a>
@@ -29,9 +30,9 @@
   </div>
 
 
-    <div data-role="footer" data-role='fieldcontain' width="100%" id="hidnavbar" style="text-align:center; visibility:hidden">
-      <form id='searchform'>
-        <input type='search' name='password' id='search' value='' width="100%"/>
+    <div data-role="footer" data-role='fieldcontain' width="100%" class="hidden_home_search" style="text-align:center; visibility:hidden">
+      <form id='home_searchform'>
+        <input type='search' id='search' value='' width="100%"/>
       </form>
     </div>
 
@@ -40,7 +41,7 @@
     <div data-role="navbar">
       <ul>
         <li style="width:25%"><a href="b.html" data-icon="grid">History</a></li>
-        <li id="searchmanhoso" style="width:50%">
+        <li id="tab_bar_search" style="width:50%">
           <a href="" data-icon="search">Search</a></li>
         <li style="width:25%"><a href="b.html" data-icon="gear">Options</a></li>
       </ul>
@@ -53,35 +54,11 @@
 </div>
 
 
-<!--<div style="clear:both;"></div>-->
-
-
 </body>
 
 <script type="text/javascript">
 
-    $("#searchmanhoso").live('click', function() {
 
-
-      if ($("#hidnavbar").css("visibility") == "hidden") {
-          $("#hidnavbar").hide().css({visibility: "visible"}).fadeIn("slow");
-        }  else {
-          $("#hidnavbar").fadeOut("slow", function() {
-                $(this).show().css({visibility: "hidden"});
-               $("#searchmanhoso").find("a").removeClass("ui-btn-active");
-          });
-
-        }
-
-
-    });
-
-    $('#searchform').submit(function() {
-        $("#hidnavbar").fadeOut("slow", function() {
-                $(this).show().css({visibility: "hidden"});
-          });
-        return false;
-    });
 
 </script>
 </html>
