@@ -69,6 +69,8 @@ class ServiceForwardController < ApplicationController
 
       node.remove
       plus_value = value.gsub(" ", "+")
+      puts request.port
+      puts request.host
       link = 'http://localhost:3000/'
 
       if service != nil then
@@ -77,7 +79,6 @@ class ServiceForwardController < ApplicationController
          link += 'search?keyword='+plus_value+'&amp;entity='+kind
         puts link
       else
-        puts "entrou type"
          link += 'search?keyword='+plus_value+'&amp;type='+serviceType
       end
 

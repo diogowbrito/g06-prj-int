@@ -192,10 +192,8 @@ function parseRecord(xml) {
             case 'email':
                 text = $(this).text();
                 title = $(this).attr('title');
-                if (title == undefined) {
-                    alert("entrou")
+                if (title == undefined)
                     list.append("<li class='email'><a href=" + attr + ">" + text + "</a></li>");
-                }
                 else
                     list.append("<li class='email'>" + title + ": " + text + "</li>");
                 break;
