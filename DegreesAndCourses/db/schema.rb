@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20110511153331) do
     t.integer  "degree_id"
     t.string   "name"
     t.string   "sigla"
-    t.string   "type"
+    t.string   "degreetype"
     t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"

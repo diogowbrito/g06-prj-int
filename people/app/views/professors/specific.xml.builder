@@ -1,8 +1,10 @@
 xml.record(:title => "Professor") do
   xml.text(@professor.professor_name, :title => "Name")
-  xml.text(:title => "Emails") do
-    @emails.each do |email|
-      xml.email(email.email)
+  if @emails.count != 0 then
+    xml.text(:title => "Emails") do
+        @emails.each do |email|
+        xml.email(email.email)
+        end
     end
   end
   if @professor.building != nil then
