@@ -6,7 +6,7 @@ xml.record(:title => "Curso") do
   if @courses.count != 0 then
     xml.text(:title => "Cadeiras")  do
         @courses.each do |course|
-            xml.link(course.name, :title =>"Name", :href => "http://localhost:3002/courses/"+course.id.to_s)
+            xml.link(course.name, :href => "http://localhost:3002/courses/"+course.id.to_s)
         end
     end
   end
