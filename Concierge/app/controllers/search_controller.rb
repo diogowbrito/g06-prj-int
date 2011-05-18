@@ -72,6 +72,9 @@ class SearchController < ApplicationController
   def servicesearch
 
     @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_").gsub(" ", "+")
+    puts "boraa"
+    puts "keyword: "+@keyword
+    puts "params: "+params[:keyword]
     @start = (params[:start] || '1')
     @end = (params[:end] || '20')
     @servicename = params[:service]
