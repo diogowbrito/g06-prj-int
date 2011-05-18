@@ -141,9 +141,9 @@ function parseRecord(xml) {
                     text = $(this).text();
                     title = $(this).attr('title');
                     if (title == undefined)
-                        list.append("<li><a href=" + attr + ">" + text + "</a></li>");
+                        list.append('<li href='+attr+'><a href="" >' + text + '</a></li>');
                     else
-                        list.append("<li>" + title + ": " + text + "</li>");
+                        list.append('<li href='+attr+'>' + title + ': ' + text + '</li>');
                 }
                 else {
                     title = $(this).attr('title');
@@ -155,18 +155,18 @@ function parseRecord(xml) {
                          text = $(this).text();
                         if (element.nodeName == 'entity') {
                             attr = $(this).attr('href');
-                            html += '<li><a  class="search" href=' + attr + '>' + text + '</a></li>';
+                            html += '<li class="search" href='+attr+ '><a href="" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'text') {
                             if (title == undefined)
                                 html += "<li>" + text + "</li>";
                         }
                         else if (element.nodeName == 'email') {
-                            html += "<li class='search'><a href=" + attr + ">" + text + "</a></li>";
+                            html += '<li class="search" href='+attr+'><a href="" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'link') {
                             attr = $(this).attr('href');
-                            html += '<li><a class="link" href=' + attr + '>' + text + '</a></li>';
+                            html += '<li class="link" href='+attr+'><a href="" >' + text + '</a></li>';
                         }
                     });
                     html += '</li>';
@@ -179,35 +179,31 @@ function parseRecord(xml) {
                 title = $(this).attr('title');
                 var attr = $(this).attr('href');
                 if (title == undefined)
-                    list.append("<li class='search'><a href=" + attr + ">" + text + "</a></li>");
+                    list.append('<li class="search" href='+attr+'>' + '<a href="">' + text + '</a></li>');
                 else
-                    list.append("<li class='search'>" + title + ": " + "<a href=" + attr + ">" + text + "</a></li>");
+                    list.append('<li class="search" href='+attr+'>' + title + ': ' + '<a href="">' + text + '</a></li>');
                 break;
 
             case 'email':
                 text = $(this).text();
                 title = $(this).attr('title');
                 if (title == undefined)
-                    list.append("<li class='email'><a href=" + attr + ">" + text + "</a></li>");
+                    list.append('<li class="email" href='+attr+'><a href= "">' + text + '</a></li>');
                 else
-                    list.append("<li class='email'>" + title + ": " + text + "</li>");
+                    list.append('<li class="email">' + title + ': ' + text + '</li>');
                 break;
             case 'link':
                 text = $(this).text();
                 attr = $(this).attr('href');
-                html += '<li><a class="link" href=' + attr + '>' + text + '</a></li>';
+                html += '<li class="link" href='+attr+'><a href="">' + text + '</a></li>';
                 break;
 
         }
     });
 
-    console.log("pim");
-    page.page();
-    console.log("pam");
-    $.mobile.pageContainer.append(page);
-    console.log("pum");
-    console.log("#" + page.attr("id"));
 
+    page.page();
+    $.mobile.pageContainer.append(page);
     $.mobile.changePage("#" + page.attr("id"));
 }
 
@@ -224,7 +220,7 @@ $('.item').live('click', function() {
 });
 
 $('.search').live('click', function() {
-    getSearch($(this).children('a').attr('href'));
+    getSearch($(this).attr('href'));
 });
 
 $('.link').live('click', function() {
