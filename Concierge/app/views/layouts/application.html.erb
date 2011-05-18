@@ -8,60 +8,57 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 
-<!--
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css"/>
-  <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>          -->
+  <!--
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css"/>
+<script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>          -->
 
 
 </head>
 <body>
 
+<div data-role="page" data-position="inline">
+  <div data-role="header" data-position="fixed">
+    <a href="index.html" class="ui-btn-right" data-icon="gear" icon>Login</a>
 
-<div data-role="page">
-  <div id="header" data-role="header">
-
-    <table>
-
-      <tr>
-        <td id="buttonHome" style="padding-left:10px;">
-          <a href="/index"><img alt="home" src="/images/home.png" width="25px" height="25px"> </a>
-        </td>
-        <td id="searchBar" data-role="fieldcontain" width="140px" style="padding-left:10px;" >
-          <form id="searchform">
-                <input type="search" name="password" id="search" value=""/>
-          </form>
-        </td>
-        <td id="login" style="padding-left:10px;" >
-          <a href="/login"><img alt="login" src="/images/login.png" height="25px"> </a>
-        </td>
-        <td id="history" style="padding-left:10px;" >
-          <a href="/history"><img alt="history" src="/images/history.png" width="25px" height="25px"> </a>
-
-        </td>
-        <td id="settings" style="padding-left:10px;" >
-          <a href="/settings"><img alt="settings" src="/images/settings.png" width="25px" height="25px"> </a>
-        </td>
-      </tr>
-    </table>
-
+    <h1 id="logo" class="ui-title">Concierge</h1>
   </div>
+
+
   <div id="content" data-role="content">
     <%= yield %>
   </div>
+
+
+    <div data-role="footer" data-role='fieldcontain' width="100%" class="hidden_home_search" style="text-align:center; visibility:hidden">
+      <form id='home_searchform'>
+        <input type='search' id='search' value='' width="100%"/>
+      </form>
+    </div>
+
+
+  <div data-role="footer" data-id="navbar" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li style="width:25%"><a href="b.html" data-icon="grid">History</a></li>
+        <li id="tab_bar_search" style="width:50%">
+          <a href="" data-icon="search">Search</a></li>
+        <li style="width:25%"><a href="b.html" data-icon="gear">Options</a></li>
+      </ul>
+    </div>
+    <!-- /navbar -->
+  </div>
+  <!-- /footer -->
+
+
 </div>
-<!--<div style="clear:both;"></div>-->
 
 
 </body>
 
-
 <script type="text/javascript">
 
-  $('#searchform').submit(function() {
-  alert('Handler for .submit() called.');
-  return false;
-});
+
 
 </script>
 </html>

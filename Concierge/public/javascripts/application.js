@@ -72,14 +72,37 @@ function parseSearchList(xml) {
 
 function createPage(id) {
 
-    var headerbody = "<table><tr><td id='buttonHome' style='padding-left:10px;'><a href='/index'><img alt='home' src='/images/home.png' width='25px' height='25px'> </a> </td><td id='searchBar' data-role='fieldcontain' width='140px' style='padding-left:10px;' ><form id='searchform'><input type='search' name='password' id='search' value=''/></form> </td><td id='login' style='padding-left:10px;'><a href='/login'><img alt='login' src='/images/login.png' height='25px'> </a></td><td id='history' style='padding-left:10px;'><a href='/history'><img alt='history' src='/images/history.png' width='25px' height='25px'> </a></td><td id='settings' style='padding-left:10px;'><a href='/settings'><img alt='settings' src='/images/settings.png' width='25px' height='25px'></a></td></tr></table>"
+    var page = $('<div>').attr("data-role", "page").attr("id", id).attr("data-url", id).attr("data-position","inline");
 
+     <!-- Draw Header-->
+    var headerbody = "<a href='index.html' class='ui-btn-right' data-icon='gear' icon>Login</a>" +
+            "<h1 id='logo' class='ui-title'>Concierge</h1>"
+    var header = $('<div>').attr("data-role", "header").attr("data-position","fixed").append(headerbody);
+
+    <!-- Draw Search-->
+    var searchformbody  = $('<input>').attr("type","search").attr("id","search").attr("value", "").attr("width", "100%");
+    var searchform = $('<form>').attr("id", "home_searchform").append(searchformbody);
+    var search = $('<div>').attr("data-role", "footer").attr("data-role", "fieldcontain").attr("width","100%").attr("class", "hidden_home_search").attr("style","text-align:center; visibility:hidden").append(searchform);
+
+    <!-- Draw Content-->
     var content = $('<div>').attr("data-role", "content");
-    var header = $('<div>').attr("data-role", "header").append(headerbody);
-    var page = $('<div>').attr("data-role", "page").attr("id", id).attr("data-url", id).append(header).append(content);
+
+     <!-- Draw Footer nav bar-->
+
+    var historytab = $("<li>").attr("style", "width:25%").append("<a href='history' data-icon='grid'>History</a>");
+    var searchtab = $("<li>").attr("id","tab_bar_search").attr("style","width:50%").append("<a href='' data-icon='search'>Search</a>");
+    var optionstab =$("<li>").attr("style","width:25%").append("<a href='options' data-icon='gear'>Options</a>");
+    var navbarul =   $("<ul>").append(historytab).append(searchtab).append(optionstab);
+    var navbar =  $("<div>").attr("data-role", "navbar").append(navbarul);
+
+    <!-- Draw footer and append nav bar-->
+    var footer = $('<div>').attr("data-role", "footer").attr("data-id", "navbar").attr("data-position","fixed").append(navbar);
 
 
-    return $(page)
+    <!-- Draw the final page-->
+    var finalpage = page.append(header).append(content).append(search).append(footer);
+
+    return $(finalpage)
 }
 
 
@@ -234,4 +257,33 @@ $('.slide').live('click', function() {
     $(t).slideToggle("slow");
     //ui-btn-active
 
+});
+
+
+<!-- Pages scripts-->
+
+$("#tab_bar_search").live('click', function() {
+
+
+    if ($(".hidden_home_search").css("visibility") == "hidden") {
+        $(".hidden_home_search").hide().css({visibility: "visible"}).fadeIn("slow");
+    } else {
+        $(".hidden_home_search").fadeOut("slow", function() {
+            $(this).show().css({visibility: "hidden"});
+            $("#tab_bar_search").find("a").removeClass("ui-btn-active");
+        });
+
+    }
+
+
+});
+
+$('#home_searchform').submit(function() {
+    $(".hidden_home_search").fadeOut("slow", function() {
+        $(this).show().css({visibility: "hidden"});
+        $("#tab_bar_search").find("a").removeClass("ui-btn-active");
+    });
+
+
+    return false;
 });
