@@ -1,11 +1,11 @@
 DegreesAndCourses::Application.routes.draw do
-  resources :course_degrees
 
   #service general
   root :to => "DegreesAndCourses#description", :defaults => {:format => :xml}
   match "index" => "DegreesAndCourses#description", :defaults => {:format => :xml}
   match "status" => "DegreesAndCourses#status", :defaults => {:format => :xml}
   match "metainfo" => "DegreesAndCourses#meta_info", :defaults => {:format => :xml}
+  match "search" => "DegreesAndCourses#search", :defaults => {:format => :xml}
 
 
   #courses
