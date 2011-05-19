@@ -134,6 +134,9 @@ function parseHomepage(xml) {
 
     $(xml).find("record").each(function() {
         pageWritable.append("<p>" + $(this).attr('title') + "</p>");
+        $(this).find("text").each(function() {
+            pageWritable.append("<p>"+$(this).text()+"</p>");
+        });
         var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
         $(this).find("link").each(function() {
             list.append("<li class='list' href=" + $(this).attr('href') + "> <a href=''>" + $(this).text() + "</a></li>")
@@ -205,7 +208,7 @@ function parseRecord(xml) {
                 if (title == undefined)
                     list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '</a></li>');
                 else
-                    list.append('<li class="search" href=' + attr + '>' + text + '<p>' + title + '</p></li>');
+                    list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '</a><p>' + title + '</p></li>');
                 break;
 
             case 'email':
@@ -214,7 +217,7 @@ function parseRecord(xml) {
                 if (title == undefined)
                     list.append('<li class="email" href=' + attr + '><a href= "">' + text + '</a></li>');
                 else
-                    list.append('<li class="email" href=' + attr + '>' + text + '<p>' + title + '</p></li>');
+                    list.append('<li class="email" href=' + attr + '>' + '<a href="">' + text + '</a><p>' + title + '</p></li>');
                 break;
             case 'link':
                 text = $(this).text();
@@ -255,7 +258,6 @@ $('.slide').live('click', function() {
 
     var t = "." + $(this).attr("title");
     $(t).slideToggle("slow");
-    //ui-btn-active
 
 });
 
