@@ -29,6 +29,7 @@ class SearchController < ApplicationController
       url = competence[0].competenceUrl
       homeurl = service.url
       name = service.serviceName
+      puts url+'?keyword='+@keyword+"&start=1&end=5000"
       tempdoc = Nokogiri::XML(open(url+'?keyword='+@keyword+"&start=1&end=5000"),nil, 'UTF-8')
       temproot = tempdoc.at_css "list"
       temproot.add_child("<home>"+homeurl+"</home>")

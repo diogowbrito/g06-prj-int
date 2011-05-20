@@ -36,7 +36,8 @@ class BackOfficeController < ApplicationController
       infent << entity.text()
     end
 
-    competences = @doc.xpath("competence")
+    competences = @doc.xpath("//competence")
+    puts competences
     comp = []
 
     competences.each do |competence|
@@ -67,6 +68,15 @@ class BackOfficeController < ApplicationController
     comp.each do |c|
       Competence.create :competenceType => c[2], :competenceUrl => serviceurl+c[0], :description => c[1], :service_id => id
     end
+
+    respond_to :html
+
+  end
+
+  def listservices
+
+    @services = Service.all
+    @competences = Competence.all
 
     respond_to :html
 

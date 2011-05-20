@@ -1,4 +1,4 @@
-<service name="people" url="http://DominioGeral/services/people">
+<service name="people" url="http://localhost:3001">
     <provider>G6</provider>
     <serviceID>plp</serviceID>
     <type>academics</type>

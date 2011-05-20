@@ -16,6 +16,7 @@ Concierge::Application.routes.draw do
   #Concierge admin
   match "admin/newservice" => "BackOffice#newservice"
   match "admin/createservice" => "BackOffice#createservice"
+  match "admin/listservices" => "BackOffice#listservices"
 
 #  match "services/:service/:id" => "Record#record"
 #  match "record" => "Record#record", :defaults => { :format => :xml}
