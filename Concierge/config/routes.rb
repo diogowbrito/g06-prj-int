@@ -13,6 +13,10 @@ Concierge::Application.routes.draw do
   match "services/:service/:method" => "ServiceForward#listrequest", :defaults => { :format => :xml}
   match "services/:service/:method/:id" => "ServiceForward#recordrequest", :defaults => { :format => :xml}
 
+  #Concierge admin
+  match "admin/newservice" => "BackOffice#newservice"
+  match "admin/createservice" => "BackOffice#createservice"
+
 #  match "services/:service/:id" => "Record#record"
 #  match "record" => "Record#record", :defaults => { :format => :xml}
 
