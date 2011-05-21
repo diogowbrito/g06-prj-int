@@ -13,7 +13,7 @@ xml.record(:title => "Services") do
     xml.text(@services.mail, :title => "Mail")
   end
   if @services.email != nil then
-    xml.email(@services.email, :title => "Mail")
+    xml.email(@services.email)
   end
   if @services.telephone != nil then
     xml.text(@services.telephone, :title => "Telephone")

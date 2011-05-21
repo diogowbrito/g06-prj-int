@@ -16,3 +16,6 @@ Competence.create :competenceType => 'Home', :competenceUrl => 'http://localhost
 Competence.create :competenceType => 'Search', :competenceUrl => 'http://localhost:3002/search', :description => "boraa", :service_id => '2'
 InfEntity.create :entity => 'degree', :service_id => '2'
 InfEntity.create :entity => 'course', :service_id => '2'
+
+Service.create :serviceName => 'OrgUnits', :provider => 'G06', :servicetype => 'organizationl unit', :ranking => 1, :url => 'http://localhost:3003', :imgPath => 'TODO'
+Competence.create :competenceType => 'Home', :competenceUrl => 'http://localhost:3003/index', :description => "boraa", :service_id => '3'

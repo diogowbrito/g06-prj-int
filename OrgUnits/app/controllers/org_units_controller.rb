@@ -5,6 +5,6 @@ class OrgUnitsController < ApplicationController
   end
 
   def description
-    respont_to :xml
+    respond_to :xml
   end
 end

@@ -10,7 +10,7 @@ xml.record(:title => "Organs") do
     xml.text(@organs.subdirector, :title => "Subdirector")
   end
   xml.text(@organs.mail, :title => "Mail")
-  xml.email(@organs.email, :title => "Email")
+  xml.email(@organs.email)
   xml.text(@organs.telephone, :title => "Telephone")
   if @organs.extension != nil then
     xml.text(@organs.extension, :title => "Extension")

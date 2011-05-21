@@ -11,7 +11,7 @@ xml.record(:title => "Sections") do
     xml.text(@sections.coordenator, :title => "Coordenator")
   end
   xml.text(@sections.mail, :title => "Mail")
-  xml.email(@sections.email, :title => "Email")
+  xml.email(@sections.email)
   xml.text(@sections.telephone, :title => "Telephone")
   xml.text(@sections.extension, :title => "Extension")
   if @sections.fax != nil then
