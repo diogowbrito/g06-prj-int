@@ -1,7 +1,7 @@
 class CreateServices < ActiveRecord::Migration
   def self.up
     create_table :services do |t|
-      t.string :name
+      t.string :service_name
       t.string :building
       t.string :space
       t.string :coordenator

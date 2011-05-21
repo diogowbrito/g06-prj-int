@@ -2,7 +2,7 @@
 
 one:
   service_id: 1
-  name: MyString
+  section_name: MyString
   schedule: MyString
   building: MyString
   space: MyString
@@ -15,7 +15,7 @@ one:
 
 two:
   service_id: 1
-  name: MyString
+  section_name: MyString
   schedule: MyString
   building: MyString
   space: MyString

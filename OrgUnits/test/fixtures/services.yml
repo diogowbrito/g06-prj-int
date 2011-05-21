@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
+  service_name: MyString
   building: MyString
   space: MyString
   coordenator: MyString
@@ -12,7 +12,7 @@ one:
   fax: MyString
 
 two:
-  name: MyString
+  service_name: MyString
   building: MyString
   space: MyString
   coordenator: MyString

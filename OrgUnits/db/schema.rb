@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110520173142) do
+ActiveRecord::Schema.define(:version => 20110521131658) do
 
   create_table "departments", :force => true do |t|
-    t.string   "name"
+    t.string   "department_name"
     t.string   "symbol"
     t.string   "building"
     t.string   "site"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20110520173142) do
   end
 
   create_table "organs", :force => true do |t|
-    t.string   "name"
+    t.string   "organ_name"
     t.string   "building"
     t.string   "space"
     t.string   "president"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20110520173142) do
 
   create_table "secretaries", :force => true do |t|
     t.integer  "organ_id"
-    t.string   "name"
+    t.string   "secretary_name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20110520173142) do
 
   create_table "sections", :force => true do |t|
     t.integer  "service_id"
-    t.string   "name"
+    t.string   "section_name"
     t.string   "schedule"
     t.string   "building"
     t.string   "space"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20110520173142) do
   end
 
   create_table "services", :force => true do |t|
-    t.string   "name"
+    t.string   "service_name"
     t.string   "building"
     t.string   "space"
     t.string   "coordenator"

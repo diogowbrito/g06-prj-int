@@ -2,7 +2,7 @@ class CreateSections < ActiveRecord::Migration
   def self.up
     create_table :sections do |t|
       t.integer :service_id
-      t.string :name
+      t.string :section_name
       t.string :schedule
       t.string :building
       t.string :space

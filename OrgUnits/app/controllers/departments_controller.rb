@@ -1,4 +1,20 @@
 class DepartmentsController < ApplicationController
+
+  def list
+    @start = params[:start] || '1'
+    @end = params[:end] || '7'
+    @next = @end.to_i+1
+
+    @departments = Department.find(:all, :order => "department_name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+
+    respond_to :xml
+  end
+
+  def specific
+    @department = Department.find(params[:id])
+    respond_to :xml
+  end
+
   # GET /departments
   # GET /departments.xml
   def index

@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Organ</th>
-    <th>Name</th>
+    <th>Secretary name</th>
     <th>Email</th>
     <th></th>
     <th></th>
@@ -13,7 +13,7 @@
 <% @secretaries.each do |secretary| %>
   <tr>
     <td><%= secretary.organ_id %></td>
-    <td><%= secretary.name %></td>
+    <td><%= secretary.secretary_name %></td>
     <td><%= secretary.email %></td>
     <td><%= link_to 'Show', secretary %></td>
     <td><%= link_to 'Edit', edit_secretary_path(secretary) %></td>

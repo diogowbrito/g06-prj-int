@@ -1,4 +1,21 @@
 class OrgansController < ApplicationController
+
+  def list
+    @start = params[:start] || '1'
+    @end = params[:end] || '5'
+    @next = @end.to_i+1
+
+    @organs = Organ.find(:all, :order => "organ_name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+
+    respond_to :xml
+  end
+
+  def specific
+    @organs = Organ.find(params[:id])
+    @secretary = Secretary.where(:organ_id => @organs)
+    respond_to :xml
+  end
+
   # GET /organs
   # GET /organs.xml
   def index

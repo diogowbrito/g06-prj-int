@@ -1,4 +1,21 @@
 class ServicesController < ApplicationController
+
+  def list
+    @start = params[:start] || '1'
+    @end = params[:end] || '7'
+    @next = @end.to_i+1
+
+    @services = Service.find(:all, :order => "service_name", :offset => @start.to_i-1, :limit => @end.to_i+1-@start.to_i)
+
+    respond_to :xml
+  end
+
+  def specific
+    @services = Service.find(params[:id])
+    @sections = Section.where(:service_id => @services)
+    respond_to :xml
+  end
+
   # GET /services
   # GET /services.xml
   def index

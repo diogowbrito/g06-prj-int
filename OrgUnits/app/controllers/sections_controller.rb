@@ -1,4 +1,10 @@
 class SectionsController < ApplicationController
+
+   def specific
+    @sections = Section.find(params[:id])
+    respond_to :xml
+   end
+
   # GET /sections
   # GET /sections.xml
   def index

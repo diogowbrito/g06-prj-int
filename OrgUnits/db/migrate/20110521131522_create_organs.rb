@@ -1,7 +1,7 @@
 class CreateOrgans < ActiveRecord::Migration
   def self.up
     create_table :organs do |t|
-      t.string :name
+      t.string :organ_name
       t.string :building
       t.string :space
       t.string :president
