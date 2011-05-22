@@ -21,6 +21,7 @@ gem 'mysql2'
 # gem 'bj'
 gem 'nokogiri'
 gem 'rest-open-uri'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'

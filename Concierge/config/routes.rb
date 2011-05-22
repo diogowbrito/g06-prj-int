@@ -1,6 +1,8 @@
 Concierge::Application.routes.draw do
 
   resources :services
+  resources :users
+  resources :sessions
 
   #Concierge Defaults
   root :to => "HomePage#index"
@@ -18,6 +20,12 @@ Concierge::Application.routes.draw do
   match "admin/createservice" => "BackOffice#createservice"
   match "admin/listservices" => "BackOffice#listservices"
   match "admin/destroyservice" => "BackOffice#destroyservice"
+
+  #test login
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+  root :to => "users#new"
 
 #  match "services/:service/:id" => "Record#record"
 #  match "record" => "Record#record", :defaults => { :format => :xml}

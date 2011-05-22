@@ -19,6 +19,16 @@
 
 <div data-role="page" data-position="inline">
   <div data-role="header" data-position="fixed">
+    <div class="ui-btn-right" data-icon="gear">
+      <% if current_user %>
+        Logged in as <%= current_user.email %>.
+        <%= link_to "Log out", log_out_path %>
+      <% else %>
+        <%= link_to "Sign up", sign_up_path %> or
+        <%= link_to "log in", log_in_path %>
+      <% end %>
+    </div>
+
     <a href="index.html" class="ui-btn-right" data-icon="gear" icon>Login</a>
 
     <h1 id="logo" class="ui-title">Concierge</h1>
