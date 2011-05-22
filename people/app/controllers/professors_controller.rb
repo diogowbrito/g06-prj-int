@@ -77,6 +77,37 @@ class ProfessorsController < ApplicationController
     respond_to :xml
   end
 
+  def specificsearch
+
+    @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_")
+    @start = params[:start] || '1'
+    @end = params[:end] || '20'
+    @next = @end.to_i+1
+    professors = Professor.find(:all, :conditions=> ["professor_name like ?","%"+@keyword+"%"])
+
+    @list = []
+    counter = 1
+    professors.each do |p|
+
+      if counter >= @start.to_i then
+           @list << p
+      end
+
+      counter = counter.to_i+1
+
+      if counter > @end.to_i then
+        break
+      end
+
+    end
+
+    if @list.count != 20 then
+      @next = ""
+    end
+
+    respond_to :xml
+  end
+
   def recommendation
 
     @keyword = params[:keyword].gsub("%", "\%").gsub("_", "\_")

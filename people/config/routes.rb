@@ -14,6 +14,7 @@ People::Application.routes.draw do
   match "people" => "Professors#list", :defaults => { :format => :xml}
   match "people/:id" => "Professors#specific", :defaults => { :format => :xml}
   match "search" => "Professors#search", :defaults => { :format => :xml}
+  match "specsearch" => "Professors#specificsearch", :defaults => {:format => :xml}
   match "recommendation" => "Professors#recommendation", :defaults => { :format => :xml}
 
   # The priority is based upon order of creation:

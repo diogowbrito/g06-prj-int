@@ -8,6 +8,7 @@
     <th>Type</th>
     <th>Ranking</th>
     <th>Imgpath</th>
+    <th></th>
   </tr>
 
 <% @services.each do |service| %>
@@ -18,6 +19,7 @@
     <td><%= service.servicetype %></td>
     <td><%= service.ranking %></td>
     <td><%= service.imgPath %></td>
+    <td><%= link_to 'Destroy', :action => 'destroyservice', :id => service.id %></td>
   </tr>
 <% end %>
 </table>
@@ -41,3 +43,4 @@
   </tr>
 <% end %>
 </table>
+<p><%= link_to 'New Service', :action => 'newservice'%></p>

@@ -99,10 +99,4 @@ class SearchController < ApplicationController
     respond_to :xml
   end
 
-  def typesearch
-
-
-
-  end
-
 end
