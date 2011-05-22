@@ -1,13 +1,27 @@
 OrgUnits::Application.routes.draw do
-  resources :departments
 
-  resources :sections
+#  resources :departments
+#  resources :sections
+#  resources :services
+#  resources :secretaries
+#  resources :organs
 
-  resources :services
+  # Organizational Units
+  match "metainfo" => "OrgUnits#meta_info", :defaults => { :format => :xml}
+  match "index" => "OrgUnits#description", :defaults => { :format => :xml}
 
-  resources :secretaries
+  # Departments
+  match "departments" => "Departments#list", :defaults => { :format => :xml}
+  match "departments/:id" => "Departments#specific", :defaults => { :format => :xml}
 
-  resources :organs
+  # Organs
+  match "organs" => "Organs#list", :defaults => { :format => :xml}
+  match "organs/:id" => "Organs#specific", :defaults => { :format => :xml}
+
+  # Services
+  match "services" => "Services#list", :defaults => { :format => :xml}
+  match "services/:id" => "Services#specific", :defaults => { :format => :xml}
+  match "services/sections/:id" => "Sections#specific", :defaults => { :format => :xml}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,7 +2,7 @@ class CreateSecretaries < ActiveRecord::Migration
   def self.up
     create_table :secretaries do |t|
       t.integer :organ_id
-      t.string :name
+      t.string :secretary_name
       t.string :email
 
       t.timestamps

@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
+  department_name: MyString
   symbol: MyString
   building: MyString
   site: MyString
 
 two:
-  name: MyString
+  department_name: MyString
   symbol: MyString
   building: MyString
   site: MyString

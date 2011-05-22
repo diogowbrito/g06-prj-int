@@ -184,8 +184,7 @@ function parseRecord(xml) {
                             html += '<li class="search slide_items ' + title + '"' + 'href=' + attr + '><a href="" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'text') {
-                            if (title == undefined)
-                                html += "<li>" + text + "</li>";
+                           html += '<li class="slide_items ' + title + '" >' + text + '</li>';
                         }
                         else if (element.nodeName == 'email') {
                             html += '<li class="email slide_items ' + title + '"' + 'href=' + attr + '><a href="" >' + text + '</a></li>';
@@ -222,7 +221,7 @@ function parseRecord(xml) {
             case 'link':
                 text = $(this).text();
                 attr = $(this).attr('href');
-                html += '<li class="link" href=' + attr + '><a href="">' + text + '</a></li>';
+                list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a></li>');
                 break;
 
         }
