@@ -73,6 +73,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby
+  mail (= 2.2.19)
   mysql2
   nokogiri
   rails (= 3.0.7)
