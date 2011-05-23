@@ -25,6 +25,6 @@ xml.record(:title => "Services") do
     xml.text(@services.fax, :title => "Fax")
   end
   @sections.each do |section|
-    xml.link(section.section_name, :href => "http://localhost:3003/services/sections/"+section.id.to_s)
+    xml.link(section.section_name, :href => "http://localhost:3003/sections/"+section.id.to_s)
   end
 end

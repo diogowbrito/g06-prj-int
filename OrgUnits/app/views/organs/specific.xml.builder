@@ -5,9 +5,9 @@ xml.record(:title => "Organs") do
     xml.entity(@organs.space, :kind => "room")
   end
   if @organs.president != nil then
-    xml.text(@organs.president, :title => "President")
+    xml.entity(@organs.president, :title => "President", :kind => "person")
   else
-    xml.text(@organs.subdirector, :title => "Subdirector")
+    xml.entity(@organs.subdirector, :title => "Subdirector", :kind => "person")
   end
   xml.text(@organs.mail, :title => "Mail")
   xml.email(@organs.email)
@@ -19,7 +19,7 @@ xml.record(:title => "Organs") do
   xml.text(:title => "Secretariat") do
     @secretary.each do |ele|
       xml.text(:title => "Secretary") do
-        xml.text(ele.secretary_name, :title => "Name")
+        xml.entity(ele.secretary_name, :title => "Name", :kind => "person")
         if ele.email != nil then
           xml.email(ele.email, :title => "Emails")
         end

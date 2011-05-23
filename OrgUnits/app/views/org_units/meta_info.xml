@@ -1,5 +1,5 @@
-<service name="organizationl unit" url="http://localhost:3003">
-  <provider>G6</provider>
+<service name="OrgUnits" url="http://localhost:3003">
+  <provider>G06</provider>
   <serviceID>ou</serviceID>
   <type>organizational unit</type>
   <tags>
@@ -9,10 +9,13 @@
   </tags>
   <search>yes</search>
   <referedEntities>
+    <entity>person</entity>
     <entity>room</entity>
     <entity>building</entity>
   </referedEntities>
-  <informedEntities></informedEntities>
+  <informedEntities>
+    <entity>organizational unit</entity>
+  </informedEntities>
   <competences>
     <competence path="/index" httpOp="">
       <ctype>Home</ctype>
