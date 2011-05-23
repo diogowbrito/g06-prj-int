@@ -13,39 +13,32 @@
 <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>          -->
 
-
 </head>
 <body>
 
 <div data-role="page" data-position="inline">
   <div data-role="header" data-position="fixed">
-    <div class="ui-btn-right" data-icon="gear">
-      <% if current_user %>
-        Logged in as <%= current_user.email %>.
-        <%= link_to "Log out", log_out_path %>
-      <% else %>
-        <%= link_to "Sign up", sign_up_path %> or
-        <%= link_to "log in", log_in_path %>
-      <% end %>
-    </div>
 
-    <a href="index.html" class="ui-btn-right" data-icon="gear" icon>Login</a>
+      <% if current_user %>
+        Logged in as <%= current_user.userName %>.
+        <a id="login" href="http://localhost:3000/logout" class="ui-btn-right" data-icon="gear" icon>Logout</a>
+      <% else %>
+        <a id="login" href="http://localhost:3000/signin" class="ui-btn-right" data-icon="gear" icon>Sign In</a>
+        <a id="login" href="http://localhost:3000/login" class="ui-btn-right" data-icon="gear" icon>Login</a>
+      <% end %>
 
     <h1 id="logo" class="ui-title">Concierge</h1>
   </div>
 
-
   <div id="content" data-role="content">
     <%= yield %>
   </div>
-
 
     <div data-role="footer" data-role='fieldcontain' width="100%" class="hidden_home_search" style="text-align:center; visibility:hidden">
       <form id='home_searchform'>
         <input type='search' id='search' value='' width="100%"/>
       </form>
     </div>
-
 
   <div data-role="footer" data-id="navbar" data-position="fixed">
     <div data-role="navbar">
@@ -60,15 +53,8 @@
   </div>
   <!-- /footer -->
 
-
 </div>
 
 
 </body>
-
-<script type="text/javascript">
-
-
-
-</script>
 </html>

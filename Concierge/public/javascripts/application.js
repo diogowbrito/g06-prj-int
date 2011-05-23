@@ -1,6 +1,14 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+function getLog() {
+
+    $(document).bind("mobile", function(){
+        $.extend($.mobile, {ajaxFormsEnabled: false});
+    });
+
+}
+
 function getHomepage(url) {
 
     $(document).ready(function() {
@@ -232,6 +240,10 @@ function parseRecord(xml) {
     $.mobile.changePage("#" + page.attr("id"));
     $(".slide_items").hide();
 }
+
+$('#login').live('click', function() {
+    getLog();
+});
 
 $('#serviceLink').live('click', function() {
     getHomepage($(this).attr('href'));

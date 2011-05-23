@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     validates_uniqueness_of :email
 
     def self.authenticate(username, password)
-      user = find_by_username(username)
+      user = find_by_userName(username)
       if user && user.passwordHash == BCrypt::Engine.hash_secret(password, user.passwordSalt)
         user
       else
