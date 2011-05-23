@@ -9,10 +9,13 @@
   </tags>
   <search>yes</search>
   <referedEntities>
+    <entity>person</entity>
     <entity>room</entity>
     <entity>building</entity>
   </referedEntities>
-  <informedEntities></informedEntities>
+  <informedEntities>
+    <entity>organizational unit</entity>
+  </informedEntities>
   <competences>
     <competence path="/index" httpOp="">
       <ctype>Home</ctype>

@@ -9,6 +9,8 @@ OrgUnits::Application.routes.draw do
   # Organizational Units
   match "metainfo" => "OrgUnits#meta_info", :defaults => { :format => :xml}
   match "index" => "OrgUnits#description", :defaults => { :format => :xml}
+  match "search" => "OrgUnits#search", :defaults => { :format => :xml}
+  match "status" => "OrgUnits#status", :defaults => { :format => :xml}
 
   # Departments
   match "departments" => "Departments#list", :defaults => { :format => :xml}
