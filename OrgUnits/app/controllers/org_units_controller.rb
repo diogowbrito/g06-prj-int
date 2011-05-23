@@ -75,7 +75,7 @@ class OrgUnitsController < ApplicationController
     @list2 = []
 
     departments.each do |dep|
-      @list << dep.department_name d
+      @list << dep.department_name
     end
 
     organs.each do |org|

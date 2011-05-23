@@ -23,7 +23,7 @@ OrgUnits::Application.routes.draw do
   # Services
   match "services" => "Services#list", :defaults => { :format => :xml}
   match "services/:id" => "Services#specific", :defaults => { :format => :xml}
-  match "services/sections/:id" => "Sections#specific", :defaults => { :format => :xml}
+  match "sections/:id" => "Sections#specific", :defaults => { :format => :xml}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
