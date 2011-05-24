@@ -270,6 +270,7 @@ $("#tab_bar_search").live('click', function() {
 });
 
 $('#home_searchform').submit(function() {
+    console.log($(this).text);
     $(".hidden_home_search").fadeOut("slow", function() {
         $(this).show().css({visibility: "hidden"});
         $("#tab_bar_search").find("a").removeClass("ui-btn-active");

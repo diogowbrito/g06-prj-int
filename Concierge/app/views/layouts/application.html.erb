@@ -27,15 +27,21 @@
 
 <div data-role="page" data-position="inline">
   <div data-role="header" data-position="fixed">
-      <% if current_user %>
-        Logged in as <%= current_user.userName %>.
-        <a id="login" href="http://localhost:3000/logout" class="ui-btn-right" data-icon="gear" icon>Logout</a>
-      <% else %>
-        <a href="http://localhost:3000/signin" class="ui-btn-right" data-icon="gear" icon>Sign In</a>
-        <a href="http://localhost:3000/login" class="ui-btn-right" data-icon="gear" icon>Login</a>
-      <% end %>
 
     <h1 id="logo" class="ui-title">Concierge</h1>
+
+    <div data-role="controlgroup" class="ui-btn-right" data-type="horizontal" >
+
+      <% if current_user %>
+        Logged in as <%= current_user.userName %>.
+        <a id="login" href="http://localhost:3000/logout" data-role="button" data-icon="gear">Logout</a>
+      <% else %>
+        <a href="http://localhost:3000/signin" data-role="button" data-icon="gear"  >Sign In</a>
+        <a href="http://localhost:3000/login" data-role="button"  data-icon="gear">Login</a>
+      <% end %>
+    </div>
+
+
   </div>
 
   <div id="content" data-role="content">
