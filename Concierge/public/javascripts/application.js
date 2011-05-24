@@ -153,7 +153,7 @@ function parseRecord(xml) {
                     text = $(this).text();
                     title = $(this).attr('title');
                     if (title == undefined)
-                        list.append('<li href=' + attr + '><a href="" >' + text + '</a></li>');
+                        list.append('<li href=' + attr + '>' + text + '</li>');
                     else
                         list.append('<li href=' + attr + '>' + text + '<p>' + title + '</p></li>');
                 }
@@ -161,7 +161,7 @@ function parseRecord(xml) {
                     title = $(this).attr('title').replace(" ", "_");
                     var html = '<li class="slide activeZero 0" title="' + title + '">';
                     if (title != undefined)
-                        html += '<a href="">' + title + '</a>';
+                        html += '<a href="">' + title.replace("_", " ") + '</a>';
 
                     $(this).children().each(function(index, element) {
 
@@ -194,7 +194,7 @@ function parseRecord(xml) {
                 if (title == undefined)
                     list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '</a></li>');
                 else
-                    list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '</a><p>' + title + '</p></li>');
+                    list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
                 break;
 
             case 'email':
@@ -203,7 +203,7 @@ function parseRecord(xml) {
                 if (title == undefined)
                     list.append('<li class="email" href=' + attr + '><a href= "">' + text + '</a></li>');
                 else
-                    list.append('<li class="email" href=' + attr + '>' + '<a href="">' + text + '</a><p>' + title + '</p></li>');
+                    list.append('<li class="email" href=' + attr + '>' + '<a href="">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
                 break;
             case 'link':
                 text = $(this).text();
@@ -212,17 +212,16 @@ function parseRecord(xml) {
                 if (title == undefined)
                     list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a></li>');
                 else
-                    list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a><p>' + title + '</p></li>');
+                    list.append('<li class="link" href="' + attr + '"><a href="">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
                 break;
             case 'external_link':
                 text = $(this).text();
                 attr = $(this).attr('href');
                 title = $(this).attr('title');
-                    alert("oi");
                 if (title == undefined)
-                    list.append('<li class="external_link" href="' + attr + '"><a href="">' + text + '</a></li>');
+                    list.append('<li class="external_link" href="' + attr + '"><a href="'+attr+'" target="_blank">' + text + '</a></li>');
                 else
-                    list.append('<li class="external_link" href="' + attr + '"><a href="">' + text + '</a><p>' + title + '</p></li>');
+                    list.append('<li class="external_link" href="' + attr + '"><a href="'+attr+'" target="_blank">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
                 break;
 
         }
