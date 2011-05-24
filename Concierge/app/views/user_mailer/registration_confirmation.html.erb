@@ -1,0 +1,9 @@
+<p>Hello <%= @user.userName %>,</p>
+
+<p>Thank you for registering!</p>
+
+<p>Please activate your account by clicking the link above.</p>
+
+<p><%= link_to "Activate Account", "http://localhost:3000/activation?code="+@num.to_s+"&id="+@user.id.to_s %></p>
+
+<p>Thank you</p>

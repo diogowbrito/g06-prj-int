@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20110522131256) do
     t.string   "email"
     t.string   "passwordHash"
     t.string   "passwordSalt"
-    t.integer  "activated"
+    t.integer  "activateCode"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

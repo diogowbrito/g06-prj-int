@@ -7,8 +7,13 @@ class SessionsController < ApplicationController
     @msg = ""
     user = User.authenticate(params[:username], params[:password])
     if user
-      session[:user_id] = user.id
-      redirect_to :root
+      if user.activateCode == -1 then
+        session[:user_id] = user.id
+        redirect_to :root
+      else
+        @msg = "Your account needs activation. Go to your email and do it!"
+        render "new"
+      end
     else
       @msg = "Username/Password combination error."
       render "new"

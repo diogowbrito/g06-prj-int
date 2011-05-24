@@ -5,7 +5,16 @@
   <title>Concierge</title>
 
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery-1.6", "application" %>
+  <%= javascript_include_tag "login", "application" %>
+  <script type="text/javascript">
+            $(document).bind("mobileinit", function(){
+                $.extend(  $.mobile , {
+                    ajaxFormsEnabled: false
+                });
+            });
+  </script>
+  <%= javascript_include_tag "jquery.mobile-1.0a4.1", "application" %>
   <%= csrf_meta_tag %>
 
   <!--
@@ -18,13 +27,12 @@
 
 <div data-role="page" data-position="inline">
   <div data-role="header" data-position="fixed">
-
       <% if current_user %>
         Logged in as <%= current_user.userName %>.
         <a id="login" href="http://localhost:3000/logout" class="ui-btn-right" data-icon="gear" icon>Logout</a>
       <% else %>
-        <a id="login" href="http://localhost:3000/signin" class="ui-btn-right" data-icon="gear" icon>Sign In</a>
-        <a id="login" href="http://localhost:3000/login" class="ui-btn-right" data-icon="gear" icon>Login</a>
+        <a href="http://localhost:3000/signin" class="ui-btn-right" data-icon="gear" icon>Sign In</a>
+        <a href="http://localhost:3000/login" class="ui-btn-right" data-icon="gear" icon>Login</a>
       <% end %>
 
     <h1 id="logo" class="ui-title">Concierge</h1>
