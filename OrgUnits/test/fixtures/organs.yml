@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  organ_name: MyString
+  building: MyString
+  space: MyString
+  president: MyString
+  subdirector: MyString
+  mail: MyString
+  email: MyString
+  telephone: MyString
+  extension: MyString
+  fax: MyString
+
+two:
+  organ_name: MyString
+  building: MyString
+  space: MyString
+  president: MyString
+  subdirector: MyString
+  mail: MyString
+  email: MyString
+  telephone: MyString
+  extension: MyString
+  fax: MyString

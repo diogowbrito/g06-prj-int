@@ -6,6 +6,7 @@ DegreesAndCourses::Application.routes.draw do
   match "status" => "DegreesAndCourses#status", :defaults => {:format => :xml}
   match "metainfo" => "DegreesAndCourses#meta_info", :defaults => {:format => :xml}
   match "search" => "DegreesAndCourses#search", :defaults => {:format => :xml}
+  match "specsearch" => "DegreesAndCourses#specificsearch", :defaults => {:format => :xml}
 
 
   #courses

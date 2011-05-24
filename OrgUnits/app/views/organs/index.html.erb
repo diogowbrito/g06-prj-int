@@ -1,0 +1,41 @@
+<h1>Listing organs</h1>
+
+<table>
+  <tr>
+    <th>Organ name</th>
+    <th>Building</th>
+    <th>Space</th>
+    <th>President</th>
+    <th>Subdirector</th>
+    <th>Mail</th>
+    <th>Email</th>
+    <th>Telephone</th>
+    <th>Extension</th>
+    <th>Fax</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @organs.each do |organ| %>
+  <tr>
+    <td><%= organ.organ_name %></td>
+    <td><%= organ.building %></td>
+    <td><%= organ.space %></td>
+    <td><%= organ.president %></td>
+    <td><%= organ.subdirector %></td>
+    <td><%= organ.mail %></td>
+    <td><%= organ.email %></td>
+    <td><%= organ.telephone %></td>
+    <td><%= organ.extension %></td>
+    <td><%= organ.fax %></td>
+    <td><%= link_to 'Show', organ %></td>
+    <td><%= link_to 'Edit', edit_organ_path(organ) %></td>
+    <td><%= link_to 'Destroy', organ, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Organ', new_organ_path %>

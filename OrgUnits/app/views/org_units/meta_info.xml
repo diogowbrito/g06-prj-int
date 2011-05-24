@@ -1,0 +1,64 @@
+<service name="OrgUnits" url="http://localhost:3003">
+  <provider>G06</provider>
+  <serviceID>ou</serviceID>
+  <type>organizational unit</type>
+  <tags>
+    <tag>departamentos</tag>
+    <tag>orgãos</tag>
+    <tag>serviços</tag>
+  </tags>
+  <search>yes</search>
+  <referedEntities>
+    <entity>person</entity>
+    <entity>room</entity>
+    <entity>building</entity>
+  </referedEntities>
+  <informedEntities>
+    <entity>organizational unit</entity>
+  </informedEntities>
+  <competences>
+    <competence path="/index" httpOp="">
+      <ctype>Home</ctype>
+      <description>Devolve a descrição do serviço</description>
+      <arglist/>
+      <interactionType>Indirect</interactionType>
+      <tags/>
+    </competence>
+    <competence path="/status" httpOp="">
+      <ctype>Status</ctype>
+      <description>Devolve o estado o serviço</description>
+      <arglist/>
+      <interactionType>Indirect</interactionType>
+      <tags/>
+    </competence>
+    <competence path="/metainfo" httpOp="">
+      <ctype>Metainfo</ctype>
+      <description>Devolve a meta info do serviço</description>
+      <arglist/>
+      <interactionType>Indirect</interactionType>
+      <tags/>
+    </competence>
+    <competence path="/search" httpOp="">
+      <ctype>Search</ctype>
+      <description>Devolve os resultados de uma procura</description>
+      <arglist>
+        <arg optional="false">keyword</arg>
+        <arg optional="true">start</arg>
+        <arg optional="true">end</arg>
+      </arglist>
+      <interactionType>Indirect</interactionType>
+      <tags/>
+    </competence>
+    <competence path="/recommendation" httpOp="">
+      <ctype>Recommendation</ctype>
+      <description>Devolve as recomendações para uma palavra</description>
+      <arglist>
+        <arg optional="false">keyword</arg>
+        <arg optional="true">start</arg>
+        <arg optional="true">end</arg>
+      </arglist>
+      <interactionType>Indirect</interactionType>
+      <tags/>
+    </competence>
+  </competences>
+</service>

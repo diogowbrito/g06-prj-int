@@ -1,14 +1,15 @@
 Concierge::Application.routes.draw do
 
-  resources :services
+  resources :users
+  resources :sessions
 
   #Concierge Defaults
   root :to => "HomePage#index"
   match "index" => "HomePage#index"
   match "search" => "Search#search", :defaults => { :format => :xml}
-  match "services/:service/search" => "Search#servicesearch", :defaults => { :format => :xml}
 
   #Service forward
+  match "services/:service/search" => "Search#servicesearch", :defaults => { :format => :xml}
   match "services/:service/index" => "ServiceForward#homepagerequest", :defaults => { :format => :xml}
   match "services/:service/:method" => "ServiceForward#listrequest", :defaults => { :format => :xml}
   match "services/:service/:method/:id" => "ServiceForward#recordrequest", :defaults => { :format => :xml}
@@ -16,6 +17,15 @@ Concierge::Application.routes.draw do
   #Concierge admin
   match "admin/newservice" => "BackOffice#newservice"
   match "admin/createservice" => "BackOffice#createservice"
+  match "admin/listservices" => "BackOffice#listservices"
+  match "admin/destroyservice" => "BackOffice#destroyservice"
+
+  #test login
+
+  match "login" => "sessions#new"
+  match "logout" => "sessions#destroy"
+  match "signin" => "users#new"
+  match "activation" => "users#activate"
 
 #  match "services/:service/:id" => "Record#record"
 #  match "record" => "Record#record", :defaults => { :format => :xml}

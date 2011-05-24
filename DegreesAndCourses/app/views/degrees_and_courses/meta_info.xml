@@ -1,8 +1,11 @@
-<service name="degreesandcourses" url="http://DominioGeral/services/degreesandcourses">
+<service name="degreesandcourses" url="http://localhost:3002">
     <provider>G6</provider>
     <serviceID>dc</serviceID>
     <type>academics</type>
     <tags>
+      <tag>cursos</tag>
+      <tag>cadeiras</tag>
+      <tag>disciplinas</tag>
     </tags>
     <search>yes</search>
     <referedEntities>
@@ -12,37 +15,51 @@
 		<entity>course</entity>
     </referedEntities>
     <informedEntities>
-		<entity>person</entity>
+		<entity>course</entity>
     </informedEntities>
     <competences>
-	<competence path="/degrees" httpOp="">
-            <description>Devolve a lista de cursos</description>
-            <arglist>
-                <arg optional="true">name</arg>
-                <arg optional="true">start</arg>
-                <arg optional="true">end</arg>
-            </arglist>
-            <interactionType>Indirect</interactionType>
-            <tags>
-            </tags>
-        </competence>
-      <competence path="/degrees/courses" httpOp="">
-            <description>Devolve a lista de cadeiras existentes num curso</description>
-            <arglist>
-                <arg optional="true">name</arg>
-                <arg optional="true">start</arg>
-                <arg optional="true">end</arg>
-            </arglist>
-            <interactionType>Indirect</interactionType>
-            <tags>
-            </tags>
-        </competence>
-	<competence path="/courses" httpOp="">
-            <description>Devolve a lista de cadeiras</description>
+	<competence path="/index" httpOp="">
+            <ctype>Home</ctype>
+            <description>Devolve a descrição do serviço</description>
             <arglist/>
             <interactionType>Indirect</interactionType>
-            <tags>
-            </tags>
-        </competence>
+            <tags/>
+    </competence>
+	<competence path="/status" httpOp="">
+            <ctype>Status</ctype>
+            <description>Devolve o estado o serviço</description>
+            <arglist/>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
+	<competence path="/metainfo" httpOp="">
+            <ctype>Metainfo</ctype>
+            <description>Devolve a meta info do serviço</description>
+            <arglist/>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
+    <competence path="/search" httpOp="">
+            <ctype>Search</ctype>
+            <description>Devolve os resultados de uma procura</description>
+            <arglist>
+                <arg optional="false">keyword</arg>
+                <arg optional="true">start</arg>
+                <arg optional="true">end</arg>
+            </arglist>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
+    <competence path="/recomendation" httpOp="">
+            <ctype>Recomendation</ctype>
+            <description>Devolve as recomendações para uma palavra</description>
+            <arglist>
+                <arg optional="false">keyword</arg>
+                <arg optional="true">start</arg>
+                <arg optional="true">end</arg>
+            </arglist>
+            <interactionType>Indirect</interactionType>
+            <tags/>
+    </competence>
   </competences>
 </service>

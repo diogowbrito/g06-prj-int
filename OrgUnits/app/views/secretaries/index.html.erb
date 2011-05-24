@@ -1,0 +1,27 @@
+<h1>Listing secretaries</h1>
+
+<table>
+  <tr>
+    <th>Organ</th>
+    <th>Secretary name</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @secretaries.each do |secretary| %>
+  <tr>
+    <td><%= secretary.organ_id %></td>
+    <td><%= secretary.secretary_name %></td>
+    <td><%= secretary.email %></td>
+    <td><%= link_to 'Show', secretary %></td>
+    <td><%= link_to 'Edit', edit_secretary_path(secretary) %></td>
+    <td><%= link_to 'Destroy', secretary, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Secretary', new_secretary_path %>

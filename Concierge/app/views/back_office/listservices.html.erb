@@ -1,0 +1,46 @@
+<h1>Listing services</h1>
+
+<table>
+  <tr>
+    <th>id</th>
+    <th>Servicename</th>
+    <th>Provider</th>
+    <th>Type</th>
+    <th>Ranking</th>
+    <th>Imgpath</th>
+    <th></th>
+  </tr>
+
+<% @services.each do |service| %>
+  <tr>
+    <td><%= service.id %></td>
+    <td><%= service.serviceName %></td>
+    <td><%= service.provider %></td>
+    <td><%= service.servicetype %></td>
+    <td><%= service.ranking %></td>
+    <td><%= service.imgPath %></td>
+    <td><%= link_to 'Destroy', :action => 'destroyservice', :id => service.id %></td>
+  </tr>
+<% end %>
+</table>
+
+<h1>Listing competences</h1>
+
+<table>
+  <tr>
+    <th>Service Id</th>
+    <th>Competence Type</th>
+    <th>Competence URL</th>
+    <th>Description</th>
+  </tr>
+
+<% @competences.each do |competence| %>
+  <tr>
+    <td><%= competence.service_id %></td>
+    <td><%= competence.competenceType %></td>
+    <td><%= competence.competenceUrl %></td>
+    <td><%= competence.description %></td>
+  </tr>
+<% end %>
+</table>
+<p><%= link_to 'New Service', :action => 'newservice'%></p>

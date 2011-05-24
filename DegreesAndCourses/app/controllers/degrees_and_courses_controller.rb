@@ -23,24 +23,6 @@ class DegreesAndCoursesController < ApplicationController
       degrees = Degree.find(:all, :order => "name", :conditions=> ["name like ?", "%" + @keyword + "%"])
       courses = Course.find(:all, :order => "name", :conditions=> ["name like ?", "%" + @keyword + "%"])
 
-      keyarray.each do |key|
-        degreestemp = Degree.find(:all, :order => "name", :conditions=> ["name like ?","%"+key+"%"])
-        degreestemp.each do |dtemp|
-          if !degrees.include?(dtemp) then
-            degrees << dtemp
-          end
-        end
-      end
-
-      keyarray.each do |key|
-        coursestemp = Course.find(:all, :order => "name", :conditions=> ["name like ?","%"+key+"%"])
-        coursestemp.each do |ctemp|
-          if !courses.include?(ctemp) then
-            courses << ctemp
-          end
-        end
-      end
-
       @degreelist = []
       @courselist = []
       counter = 1

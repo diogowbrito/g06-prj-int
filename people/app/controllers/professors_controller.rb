@@ -45,15 +45,6 @@ class ProfessorsController < ApplicationController
     keyarray = @keyword.to_s.split(' ')
     professors = Professor.find(:all, :conditions=> ["professor_name like ?","%"+@keyword+"%"])
 
-    keyarray.each do |key|
-      professortemp = Professor.find(:all, :conditions=> ["professor_name like ?","%"+key+"%"])
-      professortemp.each do |ptemp|
-      if !professors.include?(ptemp) then
-        professors << ptemp
-      end
-      end
-    end
-
     @list = []
     counter = 1
     professors.each do |p|

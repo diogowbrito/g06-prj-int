@@ -93,6 +93,9 @@ class ServiceForwardController < ApplicationController
     link_tag.each do |node|
 
       href = node['href']
+      if href == nil then
+        href = node['ehref']
+      end
       link = href.gsub(serviceurl, "http://localhost:3000/services/"+@servicename)
       node['href'] = link
 

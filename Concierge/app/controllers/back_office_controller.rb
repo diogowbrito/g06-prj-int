@@ -36,7 +36,7 @@ class BackOfficeController < ApplicationController
       infent << entity.text()
     end
 
-    competences = @doc.xpath("competence")
+    competences = @doc.xpath("//competence")
     comp = []
 
     competences.each do |competence|
@@ -69,6 +69,48 @@ class BackOfficeController < ApplicationController
     end
 
     respond_to :html
+
+  end
+
+  def listservices
+
+    @services = Service.all
+    @competences = Competence.all
+
+    respond_to :html
+
+  end
+
+  def destroyservice
+
+    @id = params[:id]
+
+    @service = Service.find(@id)
+    @service.destroy
+
+    @competences = Competence.where(:service_id => @id)
+    @competences.each do |competence|
+      competence.destroy
+    end
+
+    @refent = RefEntity.where(:service_id => @id)
+    @refent.each do |ent|
+      ent.destroy
+    end
+
+    @infent = InfEntity.where(:service_id => @id)
+    @infent.each do |ent|
+      ent.destroy
+    end
+
+    @tags = Tag.where(:service_id => @id)
+    @tags.each do |tag|
+      tag.destroy
+    end
+
+    respond_to do |format|
+      format.html { redirect_to(:action => 'listservices') }
+    end
 
   end
 

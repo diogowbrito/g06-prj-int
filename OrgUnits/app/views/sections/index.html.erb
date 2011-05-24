@@ -1,0 +1,43 @@
+<h1>Listing sections</h1>
+
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Section name</th>
+    <th>Schedule</th>
+    <th>Building</th>
+    <th>Space</th>
+    <th>Coordenator</th>
+    <th>Mail</th>
+    <th>Email</th>
+    <th>Telephone</th>
+    <th>Extension</th>
+    <th>Fax</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sections.each do |section| %>
+  <tr>
+    <td><%= section.service_id %></td>
+    <td><%= section.section_name %></td>
+    <td><%= section.schedule %></td>
+    <td><%= section.building %></td>
+    <td><%= section.space %></td>
+    <td><%= section.coordenator %></td>
+    <td><%= section.mail %></td>
+    <td><%= section.email %></td>
+    <td><%= section.telephone %></td>
+    <td><%= section.extension %></td>
+    <td><%= section.fax %></td>
+    <td><%= link_to 'Show', section %></td>
+    <td><%= link_to 'Edit', edit_section_path(section) %></td>
+    <td><%= link_to 'Destroy', section, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Section', new_section_path %>

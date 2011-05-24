@@ -1,0 +1,57 @@
+<%= form_for(@organ) do |f| %>
+  <% if @organ.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organ.errors.count, "error") %> prohibited this organ from being saved:</h2>
+
+      <ul>
+      <% @organ.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :organ_name %><br />
+    <%= f.text_field :organ_name %>
+  </div>
+  <div class="field">
+    <%= f.label :building %><br />
+    <%= f.text_field :building %>
+  </div>
+  <div class="field">
+    <%= f.label :space %><br />
+    <%= f.text_field :space %>
+  </div>
+  <div class="field">
+    <%= f.label :president %><br />
+    <%= f.text_field :president %>
+  </div>
+  <div class="field">
+    <%= f.label :subdirector %><br />
+    <%= f.text_field :subdirector %>
+  </div>
+  <div class="field">
+    <%= f.label :mail %><br />
+    <%= f.text_field :mail %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :telephone %><br />
+    <%= f.text_field :telephone %>
+  </div>
+  <div class="field">
+    <%= f.label :extension %><br />
+    <%= f.text_field :extension %>
+  </div>
+  <div class="field">
+    <%= f.label :fax %><br />
+    <%= f.text_field :fax %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

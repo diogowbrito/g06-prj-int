@@ -1,19 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-function getHomepage(url) {
-
-    $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: url,
-            dataType: "xml",
-            success: parseHomepage
-        });
-    });
-
-}
-
 function getSearch(url) {
     $(document).ready(function() {
         $.ajax({
@@ -72,31 +59,31 @@ function parseSearchList(xml) {
 
 function createPage(id) {
 
-    var page = $('<div>').attr("data-role", "page").attr("id", id).attr("data-url", id).attr("data-position","inline");
+    var page = $('<div>').attr("data-role", "page").attr("id", id).attr("data-url", id).attr("data-position", "inline");
 
-     <!-- Draw Header-->
+    <!-- Draw Header-->
     var headerbody = "<a href='index.html' class='ui-btn-right' data-icon='gear' icon>Login</a>" +
             "<h1 id='logo' class='ui-title'>Concierge</h1>"
-    var header = $('<div>').attr("data-role", "header").attr("data-position","fixed").append(headerbody);
+    var header = $('<div>').attr("data-role", "header").attr("data-position", "fixed").append(headerbody);
 
     <!-- Draw Search-->
-    var searchformbody  = $('<input>').attr("type","search").attr("id","search").attr("value", "").attr("width", "100%");
+    var searchformbody = $('<input>').attr("type", "search").attr("id", "search").attr("value", "").attr("width", "100%");
     var searchform = $('<form>').attr("id", "home_searchform").append(searchformbody);
-    var search = $('<div>').attr("data-role", "footer").attr("data-role", "fieldcontain").attr("width","100%").attr("class", "hidden_home_search").attr("style","text-align:center; visibility:hidden").append(searchform);
+    var search = $('<div>').attr("data-role", "footer").attr("data-role", "fieldcontain").attr("width", "100%").attr("class", "hidden_home_search").attr("style", "text-align:center; visibility:hidden").append(searchform);
 
     <!-- Draw Content-->
     var content = $('<div>').attr("data-role", "content");
 
-     <!-- Draw Footer nav bar-->
+    <!-- Draw Footer nav bar-->
 
     var historytab = $("<li>").attr("style", "width:25%").append("<a href='history' data-icon='grid'>History</a>");
-    var searchtab = $("<li>").attr("id","tab_bar_search").attr("style","width:50%").append("<a href='' data-icon='search'>Search</a>");
-    var optionstab =$("<li>").attr("style","width:25%").append("<a href='options' data-icon='gear'>Options</a>");
-    var navbarul =   $("<ul>").append(historytab).append(searchtab).append(optionstab);
-    var navbar =  $("<div>").attr("data-role", "navbar").append(navbarul);
+    var searchtab = $("<li>").attr("id", "tab_bar_search").attr("style", "width:50%").append("<a href='' data-icon='search'>Search</a>");
+    var optionstab = $("<li>").attr("style", "width:25%").append("<a href='options' data-icon='gear'>Options</a>");
+    var navbarul = $("<ul>").append(historytab).append(searchtab).append(optionstab);
+    var navbar = $("<div>").attr("data-role", "navbar").append(navbarul);
 
     <!-- Draw footer and append nav bar-->
-    var footer = $('<div>').attr("data-role", "footer").attr("data-id", "navbar").attr("data-position","fixed").append(navbar);
+    var footer = $('<div>').attr("data-role", "footer").attr("data-id", "navbar").attr("data-position", "fixed").append(navbar);
 
 
     <!-- Draw the final page-->
@@ -135,7 +122,7 @@ function parseHomepage(xml) {
     $(xml).find("record").each(function() {
         pageWritable.append("<p>" + $(this).attr('title') + "</p>");
         $(this).find("text").each(function() {
-            pageWritable.append("<p>"+$(this).text()+"</p>");
+            pageWritable.append("<p>" + $(this).text() + "</p>");
         });
         var list = pageWritable.append("<ul data-role='listview' data-inset='true' data-theme='d'></ul>").find('ul');
         $(this).find("link").each(function() {
@@ -171,8 +158,8 @@ function parseRecord(xml) {
                         list.append('<li href=' + attr + '>' + text + '<p>' + title + '</p></li>');
                 }
                 else {
-                    title = $(this).attr('title').split(" ")[0];
-                    var html = '<li class="slide" title="' + title + '">';
+                    title = $(this).attr('title').replace(" ", "_");
+                    var html = '<li class="slide activeZero 0" title="' + title + '">';
                     if (title != undefined)
                         html += '<a href="">' + title + '</a>';
 
@@ -184,8 +171,7 @@ function parseRecord(xml) {
                             html += '<li class="search slide_items ' + title + '"' + 'href=' + attr + '><a href="" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'text') {
-                            if (title == undefined)
-                                html += "<li>" + text + "</li>";
+                            html += '<li class="slide_items ' + title + '" >' + text + '</li>';
                         }
                         else if (element.nodeName == 'email') {
                             html += '<li class="email slide_items ' + title + '"' + 'href=' + attr + '><a href="" >' + text + '</a></li>';
@@ -222,7 +208,7 @@ function parseRecord(xml) {
             case 'link':
                 text = $(this).text();
                 attr = $(this).attr('href');
-                html += '<li class="link" href=' + attr + '><a href="">' + text + '</a></li>';
+                list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a></li>');
                 break;
 
         }
@@ -255,10 +241,13 @@ $('.link').live('click', function() {
 });
 
 $('.slide').live('click', function() {
-
     var t = "." + $(this).attr("title");
     $(t).slideToggle("slow");
 
+});
+
+$('#login').live('click', function() {
+    logOut();
 });
 
 
@@ -288,4 +277,15 @@ $('#home_searchform').submit(function() {
 
 
     return false;
+});
+
+$('.activeZero').live("click", function() {
+    if ($(this).hasClass("0")) {
+        $(this).removeClass("0");
+    } else {
+        $(this).removeClass("ui-btn-active");
+        $(this).addClass("0");
+
+    }
+
 });

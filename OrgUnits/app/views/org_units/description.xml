@@ -1,0 +1,7 @@
+<record title="Serviço sobre Unidades Organizativas">
+  <text>Este serviço fornece informação detalhada sobre as unidades organizativas da FCT</text>
+  <text>Estas unidades estão divididas em 3 sub-elementos: Orgãos, Departamentos e Serviços</text>
+  <link href="http://localhost:3003/departments">Lista de Departamentos</link>
+  <link href="http://localhost:3003/organs">Lista de Orgãos</link>
+  <link href="http://localhost:3003/services">Lista de Serviços</link>
+</record>
