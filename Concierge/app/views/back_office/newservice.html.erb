@@ -3,3 +3,10 @@
   <%= text_field_tag(:url) %>
   <%= submit_tag("Insert") %>
 <% end %>
+
+<p>Service Image Upload</p>
+<%= form_tag(:action => 'uploadFile', :multipart => true ) do %>
+<p><label for="upload_file">Select File</label> :
+<%= file_field 'upload', 'datafile' %></p>
+<%= submit_tag "Upload" %>
+<% end %>

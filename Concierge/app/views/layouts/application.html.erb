@@ -5,16 +5,7 @@
   <title>Concierge</title>
 
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag "jquery-1.6", "application" %>
-  <%= javascript_include_tag "login", "application" %>
-  <script type="text/javascript">
-            $(document).bind("mobileinit", function(){
-                $.extend(  $.mobile , {
-                    ajaxFormsEnabled: false
-                });
-            });
-  </script>
-  <%= javascript_include_tag "jquery.mobile-1.0a4.1", "application" %>
+  <%= javascript_include_tag "jquery-1.6", "login", "application", "jquery.mobile-1.0a4.1" %>
   <%= csrf_meta_tag %>
 
   <!--

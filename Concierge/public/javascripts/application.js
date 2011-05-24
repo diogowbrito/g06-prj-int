@@ -1,7 +1,21 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+function getHomepage(url) {
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "xml",
+            success: parseHomepage
+        });
+    });
+
+}
+
 function getSearch(url) {
+
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -153,9 +167,9 @@ function parseRecord(xml) {
                     text = $(this).text();
                     title = $(this).attr('title');
                     if (title == undefined)
-                        list.append('<li href=' + attr + '>' + text + '</li>');
+                        list.append('<li>' + text + '</li>');
                     else
-                        list.append('<li href=' + attr + '>' + text + '<p>' + title + '</p></li>');
+                        list.append('<li>' + text + '<p>' + title + '</p></li>');
                 }
                 else {
                     title = $(this).attr('title').replace(" ", "_");
@@ -168,17 +182,18 @@ function parseRecord(xml) {
                         text = $(this).text();
                         if (element.nodeName == 'entity') {
                             attr = $(this).attr('href');
-                            html += '<li class="search slide_items ' + title + '"' + 'href=' + attr + '><a href="" >' + text + '</a></li>';
+                            html += '<li class="slide_items ' + title + '"><a class="search" href="' + attr + '" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'text') {
-                            html += '<li class="slide_items ' + title + '" >' + text + '</li>';
+                            html += '<li class="slide_items ' + title + '">' + text + '></li>';
                         }
                         else if (element.nodeName == 'email') {
-                            html += '<li class="email slide_items ' + title + '"' + 'href=' + attr + '><a href="" >' + text + '</a></li>';
+                            attr = $(this).attr('href');
+                            html += '<li class="slide_items ' + title + '"><a class="link" href="' + attr + '" >' + text + '</a></li>';
                         }
                         else if (element.nodeName == 'link') {
                             attr = $(this).attr('href');
-                            html += '<li class="link slide_items ' + title + '"' + 'href=' + attr + '><a href="" >' + text + '</a></li>';
+                            html += '<li class="slide_items ' + title + '"><a class="link" href="' + attr + '" >' + text + '</a></li>';
                         }
 
                     });
@@ -192,36 +207,36 @@ function parseRecord(xml) {
                 title = $(this).attr('title');
                 var attr = $(this).attr('href');
                 if (title == undefined)
-                    list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '</a></li>');
+                    list.append('<li><a class="search" href="' + attr + '">' + text + '</a></li>');
                 else
-                    list.append('<li class="search" href=' + attr + '>' + '<a href="">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
+                    list.append('<li><a class="search" href="' + attr + '">' + text + '<p>' + title + '</p></a></li>');
                 break;
 
             case 'email':
                 text = $(this).text();
                 title = $(this).attr('title');
                 if (title == undefined)
-                    list.append('<li class="email" href=' + attr + '><a href= "">' + text + '</a></li>');
+                    list.append('<li><a class="email" href="' + attr + '">' + text + '</a></li>');
                 else
-                    list.append('<li class="email" href=' + attr + '>' + '<a href="">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
+                    list.append('<li><a class="email" href="' + attr + '">' + text + '<p>' + title + '</p></a></li>');
                 break;
             case 'link':
                 text = $(this).text();
                 attr = $(this).attr('href');
                 title = $(this).attr('title');
                 if (title == undefined)
-                    list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a></li>');
+                    list.append('<li><a class="link" href="' + attr + '">' + text + '</a></li>');
                 else
-                    list.append('<li class="link" href="' + attr + '"><a href="">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
+                    list.append('<li><a class="link" href="' + attr + '">' + text + '<p>' + title + '</p></a></li>');
                 break;
             case 'external_link':
                 text = $(this).text();
                 attr = $(this).attr('href');
                 title = $(this).attr('title');
                 if (title == undefined)
-                    list.append('<li class="external_link" href="' + attr + '"><a href="'+attr+'" target="_blank">' + text + '</a></li>');
+                    list.append('<li><a class="external_link" target="_blank" href="' + attr + '">' + text + '</a></li>');
                 else
-                    list.append('<li class="external_link" href="' + attr + '"><a href="'+attr+'" target="_blank">' + text + '<p class="ui-li-desc">'+title+'</p></a></li>');
+                    list.append('<li><a class="external_link" target="_blank" href="' + attr + '">' + text + '<p>' + title + '</p></a></li>');
                 break;
 
         }
@@ -245,12 +260,18 @@ $('.item').live('click', function() {
     getRecord($(this).attr('href'));
 });
 
-$('.search').live('click', function() {
+$('.search').live('click', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
     getSearch($(this).attr('href'));
+    $.mobile.ajaxEnabled(false);
 });
 
 $('.link').live('click', function() {
+    event.preventDefault();
+    event.stopPropagation();
     getRecord($(this).attr('href'));
+    $.mobile.ajaxEnabled(false);
 });
 
 $('.slide').live('click', function() {
@@ -283,7 +304,6 @@ $("#tab_bar_search").live('click', function() {
 });
 
 $('#home_searchform').submit(function() {
-    console.log($(this).text);
     $(".hidden_home_search").fadeOut("slow", function() {
         $(this).show().css({visibility: "hidden"});
         $("#tab_bar_search").find("a").removeClass("ui-btn-active");

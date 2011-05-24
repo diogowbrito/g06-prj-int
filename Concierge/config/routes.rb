@@ -17,6 +17,7 @@ Concierge::Application.routes.draw do
   #Concierge admin
   match "admin/newservice" => "BackOffice#newservice"
   match "admin/createservice" => "BackOffice#createservice"
+  match "admin/uploadfile" => "BackOffice#uploadFile"
   match "admin/listservices" => "BackOffice#listservices"
   match "admin/destroyservice" => "BackOffice#destroyservice"
 
