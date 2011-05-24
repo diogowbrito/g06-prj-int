@@ -45,6 +45,7 @@ class ServiceForwardController < ApplicationController
 
 
   def recordrequest
+
     @servicename = params[:service]
     @id = params[:id]
     @method = params[:method]

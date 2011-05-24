@@ -1,6 +1,19 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+function getHomepage(url) {
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "xml",
+            success: parseHomepage
+        });
+    });
+
+}
+
 function getSearch(url) {
     $(document).ready(function() {
         $.ajax({
@@ -246,11 +259,6 @@ $('.slide').live('click', function() {
 
 });
 
-$('#login').live('click', function() {
-    logOut();
-});
-
-
 <!-- Pages scripts-->
 
 $("#tab_bar_search").live('click', function() {
@@ -289,4 +297,14 @@ $('.activeZero').live("click", function() {
 
     }
 
+});
+
+function logOut() {
+
+    $.mobile.hashListeningEnabled(false);
+
+}
+
+$('#login').live('click', function() {
+    logOut();
 });

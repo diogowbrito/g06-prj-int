@@ -54,7 +54,7 @@ class SearchController < ApplicationController
         href = node['href']
         link = href.gsub(homeurl, "http://localhost:3000/services/"+name)
         node['href'] = link
-        root.add_child(node)
+          root.add_child(node)
         end
         counter = counter + 1
         if counter>@end then
