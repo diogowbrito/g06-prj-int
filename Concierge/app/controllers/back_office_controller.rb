@@ -37,7 +37,6 @@ class BackOfficeController < ApplicationController
     end
 
     competences = @doc.xpath("//competence")
-    puts competences
     comp = []
 
     competences.each do |competence|

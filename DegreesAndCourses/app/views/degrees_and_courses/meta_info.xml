@@ -15,7 +15,7 @@
 		<entity>course</entity>
     </referedEntities>
     <informedEntities>
-		<entity>person</entity>
+		<entity>course</entity>
     </informedEntities>
     <competences>
 	<competence path="/index" httpOp="">

@@ -27,7 +27,6 @@
 
 <div data-role="page" data-position="inline">
   <div data-role="header" data-position="fixed">
-     <h1><%= rand() %></h1>
       <% if current_user %>
         Logged in as <%= current_user.userName %>.
         <a id="login" href="http://localhost:3000/logout" class="ui-btn-right" data-icon="gear" icon>Logout</a>
