@@ -76,9 +76,11 @@ class ServiceForwardController < ApplicationController
       if service != nil then
         link += 'services/'+service+'search?keyword='+plus_value
       elsif kind != nil then
-        link += 'search?keyword='+plus_value+'&amp;entity='+kind
+        plus_kind = kind.gsub(" ", "+")
+        link += 'search?keyword='+plus_value+'&amp;entity='+plus_kind
       else
-        link += 'search?keyword='+plus_value+'&amp;type='+serviceType
+        plus_serviceType = servie.gsub(" ", "+")
+        link += 'search?keyword='+plus_value+'&amp;type='+plus_serviceType
       end
 
       if title == nil
@@ -94,6 +96,7 @@ class ServiceForwardController < ApplicationController
 
       href = node['href']
       if href == nil then
+        node.name = "external_link"
         href = node['ehref']
       end
       link = href.gsub(serviceurl, "http://localhost:3000/services/"+@servicename)

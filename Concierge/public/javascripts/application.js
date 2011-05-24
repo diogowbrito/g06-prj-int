@@ -229,7 +229,21 @@ function parseRecord(xml) {
             case 'link':
                 text = $(this).text();
                 attr = $(this).attr('href');
-                list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a></li>');
+                title = $(this).attr('title');
+                if (title == undefined)
+                    list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a></li>');
+                else
+                    list.append('<li class="link" href="' + attr + '"><a href="">' + text + '</a><p>' + title + '</p></li>');
+                break;
+            case 'external_link':
+                text = $(this).text();
+                attr = $(this).attr('href');
+                title = $(this).attr('title');
+                    alert("oi");
+                if (title == undefined)
+                    list.append('<li class="external_link" href="' + attr + '"><a href="">' + text + '</a></li>');
+                else
+                    list.append('<li class="external_link" href="' + attr + '"><a href="">' + text + '</a><p>' + title + '</p></li>');
                 break;
 
         }

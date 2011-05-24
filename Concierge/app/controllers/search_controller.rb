@@ -2,8 +2,9 @@
 class SearchController < ApplicationController
 
    def search
-
+    puts params[:keyword]
     @keyword =  params[:keyword].gsub("%", "\%").gsub("_", "\_").gsub(" ", "+")
+    puts @keyword
     @start = (params[:start] || '1').to_i
     @end = (params[:end] || '20').to_i
     @type = params[:type]
