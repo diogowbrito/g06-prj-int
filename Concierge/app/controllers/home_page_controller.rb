@@ -1,6 +1,7 @@
 class HomePageController < ApplicationController
 
   def index
+
     @services = Service.all
 
     respond_to do |format|

@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+function logOut() {
+
+    $.mobile.hashListeningEnabled(false);
+
+}
+
+
+=======
+$(document).bind("mobileinit", function(){
+    $.extend(  $.mobile , {
+        ajaxFormsEnabled: false
+    });
+});
+>>>>>>> 4900f441705b0cbd57875214be343fbed3692a2c

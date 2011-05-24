@@ -1,7 +1,5 @@
-function logOut() {
-
-    $.mobile.hashListeningEnabled(false);
-
-}
-
-
+$(document).bind("mobileinit", function(){
+    $.extend(  $.mobile , {
+        ajaxFormsEnabled: false
+    });
+});

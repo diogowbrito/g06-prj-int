@@ -280,11 +280,6 @@ $('.slide').live('click', function() {
 
 });
 
-$('#login').live('click', function() {
-    logOut();
-});
-
-
 <!-- Pages scripts-->
 
 $("#tab_bar_search").live('click', function() {
@@ -322,4 +317,14 @@ $('.activeZero').live("click", function() {
 
     }
 
+});
+
+function logOut() {
+
+    $.mobile.hashListeningEnabled(false);
+
+}
+
+$('#login').live('click', function() {
+    logOut();
 });
