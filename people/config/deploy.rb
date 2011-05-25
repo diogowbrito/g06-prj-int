@@ -1,16 +1,16 @@
-
-
-
 #################
-#    Application
+## Application ##
 #################
 
 set :application, "people"
-set :repository,  "svn+ssh://pi2011@193.136.122.76/var/www/repository/people/"
-set :deploy_to, "var/www/repository/people/"
+set :repository,  "git://github.com/alaxid/people_service.git"
+set :deploy_to, "/var/www/concierge/people"
+#set :deploy_via, :remote_cache
 
-set :scm, :subversion
+set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :branch, "master"
+
 
 ###############
 #   Server Configs
@@ -19,32 +19,22 @@ set :scm, :subversion
 server "193.136.122.76", :app, :web, :db, :primary => true
 
 set :user, "pi2011"
-set :use_sudo, true 
-
+#set :use_sudo, true
+set :use_sudo, false
 
 ##################
 # Passenger crlh
 ##################
 
-#namespace :passenger do
-#	desc "Restart Application"
-#	task :restart do
-#		run "touch #{current_path}/tmp/restart.txt
-#	end
-#end
 
-#after :deploy, "passenger:restart"
+namespace :deploy do
+  desc "Restarting passenger"
+  task :restart, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
+  [:start, :stop].each do |t|
+    desc "#{t} task is a no-op with mod_rails"
+    task t, :roles => :app do ; end
 
 
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
