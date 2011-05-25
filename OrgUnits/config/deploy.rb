@@ -2,9 +2,9 @@
 ## Application ##
 #################
 
-set :application, "people"
-set :repository,  "git://github.com/alaxid/people_service.git"
-set :deploy_to, "/var/www/concierge/people"
+set :application, "OrgUnits"
+set :repository,  "git://github.com/alaxid/OrgUnits_service.git"
+set :deploy_to, "/var/www/concierge/OrgUnits"
 #set :deploy_via, :remote_cache
 
 set :scm, :git
